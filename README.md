@@ -47,3 +47,15 @@ separate immutable source artifact.
 
 Added `PRE_TAXONOMY_RESEARCH_CHARTER.md`, freezing the research objective and
 the candidate Logos / Agape hypotheses before empirical incident mining begins.
+
+## Incident corpus phase
+
+The empirical incident phase began on 2026-09-20.
+
+Current research artifacts:
+
+- `INCIDENT_SCHEMA.md`
+- `INCIDENT_CORPUS_0_1_0.md`
+- `PROVISIONAL_FAILURE_DIMENSIONS_0_1_0.md`
+
+The corpus is deliberately provisional. Early entries reconstructed from cross-chat history remain queued for transcript/artifact corroboration before any final taxonomy is frozen.
