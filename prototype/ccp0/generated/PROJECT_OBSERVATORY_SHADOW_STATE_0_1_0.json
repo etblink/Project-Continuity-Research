@@ -1,0 +1,211 @@
+{
+  "claims": {
+    "FCP.project_state": {
+      "authority": "PROJECT_OBSERVATORY_SNAPSHOT_V0_2",
+      "event_seq": 3,
+      "evidence_refs": [],
+      "status": "FROZEN_RECONSTRUCTION_V0_2",
+      "value": "WAITING_FOR_EVIDENCE"
+    },
+    "HiVenues.project_state": {
+      "authority": "PROJECT_OBSERVATORY_SNAPSHOT_V0_2",
+      "event_seq": 5,
+      "evidence_refs": [],
+      "status": "FROZEN_RECONSTRUCTION_V0_2",
+      "value": "ACTIVE"
+    },
+    "NFC.project_state": {
+      "authority": "PROJECT_OBSERVATORY_SNAPSHOT_V0_2",
+      "event_seq": 2,
+      "evidence_refs": [],
+      "status": "FROZEN_RECONSTRUCTION_V0_2",
+      "value": "READY_FOR_NEXT_OPERATION"
+    },
+    "PGH.project_state": {
+      "authority": "PROJECT_OBSERVATORY_SNAPSHOT_V0_2",
+      "event_seq": 4,
+      "evidence_refs": [],
+      "status": "FROZEN_RECONSTRUCTION_V0_2",
+      "value": "BLOCKED_EXTERNAL"
+    }
+  },
+  "environment": {},
+  "event_seq": 18,
+  "external_bindings": {
+    "FCP_MAIN": {
+      "authority": "PROJECT_OBSERVATORY_SNAPSHOT_V0_2",
+      "bound_revision": "a41bc6101b63140ee2687e0cf67a47ab6be77215",
+      "event_seq": 12,
+      "observed_at_boundary": "2026-09-14T21:04:00Z",
+      "ref": "main",
+      "repository": "etblink/Foundational-Convergence-Program"
+    },
+    "HIVENUES_MAIN": {
+      "authority": "PROJECT_OBSERVATORY_SNAPSHOT_V0_2",
+      "bound_revision": "bf9a0b4e61d57eed6bb5a81504d6e030f8b6ff7c",
+      "event_seq": 14,
+      "observed_at_boundary": "2026-09-14T21:04:00Z",
+      "ref": "main",
+      "repository": "etblink/HiVenues"
+    },
+    "NFC_CANON_ARCHIVE": {
+      "authority": "PROJECT_OBSERVATORY_SNAPSHOT_V0_2",
+      "bound_revision": "ed3047c2cbc0abc34d2549dd27754e4d3d05af78",
+      "event_seq": 10,
+      "observed_at_boundary": "2026-09-14T21:04:00Z",
+      "ref": "archive/nfc-canonical-ed3047c2",
+      "repository": "etblink/Nested-Fibrational-Cosmology"
+    },
+    "NFC_PUBLICATION_MAIN": {
+      "authority": "PROJECT_OBSERVATORY_SNAPSHOT_V0_2",
+      "bound_revision": "5072d563b0a3dd4a7643be427cd47108216d8793",
+      "event_seq": 11,
+      "observed_at_boundary": "2026-09-14T21:04:00Z",
+      "ref": "main",
+      "repository": "etblink/Nested-Fibrational-Cosmology"
+    },
+    "PGH_MAIN": {
+      "authority": "PROJECT_OBSERVATORY_SNAPSHOT_V0_2",
+      "bound_revision": "2923875b40ea6901dfafda56a771c36876c4a220",
+      "event_seq": 13,
+      "observed_at_boundary": "2026-09-14T21:04:00Z",
+      "ref": "main",
+      "repository": "etblink/Physical-Grammar-Hypothesis"
+    }
+  },
+  "external_observations": {
+    "FCP_MAIN": {
+      "actor": "read-only-github-observer",
+      "event_seq": 16,
+      "observed_at": "2026-09-20",
+      "observed_revision": "a41bc6101b63140ee2687e0cf67a47ab6be77215"
+    },
+    "HIVENUES_MAIN": {
+      "actor": "read-only-github-observer",
+      "event_seq": 18,
+      "observed_at": "2026-09-20",
+      "observed_revision": "21075c541189fbe236e8b113568933406ecc759f"
+    },
+    "NFC_PUBLICATION_MAIN": {
+      "actor": "read-only-github-observer",
+      "event_seq": 15,
+      "observed_at": "2026-09-20",
+      "observed_revision": "5072d563b0a3dd4a7643be427cd47108216d8793"
+    },
+    "PGH_MAIN": {
+      "actor": "read-only-github-observer",
+      "event_seq": 17,
+      "observed_at": "2026-09-20",
+      "observed_revision": "2923875b40ea6901dfafda56a771c36876c4a220"
+    }
+  },
+  "external_status": {
+    "FCP_MAIN": {
+      "bound_revision": "a41bc6101b63140ee2687e0cf67a47ab6be77215",
+      "latest_observed_at": "2026-09-20",
+      "observed_at_boundary": "2026-09-14T21:04:00Z",
+      "observed_revision": "a41bc6101b63140ee2687e0cf67a47ab6be77215",
+      "ref": "main",
+      "repository": "etblink/Foundational-Convergence-Program",
+      "status": "MATCHES_BOUNDARY"
+    },
+    "HIVENUES_MAIN": {
+      "bound_revision": "bf9a0b4e61d57eed6bb5a81504d6e030f8b6ff7c",
+      "latest_observed_at": "2026-09-20",
+      "observed_at_boundary": "2026-09-14T21:04:00Z",
+      "observed_revision": "21075c541189fbe236e8b113568933406ecc759f",
+      "ref": "main",
+      "repository": "etblink/HiVenues",
+      "status": "SOURCE_MOVED_SINCE_BOUNDARY"
+    },
+    "NFC_CANON_ARCHIVE": {
+      "bound_revision": "ed3047c2cbc0abc34d2549dd27754e4d3d05af78",
+      "latest_observed_at": null,
+      "observed_at_boundary": "2026-09-14T21:04:00Z",
+      "observed_revision": null,
+      "ref": "archive/nfc-canonical-ed3047c2",
+      "repository": "etblink/Nested-Fibrational-Cosmology",
+      "status": "UNVERIFIED_SINCE_BOUNDARY"
+    },
+    "NFC_PUBLICATION_MAIN": {
+      "bound_revision": "5072d563b0a3dd4a7643be427cd47108216d8793",
+      "latest_observed_at": "2026-09-20",
+      "observed_at_boundary": "2026-09-14T21:04:00Z",
+      "observed_revision": "5072d563b0a3dd4a7643be427cd47108216d8793",
+      "ref": "main",
+      "repository": "etblink/Nested-Fibrational-Cosmology",
+      "status": "MATCHES_BOUNDARY"
+    },
+    "PGH_MAIN": {
+      "bound_revision": "2923875b40ea6901dfafda56a771c36876c4a220",
+      "latest_observed_at": "2026-09-20",
+      "observed_at_boundary": "2026-09-14T21:04:00Z",
+      "observed_revision": "2923875b40ea6901dfafda56a771c36876c4a220",
+      "ref": "main",
+      "repository": "etblink/Physical-Grammar-Hypothesis",
+      "status": "MATCHES_BOUNDARY"
+    }
+  },
+  "graph_revision": 0,
+  "intent_version": 1,
+  "phase_state": {
+    "observatory_snapshot": "FROZEN_V0_2"
+  },
+  "policy_version": "ccp0-shadow-0.1.0",
+  "project": "Project Observatory \u2014 shadow CCP trial",
+  "purpose": "Read-only cross-project reconstruction of canonical state, dependencies, uncertainty, external decision triggers, and bounded adversarial findings without silently changing observed projects.",
+  "routes": {
+    "FCP.next_scientific_operation": {
+      "authority": "PROJECT_OBSERVATORY_SNAPSHOT_V0_2",
+      "basis": "FCP remains on evidence-triggered hold.",
+      "reopen_requires": [
+        "FRESH_PREREGISTRATION",
+        "MATERIAL_NEW_EVIDENCE"
+      ],
+      "reopened_by_event": null,
+      "route": "FCP.next_scientific_operation",
+      "scope": "FCP scientific routing",
+      "state": "HELD"
+    },
+    "HiVenues.external_effects": {
+      "authority": "PROJECT_OBSERVATORY_SNAPSHOT_V0_2",
+      "basis": "Live-host migration and Hive/provider/payment/signing/deployment/DNS/VPS effects are outside the frozen active phase authority.",
+      "reopen_requires": [
+        "EXPLICIT_EXTERNAL_EFFECT_AUTHORIZATION",
+        "SEPARATELY_QUALIFIED_OPERATION"
+      ],
+      "reopened_by_event": null,
+      "route": "HiVenues.external_effects",
+      "scope": "HiVenues external effects",
+      "state": "HELD"
+    },
+    "NFC.new_adversarial_audit": {
+      "authority": "PROJECT_OBSERVATORY_SNAPSHOT_V0_2",
+      "basis": "Snapshot v0.2 selects no new NFC target.",
+      "reopen_requires": [
+        "FRESH_PREREGISTRATION",
+        "TARGET_SELECTION"
+      ],
+      "reopened_by_event": null,
+      "route": "NFC.new_adversarial_audit",
+      "scope": "NFC post-snapshot routing",
+      "state": "HELD"
+    },
+    "PGH.physical_trial": {
+      "authority": "PROJECT_OBSERVATORY_SNAPSHOT_V0_2",
+      "basis": "No real conforming D1 apparatus/target/data exist at the frozen boundary.",
+      "reopen_requires": [
+        "ANALYSIS_PREREGISTRATION",
+        "PROSPECTIVE_BINDING",
+        "REAL_D1_APPARATUS",
+        "TARGET_FREEZE"
+      ],
+      "reopened_by_event": null,
+      "route": "PGH.physical_trial",
+      "scope": "PGH empirical routing",
+      "state": "HELD"
+    }
+  },
+  "safeguards": {},
+  "supersessions": []
+}

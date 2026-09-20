@@ -140,3 +140,23 @@ No pure architecture covers the critical requirement set. The current prototype
 candidate is Composite E, an event-sourced provenance control plane with guarded
 transitions and a generated Project Kernel as an orientation projection rather
 than the sole source of truth.
+
+
+## CCP-0 semantic prototype
+
+The first executable Composite-E prototype is in `prototype/ccp0/`.
+
+It replays ten historical failure scenarios, includes counterfactual and
+self-audit controls, tracks external-source freshness, and has completed a
+read-only Project Observatory shadow trial.
+
+The frozen decision is:
+
+```text
+CCP0_SEMANTIC_FEASIBILITY = PASS
+CCP1_BOUNDED_RESEARCH_PROTOTYPE = AUTHORIZED
+LIVE_PROJECT_CONTROL_PLANE_INTEGRATION = NOT_AUTHORIZED
+```
+
+See the prototype experiment report, limitation/attack register, and advancement
+decision in that directory.
