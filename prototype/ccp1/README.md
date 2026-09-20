@@ -160,3 +160,27 @@ NEXT_GATE = BLIND_AGENT_COLD_START + HUMAN_COLD_START_USABILITY
 Additional frozen result:
 
 - `CCP1_PROJECT_AGNOSTIC_PORTABILITY_RESULT_0_1_0.md`
+
+
+## Autonomous secondary attack family
+
+```text
+STATUS = COMPLETE
+FINAL_VERIFIED_CHECKPOINT = 124 / 124 PASS
+CCP1_COMPLETE = NO
+```
+
+The remaining CCP-1 gates require participants that are genuinely independent
+of the design context:
+
+- blind agent cold-start;
+- unfamiliar-human cold-start / usability.
+
+Frozen family result:
+
+- `CCP1_AUTONOMOUS_SECONDARY_ATTACK_FAMILY_RESULT_0_1_0.md`
+
+```text
+CCP2_AUTHORIZED = NO
+LIVE_PROJECT_MUTATION = NOT_AUTHORIZED
+```
