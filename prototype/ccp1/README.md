@@ -108,3 +108,20 @@ NEXT_SECONDARY_ATTACK = ORIENTATION_CONTRACT_QUALITY
 Additional frozen result:
 
 - `CCP1_AUTHORITY_DURABILITY_IDENTITY_RESULT_0_1_0.md`
+
+
+- Orientation-contract quality / external review — **complete: disposition C, bounded pass**
+
+Current verified checkpoint:
+
+```text
+CCP0 = 27 / 27 PASS
+CCP1 = 78 / 78 PASS
+TOTAL = 105 / 105 PASS
+
+NEXT_SECONDARY_ATTACK = SUPERSESSION_GRAPH_SCALE
+```
+
+Additional frozen result:
+
+- `CCP1_ORIENTATION_CONTRACT_QUALITY_RESULT_0_1_0.md`
