@@ -160,3 +160,8 @@ LIVE_PROJECT_CONTROL_PLANE_INTEGRATION = NOT_AUTHORIZED
 
 See the prototype experiment report, limitation/attack register, and advancement
 decision in that directory.
+
+## License
+
+Unless otherwise noted, this repository is licensed under the Apache License,
+Version 2.0. See `LICENSE`.
