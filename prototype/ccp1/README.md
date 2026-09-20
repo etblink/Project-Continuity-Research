@@ -74,3 +74,20 @@ NEXT_SECONDARY_ATTACK = INVALID_ACCEPTED_EVENT_CORRECTION
 Frozen secondary result artifacts:
 
 - `CCP1_EVIDENCE_AUTHENTICITY_RESULT_0_1_0.md`
+
+
+- Accepted-event correction — **complete: disposition C, claim-level bounded pass**
+
+Current verified checkpoint:
+
+```text
+CCP0 = 27 / 27 PASS
+CCP1 = 60 / 60 PASS
+TOTAL = 87 / 87 PASS
+
+NEXT_SECONDARY_ATTACK = AUTHORITY_DURABILITY_AND_IDENTITY_BOUNDARY
+```
+
+Additional frozen result:
+
+- `CCP1_ACCEPTED_EVENT_CORRECTION_RESULT_0_1_0.md`
