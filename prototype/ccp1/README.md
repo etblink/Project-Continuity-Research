@@ -6,27 +6,45 @@ It remains read-only / shadow mode with respect to real projects.
 
 ## P1 attack sequence
 
-1. authority spoofing — **complete: survived initial bounded attack**
-2. bad-policy enforcement — **complete: disposition C, bounded pass**
-3. stale / concurrent transitions — **complete: disposition C, bounded pass**
-4. kernel omission — **complete: disposition C, bounded pass**
-5. reopen-predicate brittleness
+1. authority spoofing — **complete: bounded pass**
+2. bad-policy enforcement — **complete: disposition C**
+3. stale / concurrent transitions — **complete: disposition C**
+4. kernel omission — **complete: disposition C**
+5. reopen-predicate brittleness — **complete: disposition C**
+
+```text
+P1_ATTACK_FAMILY = COMPLETE
+```
+
+## Verified P1 checkpoint
+
+GitHub Actions run `35535927777`:
+
+```text
+CCP0_REGRESSION_SUITE  = 27 / 27 PASS
+CCP1_ADVERSARIAL_SUITE = 41 / 41 PASS
+TOTAL                  = 68 / 68 PASS
+```
 
 The CCP-0 prototype and its frozen 27-test suite remain unchanged under
 `prototype/ccp0/` and serve as the regression baseline.
 
-## Current verified checkpoint
+## Secondary CCP-1 program
+
+Next bounded work:
+
+1. evidence authenticity / reproducible evidence adapters;
+2. disputed/invalid accepted-event correction;
+3. authority durability / identity-authentication boundary;
+4. orientation-contract quality;
+5. supersession / graph scale;
+6. project-agnostic portability;
+7. blind cold-start and human usability when independent participants are
+   available.
 
 ```text
-CCP0_REGRESSION_SUITE      = 27 / 27 PASS
-CCP1_AUTHORITY_SUITE       =  7 /  7 PASS
-CCP1_BAD_POLICY_SUITE      =  9 /  9 PASS
-CCP1_CONCURRENCY_SUITE     =  9 /  9 PASS
-CCP1_KERNEL_OMISSION       =  7 /  7 PASS
-TOTAL                      = 59 / 59 PASS
-
-NEXT_P1_ATTACK = REOPEN_PREDICATE_BRITTLENESS
 LIVE_PROJECT_MUTATION = NOT_AUTHORIZED
+CCP2 = NOT YET AUTHORIZED
 ```
 
 Frozen result artifacts:
@@ -35,3 +53,5 @@ Frozen result artifacts:
 - `CCP1_BAD_POLICY_RESULT_0_1_0.md`
 - `CCP1_STALE_CONCURRENT_TRANSITION_RESULT_0_1_0.md`
 - `CCP1_KERNEL_OMISSION_RESULT_0_1_0.md`
+- `CCP1_REOPEN_PREDICATE_RESULT_0_1_0.md`
+- `CCP1_P1_ATTACK_FAMILY_RESULT_0_1_0.md`
