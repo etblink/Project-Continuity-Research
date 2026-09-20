@@ -170,3 +170,12 @@ Apache-2.0 is a reasoned default rather than an immutable project doctrine.
 `LICENSE_POLICY.md` defines the specific conditions that should reopen the
 licensing decision and the review process to use if one of those conditions
 becomes materially true.
+
+
+## Big-picture roadmap
+
+`BIG_PICTURE_ROADMAP.md` is the program-level orientation document. It tracks
+the research phases, advancement gates, and hard boundaries without replacing
+the exact state/evidence artifacts.
+
+It is intentionally not a task tracker or source of canonical project state.
