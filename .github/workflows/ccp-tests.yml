@@ -1,0 +1,28 @@
+name: CCP semantic tests
+
+on:
+  push:
+    branches:
+      - main
+      - research/ccp1-adversarial-hardening
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  unittest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run CCP-0 regression suite
+        run: python -m unittest discover -s prototype/ccp0/tests -v
+      - name: Run CCP-1 adversarial suite when present
+        shell: bash
+        run: |
+          if [ -d prototype/ccp1/tests ]; then
+            python -m unittest discover -s prototype/ccp1/tests -v
+          fi
