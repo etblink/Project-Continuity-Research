@@ -93,24 +93,27 @@ class PolicyRegistry:
     def get(self, policy_id: str, version: str) -> PolicySpec:
         return self._policies[(policy_id, version)]
 
-    def record_regression(
+    def evaluate_and_record_regression(
         self,
         policy_id: str,
         version: str,
         *,
-        case_name: str,
-        passed: bool,
+        case: "PolicyRegressionCase",
         evidence: str,
-    ) -> None:
+    ) -> bool:
         key = (policy_id, version)
         if key not in self._policies:
             raise ValidationError(f"unknown policy {policy_id}@{version}")
         if not evidence:
             raise ValidationError("regression evidence is required")
-        self._results[key][case_name] = {
-            "passed": bool(passed),
+        spec = self._policies[key]
+        passed = run_policy_regression(spec, case)
+        self._results[key][case.name] = {
+            "passed": passed,
             "evidence": evidence,
+            "expected_allowed": case.expected_allowed,
         }
+        return passed
 
     def admission_status(self, policy_id: str, version: str) -> Tuple[bool, Tuple[str, ...]]:
         spec = self.get(policy_id, version)

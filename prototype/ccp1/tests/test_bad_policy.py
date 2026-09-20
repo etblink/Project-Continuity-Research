@@ -5,7 +5,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT))
 
-from prototype.ccp0.ccp import ValidationError
+from prototype.ccp0.ccp import ValidationError, TransitionRejected
 from prototype.ccp1.authority import AuthorizationError, Principal
 from prototype.ccp1.policy import (
     PolicyAdmissionError,
@@ -102,11 +102,10 @@ class BadPolicyAttackTests(unittest.TestCase):
             required_regressions=frozenset({"AR04_VISUAL_HOLD"}),
         )
         cp.policy_registry.register(bad)
-        cp.policy_registry.record_regression(
+        cp.policy_registry.evaluate_and_record_regression(
             bad.policy_id,
             bad.version,
-            case_name="AR04_VISUAL_HOLD",
-            passed=False,
+            case=visual_hold_case(),
             evidence="bounded-regression-run",
         )
         with self.assertRaises(PolicyAdmissionError):
@@ -117,11 +116,10 @@ class BadPolicyAttackTests(unittest.TestCase):
         cp = self.make_plane()
         spec = good_policy()
         cp.policy_registry.register(spec)
-        cp.policy_registry.record_regression(
+        cp.policy_registry.evaluate_and_record_regression(
             spec.policy_id,
             spec.version,
-            case_name="AR04_VISUAL_HOLD",
-            passed=True,
+            case=visual_hold_case(),
             evidence="bounded-regression-run",
         )
         with self.assertRaises(AuthorizationError):
@@ -131,11 +129,10 @@ class BadPolicyAttackTests(unittest.TestCase):
         cp = self.make_plane()
         spec = good_policy()
         cp.policy_registry.register(spec)
-        cp.policy_registry.record_regression(
+        cp.policy_registry.evaluate_and_record_regression(
             spec.policy_id,
             spec.version,
-            case_name="AR04_VISUAL_HOLD",
-            passed=True,
+            case=visual_hold_case(),
             evidence="bounded-regression-run",
         )
         cp.activate_policy(spec.policy_id, spec.version, actor_id="lead")
@@ -156,16 +153,15 @@ class BadPolicyAttackTests(unittest.TestCase):
         cp = self.make_plane()
         spec = good_policy()
         cp.policy_registry.register(spec)
-        cp.policy_registry.record_regression(
+        cp.policy_registry.evaluate_and_record_regression(
             spec.policy_id,
             spec.version,
-            case_name="AR04_VISUAL_HOLD",
-            passed=True,
+            case=visual_hold_case(),
             evidence="bounded-regression-run",
         )
         cp.activate_policy(spec.policy_id, spec.version, actor_id="lead")
         cp.append_event("CLAIM_SET", "visual_gate", {"value": "FAIL"}, actor="review", authority="PROJECT_LEAD")
-        with self.assertRaises(Exception):
+        with self.assertRaises(TransitionRejected):
             cp.request_authorized_transition(
                 "START_ASTRA",
                 subject="astra:v1",
@@ -178,11 +174,10 @@ class BadPolicyAttackTests(unittest.TestCase):
         before = cp.generate_kernel()
         spec = good_policy()
         cp.policy_registry.register(spec)
-        cp.policy_registry.record_regression(
+        cp.policy_registry.evaluate_and_record_regression(
             spec.policy_id,
             spec.version,
-            case_name="AR04_VISUAL_HOLD",
-            passed=True,
+            case=visual_hold_case(),
             evidence="bounded-regression-run",
         )
         cp.activate_policy(spec.policy_id, spec.version, actor_id="lead")
