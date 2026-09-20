@@ -41,3 +41,9 @@ unchanged in `sources/`.
 
 For archival-grade preservation, a raw chat export can later be added as a
 separate immutable source artifact.
+
+
+## 0.1.1 update
+
+Added `PRE_TAXONOMY_RESEARCH_CHARTER.md`, freezing the research objective and
+the candidate Logos / Agape hypotheses before empirical incident mining begins.
