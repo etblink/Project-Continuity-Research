@@ -91,3 +91,20 @@ NEXT_SECONDARY_ATTACK = AUTHORITY_DURABILITY_AND_IDENTITY_BOUNDARY
 Additional frozen result:
 
 - `CCP1_ACCEPTED_EVENT_CORRECTION_RESULT_0_1_0.md`
+
+
+- Authority durability / identity-authentication boundary — **complete: disposition C, bounded pass**
+
+Current verified checkpoint:
+
+```text
+CCP0 = 27 / 27 PASS
+CCP1 = 69 / 69 PASS
+TOTAL = 96 / 96 PASS
+
+NEXT_SECONDARY_ATTACK = ORIENTATION_CONTRACT_QUALITY
+```
+
+Additional frozen result:
+
+- `CCP1_AUTHORITY_DURABILITY_IDENTITY_RESULT_0_1_0.md`
