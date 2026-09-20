@@ -120,3 +120,23 @@ memory/planning/reflection research.
 
 The most important refinement is that a future Project Kernel is now treated as
 a candidate **auditable orientation projection**, not the sole source of truth.
+
+
+## Architecture competition
+
+The first controlled architecture competition is recorded in:
+
+- `ARCHITECTURE_COMPETITION_CHARTER_0_1_0.md`
+- `ARCHITECTURE_CANDIDATE_A_DOCUMENT_KERNEL_0_1_0.md`
+- `ARCHITECTURE_CANDIDATE_B_EVENT_SOURCED_0_1_0.md`
+- `ARCHITECTURE_CANDIDATE_C_TYPED_POLICY_0_1_0.md`
+- `ARCHITECTURE_CANDIDATE_D_PROVENANCE_GRAPH_0_1_0.md`
+- `ARCHITECTURE_REQUIREMENTS_SCORECARD_0_1_0.md`
+- `ARCHITECTURE_ADVERSARIAL_REPLAY_MATRIX_0_1_0.md`
+- `ARCHITECTURE_COMPOSITE_E_CONTROL_PLANE_0_1_0.md`
+- `ARCHITECTURE_COMPETITION_RESULT_0_1_0.md`
+
+No pure architecture covers the critical requirement set. The current prototype
+candidate is Composite E, an event-sourced provenance control plane with guarded
+transitions and a generated Project Kernel as an orientation projection rather
+than the sole source of truth.
