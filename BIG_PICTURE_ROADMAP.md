@@ -197,7 +197,7 @@ ACTIVE
 P1_ATTACK_FAMILY = COMPLETE
 AUTONOMOUS_SECONDARY_ATTACK_SET = COMPLETE
 BLIND_AGENT_TRIAL_1 = PROVISIONAL_PASS
-HUMAN_COLD_START_TRIAL_1 = NEXT
+HUMAN_COLD_START_TRIAL_1 = WAITING_FOR_VOLUNTEER
 ```
 
 Governing issue:
@@ -254,8 +254,8 @@ Completed autonomous secondary program:
 Remaining initial CCP-1 exit trials:
 
 - blind agent cold-start — **first trial provisionally passed**;
-- unfamiliar-human cold-start / usability — **still required**;
-- post-trial design review — **still required**.
+- unfamiliar-human cold-start / usability — **still required; waiting for an unfamiliar volunteer**;
+- post-trial design review — **still required after the human trial**.
 
 These remaining trials cannot be validly self-administered by the same
 conversation/context that designed the architecture.
