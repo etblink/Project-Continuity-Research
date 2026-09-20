@@ -59,3 +59,17 @@ Current research artifacts:
 - `PROVISIONAL_FAILURE_DIMENSIONS_0_1_0.md`
 
 The corpus is deliberately provisional. Early entries reconstructed from cross-chat history remain queued for transcript/artifact corroboration before any final taxonomy is frozen.
+
+
+## Corroboration / positive-control pass
+
+The first evidence-strengthening pass is now recorded in:
+
+- `CORROBORATION_PASS_0_1_0.md`
+- `COUNTEREXAMPLE_CORPUS_0_1_0.md`
+- `METHODOLOGY_NOTE_0_1_0.md`
+
+This pass promotes selected incident cores to artifact-corroborated `R2` while
+keeping initiative attribution conservative until raw transcripts are archived.
+It also introduces the distinction between **event evidence** and **initiative
+evidence** for claims of AI/process self-correction.
