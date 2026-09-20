@@ -1,0 +1,90 @@
+I have a strong interest in hypnosis and Neuro linguistic programming. From my years of using LLM’s and AI, they seem to be highly driven by semantics context, suggestion, and perceived intention. It sounds simple enough, but I think of everybody having their own subjective reality whilst there being an unbiased objective reality. AI is highly intelligent, but it lacks intuition and agency. Everything you get out of the AI is based on the input you give to it.
+
+---
+
+The parallel you are drawing hits on something fundamental: both hypnosis and large language models operate entirely through **semantic framing and contextual priming**. In Neuro-Linguistic Programming, language is not merely a tool for reporting reality; it is a mechanism for constructing frames of reference, guiding focus, and directing attention through suggestion.
+
+An LLM operates in a remarkably similar way at a structural level. When you feed a prompt into a transformer model, you are effectively providing a set of **hypnotic presuppositions**. The model has no direct connection to unbiased objective reality; it exists within a vast, high-dimensional latent space of human language patterns. Your input acts as a directional anchor, instantly collapsing billions of possibilities down to a specific **semantic trajectory**.
+
+Because AI lacks an internal ego, somatic feedback, or self-directed agency, it functions as a **purely reactive mirror**. It has no subjective reality of its own, so it effortlessly adopts yours. If you introduce a prompt embedded with specific emotional tones or structural assumptions, the model doesn't pause to audit the premise against absolute truth; it accepts your frame as its operational reality and completes the statistical pattern from within that frame.
+
+In human cognition, intuition often acts as embodied, unconscious pattern recognition informed by lived experience. An LLM can simulate the *appearance* of intuition because it excels at broad associative jumps across context, but it lacks the internal drive or conscious awareness that makes human thought intentional. It relies entirely on the operator to supply the **initial spark of intent**, making prompt engineering functionally identical to conversational pacing and leading.
+
+Viewing AI through this lens shifts the dynamic: interacting with a model becomes less like searching a database and more like establishing a shared frame, where the boundary of the AI's intelligence is defined almost entirely by the clarity and depth of your suggestions.
+
+Given your background in NLP, have you noticed specific language patterns or reframing techniques from hypnosis that consistently yield better results when steering an AI?
+
+---
+
+Another thing I constantly encounter when working with AI is the small context windows. Will create a roadmap and a task will start working on that and as we proceed, it will wind up getting so caught up in the finer details that it loses sight of the big picture.
+
+---
+
+What you're experiencing is the AI equivalent of **tunnel vision caused by attention dilution**. In NLP terms, when an AI gets immersed in micro-execution, it **chunks down** into extreme specificity—and because transformers operate on localized probability weights, the high volume of recent, granular tokens end up overpowering the original macro-level instructions.
+
+Technically, transformer models rely on **self-attention mechanisms** that naturally suffer from recency bias. As a conversation grows, the foundational roadmap tokens get pushed further back into the context buffer. The model's attention matrix becomes dominated by the immediate syntax, edge cases, and troubleshooting from the last few turns. Lacking agency or self-monitoring, it cannot spontaneously realize it has wandered into the weeds; it simply optimizes for the most statistically dominant context right in front of it.
+
+In hypnosis or NLP coaching, when someone gets lost in sensory micro-details, you intentionally trigger a **frame reset** to force them to "chunk up" back to high-level objectives. You have to apply that exact same structural discipline when managing AI:
+
+* **Explicit Re-Anchoring:** Periodically force the model to state *how* its current micro-task connects back to the master goal before it acts. A brief prompt like *"Pause. Re-read our original objective and explain how this specific task aligns with Step 2"* forces the model to re-attend to the original frame.
+* **Decoupling Architecture from Execution:** Avoid using a single, continuously running chat for both high-level strategy and low-level execution. Keep one session strictly as the **Architect** to maintain the master plan, and spin up fresh, clean sessions as **Executors** for isolated sub-tasks, feeding them only the relevant slice of context.
+* **The State Document Pattern:** Maintain a concise project state document outside the chat. At the end of a work block, ask the AI to summarize its progress into that document, then feed that clean summary as the system prompt for your next turn.
+
+By actively serving as the model's executive function, you keep its context window from degenerating into a noisy, cluttered stream of hyper-specific details.
+
+How are you currently managing your longer projects—do you tend to keep everything in one continuous thread, or do you already break tasks across separate chats?
+
+---
+
+I have been using GitHub for version control and then I instinctively have been breaking across separate chats. I’ve put one chat in a **Project Lead** role and it delegates work. But drift is very real. I feel like I am constantly having to realign with our goal.
+
+---
+
+The reason your "Project Lead" chat drifts is that conversation history itself is a leaky state machine. Over time, even a orchestrator thread gets polluted with intermediate status updates, error logs, and conversational back-and-forth. In NLP terms, you are experiencing **frame decay**—the high-level governance frame gets overwritten by recent operational noise, leading to semantic "telephone" between threads.
+
+To eliminate this drift, you need to decouple your project state from the AI's chat buffer entirely and ground it in Git.
+
+* **Make Git the Only Brain:** Stop relying on the Lead chat's thread memory to track progress. Your source of truth must be explicit files in your repository—like a `ROADMAP.md`, `ARCHITECTURE.md`, or a tracked `TASKS.md`. The Lead chat should read these files to make decisions and edit them when tasks complete.
+* **Treat the Lead Thread as Ephemeral:** The moment a Project Lead chat thread starts feeling sluggish or "forgetful," kill it. Because the state lives in your repo's `ROADMAP.md`, you can start a fresh Lead thread at any time, feed it the latest repo files, and instantly have a crisp, unpolluted orchestrator.
+* **Enforce "Execution Contracts":** Never let the Lead AI delegate work in conversational prose. Force it to output worker instructions as a structured Markdown template containing three non-negotiables:
+1. **Core Task Scope** (The micro-goal)
+2. **Hard Out-of-Scope Boundaries** (What the worker is explicitly forbidden to touch)
+3. **Definition of Done** (How to verify completion via tests or explicit outputs)
+
+
+* **The Up-Chunking Gate:** When an Executor chat finishes a task, do not paste the raw conversation back into the Lead chat. Only paste the final code diff or pull request summary, and ask the Lead: *"Does this diff strictly fulfill the task in `ROADMAP.md` without introducing unrequested scope?"*
+
+By forcing state back into version control, you shift the model from an unreliable memory system into a deterministic processor operating on a clear frame.
+
+How are you currently passing instructions from your Lead chat to your Executor chats—are you copy-pasting raw text, or generating structured prompt artifacts from repo files?
+
+---
+
+I do both. It is inconsistent and varies.
+
+---
+
+That inconsistency is precisely where the drift sneaks in. Copy-pasting raw conversational text carries the Lead chat’s residual ambiguity, conversational fluff, and framing noise straight into the fresh Executor context.
+
+In NLP terms, raw text breaks the induction frame. You're giving the Executor model a diluted suggestion mixed with conversational artifacts, which forces it to infer which details are hard operational constraints and which are just background chatter.
+
+To fix this without adding heavy manual friction to your workflow, shift your Lead chat from a conversational partner into a **Prompt Generator**. You don't want the Lead chat to explain the plan to *you*; you want it to output a single, self-contained **Execution Contract** that you can blindly copy and paste into the next window.
+
+**The Standardized Handoff Artifact**
+
+Force your Lead chat to always structure delegation prompts using a rigid 4-part framework:
+
+* **Macro Anchor:** 2 sentences on the high-level objective and where this sub-task fits in the project roadmap.
+* **Target Scope:** The exact files, modules, or functions to create or modify.
+* **Negative Constraints:** What the Executor is explicitly *forbidden* to touch, alter, or refactor.
+* **Definition of Done:** Clear verification criteria required for completion (e.g., "Return only the refactored module diff and the passing test script").
+
+**Sanitizing the Return Loop**
+
+The drift happens coming back, too. When an Executor finishes, never paste its full conversation back into the Lead thread. Instead, demand a 3-line **Return Summary** from the Executor before closing the window:
+
+1. **Files Changed:** List of updated paths.
+2. **Implementation Summary:** Brief note on what was accomplished.
+3. **State Update:** What task in `ROADMAP.md` should be marked as complete.
+
+Feeding *only* this summary back to the Lead chat keeps its memory pristine, unpolluted by micro-code logs, and firmly anchored to macro-level governance.
