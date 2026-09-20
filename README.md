@@ -101,3 +101,22 @@ The current six provisional failure classes are Orientation Drift,
 Epistemic-State Drift, Authority Drift, Transition Drift, Negative-Knowledge
 Loss, and Metacognitive Drift. These are research classifications, not yet an
 architecture or Project Kernel specification.
+
+
+## Cross-discipline comparison
+
+The first external comparison pass is recorded in:
+
+- `EXTERNAL_SOURCE_REGISTER_0_1_0.md`
+- `ADJACENT_FIELDS_COMPARATIVE_REVIEW_0_1_0.md`
+- `CROSS_DISCIPLINE_TRANSFER_MATRIX_0_1_0.md`
+- `POST_LITERATURE_REQUIREMENTS_0_1_0.md`
+- `CROSS_DISCIPLINE_SYNTHESIS_0_1_0.md`
+
+The review compares the empirical taxonomy with hierarchical planning, event
+sourcing, provenance, distributed systems, safety/control engineering,
+organizational memory, cognitive science, mission intent, and current LLM agent
+memory/planning/reflection research.
+
+The most important refinement is that a future Project Kernel is now treated as
+a candidate **auditable orientation projection**, not the sole source of truth.
