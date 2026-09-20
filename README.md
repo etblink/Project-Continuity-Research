@@ -165,3 +165,8 @@ decision in that directory.
 
 Unless otherwise noted, this repository is licensed under the Apache License,
 Version 2.0. See `LICENSE`.
+
+Apache-2.0 is a reasoned default rather than an immutable project doctrine.
+`LICENSE_POLICY.md` defines the specific conditions that should reopen the
+licensing decision and the review process to use if one of those conditions
+becomes materially true.
