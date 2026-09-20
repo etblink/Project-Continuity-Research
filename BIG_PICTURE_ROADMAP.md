@@ -194,6 +194,8 @@ Status:
 
 ```text
 ACTIVE
+P1_ATTACK_FAMILY = COMPLETE
+SECONDARY_CCP1_ATTACKS = ACTIVE
 ```
 
 Governing issue:
@@ -220,12 +222,24 @@ stronger than it is:
 4. kernel omission;
 5. reopen-predicate brittleness.
 
-Exact completion state and test counts belong in the CCP-1 branch README and
-Issue #1 rather than this roadmap.
+P1 status:
+
+```text
+COMPLETE — first bounded adversarial family survived
+```
+
+Exact test counts remain in the CCP-1 branch README and Issue #1 rather than
+this roadmap.
 
 ### Secondary CCP-1 attacks
 
-Only after P1 survives:
+Status:
+
+```text
+ACTIVE
+```
+
+Current bounded program:
 
 - evidence authenticity / reproducible evidence adapters;
 - disputed or invalid accepted-event correction;
