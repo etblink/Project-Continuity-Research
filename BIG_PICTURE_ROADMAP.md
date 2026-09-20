@@ -195,7 +195,8 @@ Status:
 ```text
 ACTIVE
 P1_ATTACK_FAMILY = COMPLETE
-SECONDARY_CCP1_ATTACKS = ACTIVE
+AUTONOMOUS_SECONDARY_ATTACK_SET = COMPLETE
+INITIAL_COLD_START_GATE = NEXT
 ```
 
 Governing issue:
@@ -236,19 +237,26 @@ this roadmap.
 Status:
 
 ```text
-ACTIVE
+AUTONOMOUS_SET = COMPLETE
+EXTERNAL_PARTICIPANT_GATE = NEXT
 ```
 
-Current bounded program:
+Completed autonomous secondary program:
 
 - evidence authenticity / reproducible evidence adapters;
 - disputed or invalid accepted-event correction;
 - authority durability / identity authentication boundaries;
-- blind agent cold-start;
-- human cold-start / usability;
 - supersession / graph scale;
 - orientation-contract quality;
 - project-agnostic portability.
+
+Remaining initial CCP-1 exit trials:
+
+- blind agent cold-start;
+- unfamiliar-human cold-start / usability.
+
+These remaining trials cannot be validly self-administered by the same
+conversation/context that designed the architecture.
 
 ### CCP-1 exit gate
 
@@ -259,7 +267,10 @@ CCP-1 may advance only if:
 - deliberately injected failures are actually detected;
 - limitations are frozen before advancement;
 - no real observed project is mutated;
-- correct operation does not depend on hidden conversation context.
+- correct operation does not depend on hidden conversation context;
+- at least one valid blind-agent cold-start trial is adjudicated;
+- at least one valid unfamiliar-human cold-start/usability trial is adjudicated;
+- the cold-start trial design itself survives post-trial review.
 
 If a P1 attack exposes a structural failure that cannot be repaired without
 project-specific hard-coding or circular governance, return to architecture
@@ -295,19 +306,27 @@ Do not begin merely because CCP-1 accumulates enough tests.
 
 ---
 
-## Phase 6 — Blind cold-start and usability trials
+## Phase 6 — Expanded cross-model / cross-person validation
 
 Status:
 
 ```text
-FUTURE / GATED
+FUTURE / GATED AFTER CCP-2
 ```
 
-Required trials:
+Phase 4 contains the **first** blind-agent and unfamiliar-human cold-start gate.
+That initial gate tests whether CCP-1 is coherent enough to justify building a
+durable CCP-2 shadow prototype.
 
-### Agent cold start
+Phase 6 is different: it repeats and broadens cold-start/usability testing
+against the durable CCP-2 implementation.
 
-A fresh model receives only the permitted durable artifacts and must recover:
+Expanded trials should include:
+
+### Multiple agent cold starts
+
+Fresh models/providers receive only the permitted durable artifacts and must
+recover:
 
 - project purpose;
 - authoritative current state;
@@ -316,9 +335,9 @@ A fresh model receives only the permitted durable artifacts and must recover:
 - held/closed routes;
 - next authorized operation or correct reason to wait.
 
-### Human cold start
+### Multiple human cold starts
 
-A person who did not invent the architecture must be able to:
+People who did not invent the architecture must be able to:
 
 - understand the project;
 - inspect why a route is held;
@@ -326,12 +345,12 @@ A person who did not invent the architecture must be able to:
 - understand a rejected transition;
 - distinguish historical state from current authority.
 
-### Cross-model / cross-person trials
+### Cross-model / cross-person comparison
 
-The architecture should not depend on one model family or the inventor's tacit
-knowledge.
+The architecture should not depend on one model family, one evaluator, or the
+inventor's tacit knowledge.
 
-Failure here can send the project back to Phase 4 or Phase 2.
+Failure here can send the project back to Phase 5, Phase 4, or Phase 2.
 
 ---
 
