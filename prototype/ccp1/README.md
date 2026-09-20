@@ -142,3 +142,21 @@ NEXT_SECONDARY_ATTACK = PROJECT_AGNOSTIC_PORTABILITY
 Additional frozen result:
 
 - `CCP1_SUPERSESSION_GRAPH_SCALE_RESULT_0_1_0.md`
+
+
+- Project-agnostic portability profiles — **complete: disposition C, bounded pass**
+
+Current verified checkpoint:
+
+```text
+CCP0 = 27 / 27 PASS
+CCP1 = 97 / 97 PASS
+TOTAL = 124 / 124 PASS
+
+AUTONOMOUS_SECONDARY_ATTACK_SET = COMPLETE
+NEXT_GATE = BLIND_AGENT_COLD_START + HUMAN_COLD_START_USABILITY
+```
+
+Additional frozen result:
+
+- `CCP1_PROJECT_AGNOSTIC_PORTABILITY_RESULT_0_1_0.md`
