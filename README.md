@@ -87,3 +87,17 @@ The pass distinguishes failures of metacognition from ordinary blindness and
 examines bounded stretches where scaffolding appears to have prevented drift.
 The emerging `reorientation surface` and `frame-preserving correction` concepts
 remain research hypotheses, not frozen architecture.
+
+## First empirical taxonomy
+
+The targeted transition/authority/negative-knowledge pass and first provisional
+taxonomy are now recorded in:
+
+- `TARGETED_TRANSITION_AUTHORITY_NEGATIVE_KNOWLEDGE_PASS_0_1_0.md`
+- `PROVISIONAL_EMPIRICAL_FAILURE_TAXONOMY_0_1_0.md`
+- `TAXONOMY_READINESS_ASSESSMENT_0_1_0.md`
+
+The current six provisional failure classes are Orientation Drift,
+Epistemic-State Drift, Authority Drift, Transition Drift, Negative-Knowledge
+Loss, and Metacognitive Drift. These are research classifications, not yet an
+architecture or Project Kernel specification.
