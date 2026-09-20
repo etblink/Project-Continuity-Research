@@ -125,3 +125,20 @@ NEXT_SECONDARY_ATTACK = SUPERSESSION_GRAPH_SCALE
 Additional frozen result:
 
 - `CCP1_ORIENTATION_CONTRACT_QUALITY_RESULT_0_1_0.md`
+
+
+- Supersession graph scale / scoped chain resolution — **complete: disposition C, bounded pass**
+
+Current verified checkpoint:
+
+```text
+CCP0 = 27 / 27 PASS
+CCP1 = 88 / 88 PASS
+TOTAL = 115 / 115 PASS
+
+NEXT_SECONDARY_ATTACK = PROJECT_AGNOSTIC_PORTABILITY
+```
+
+Additional frozen result:
+
+- `CCP1_SUPERSESSION_GRAPH_SCALE_RESULT_0_1_0.md`
