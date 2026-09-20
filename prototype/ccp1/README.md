@@ -55,3 +55,22 @@ Frozen result artifacts:
 - `CCP1_KERNEL_OMISSION_RESULT_0_1_0.md`
 - `CCP1_REOPEN_PREDICATE_RESULT_0_1_0.md`
 - `CCP1_P1_ATTACK_FAMILY_RESULT_0_1_0.md`
+
+
+## Secondary CCP-1 results
+
+- Evidence authenticity / reproducible Git-object identity — **complete: disposition C, bounded pass**
+
+Verified checkpoint:
+
+```text
+CCP0 = 27 / 27 PASS
+CCP1 = 51 / 51 PASS
+TOTAL = 78 / 78 PASS
+
+NEXT_SECONDARY_ATTACK = INVALID_ACCEPTED_EVENT_CORRECTION
+```
+
+Frozen secondary result artifacts:
+
+- `CCP1_EVIDENCE_AUTHENTICITY_RESULT_0_1_0.md`
