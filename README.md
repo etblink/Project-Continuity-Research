@@ -73,3 +73,17 @@ This pass promotes selected incident cores to artifact-corroborated `R2` while
 keeping initiative attribution conservative until raw transcripts are archived.
 It also introduces the distinction between **event evidence** and **initiative
 evidence** for claims of AI/process self-correction.
+
+
+## Edge-case pass
+
+The next empirical pass is recorded in:
+
+- `FAILED_SELF_CORRECTION_CORPUS_0_1_0.md`
+- `SILENT_SUCCESS_CORPUS_0_1_0.md`
+- `EDGE_CASE_SYNTHESIS_NOTE_0_1_0.md`
+
+The pass distinguishes failures of metacognition from ordinary blindness and
+examines bounded stretches where scaffolding appears to have prevented drift.
+The emerging `reorientation surface` and `frame-preserving correction` concepts
+remain research hypotheses, not frozen architecture.
