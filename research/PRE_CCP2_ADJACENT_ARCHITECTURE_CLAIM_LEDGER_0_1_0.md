@@ -1,6 +1,6 @@
 # Pre-CCP-2 Adjacent Architecture Claim / Nonclaim Ledger 0.1.0
 
-Date: 2026-09-20
+Date: 2026-09-21
 Status: **FORWARD-LOOKING RESEARCH — DOES NOT AUTHORIZE CCP-2 OR LIVE-PROJECT MUTATION**
 Governing issue: #7
 
