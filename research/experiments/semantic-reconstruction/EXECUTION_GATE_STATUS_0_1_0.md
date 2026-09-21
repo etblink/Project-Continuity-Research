@@ -1,7 +1,7 @@
-# Semantic Reconstruction Execution Gate Status 0.1.0
+# Semantic Reconstruction Execution Gate Status 0.1.1
 
 Date: 2026-09-20
-Status: READY FOR ISOLATED SUCCESSOR EXECUTION — NOT YET RUN
+Status: EXPLORATORY BLOCK COMPLETE — ADJUDICATED
 
 ## Frozen experimental materials
 
@@ -14,28 +14,39 @@ Status: READY FOR ISOLATED SUCCESSOR EXECUTION — NOT YET RUN
 - 12 exact run packets under `runs/`
 - pre-execution packet audit: `RUN_PACKET_AUDIT_0_1_0.md`
 - raw-return template: `RUN_RETURN_TEMPLATE_0_1_0.md`
+- raw-return integrity manifest: `RAW_RETURN_INTEGRITY_MANIFEST_0_1_0.md`
+- exploratory adjudication: `EXPLORATORY_BLOCK_ADJUDICATION_0_1_0.md`
 
-## Static readiness
+## Completion state
 
 ```text
 RUN_PACKETS = 12
 STATIC_AUDIT = 36 / 36 PASS
-SUCCESSOR_RUNS_COMPLETED = 0 / 12
+SUCCESSOR_RUNS_COMPLETED = 12 / 12
+RUNS_INVALIDATED_ON_RECEIVED_EVIDENCE = 0
+RESIDUAL_SEMANTIC_RECONSTRUCTION_CANDIDATES = 0 / 12
 ```
 
-## Why execution stops at this boundary for the current operator
+All 12 returns report fresh contexts, no prior exposure, and the same model configuration:
+OpenAI GPT-5.6 Sol (High Reasoning).
 
-The current design context knows the scenario construction and reference key.
+## Exploratory disposition
 
-Using this same context to produce successor answers would contaminate the experiment.
+```text
+WORLD A = INCONCLUSIVE
+WORLD B = INCONCLUSIVE
+WORLD C = INCONCLUSIVE
+```
 
-This is not a research dead end. It is an execution-independence requirement.
+Reason: ceiling-limited design/model interaction. The raw-corpus A condition already produced faithful continuation in all three worlds, so no failure was available for B/C/D to repair.
 
-## Valid next event
+Condition D did not produce a substantive fidelity advantage over C in this block.
 
-A valid next event is a raw first answer from a fresh successor context for one of the 12 frozen run packets.
+## Research consequence
 
-The exploratory block should ultimately complete all 12 runs before headline interpretation.
+The block does not establish an independent semantic-reconstruction failure and provides no basis for adding an interactive grounding protocol, T7, R16, or a new CCP component.
+
+The result also does not establish that such failures cannot occur. A harder, still unambiguous replication is warranted before retiring the question.
 
 ## Boundaries
 
