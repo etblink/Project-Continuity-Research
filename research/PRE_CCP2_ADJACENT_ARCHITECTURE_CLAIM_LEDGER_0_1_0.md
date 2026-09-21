@@ -122,9 +122,11 @@ If that can be reduced to IML's admission-space deviation, PCR should collapse t
 
 Legend:
 
-- `D` = directly addressed by source claims reviewed in this pass
-- `P` = partial / useful mechanism but requirement is broader
+- `D` = directly addressed at the mechanism level by source claims reviewed in this pass
+- `P` = partial / adjacent mechanism but PCR requirement is broader
 - `N` = not established by reviewed claims
+
+These codes are **scope-overlap labels, not validation grades**. `D` does not mean independently verified, empirically sufficient, or universally solved.
 
 | PCR requirement | CK | MemTX | IML | Current interpretation |
 |---|---:|---:|---:|---|
@@ -132,32 +134,32 @@ Legend:
 | R2 working vs durable state | P | D | N | MemTX explicitly stages persistent belief state; CK separates candidate evaluation from activation. |
 | R3 history vs current authority | D | P | P | CK's accepted branch head is directly relevant; MemTX validity/retraction helps. |
 | R4 provenance + authority | D | D | P | Strongest overlap area. |
-| R5 scoped supersession | P | D/P | N | MemTX cascading repair is especially relevant; exact equivalence requires deeper dependency-semantics comparison. |
-| R6 typed claim states | P | D/P | N | Both transactional systems distinguish candidate/accepted dispositions, but PCR's epistemic vocabulary is broader. |
+| R5 scoped supersession | P | P | N | MemTX cascading repair is especially relevant; exact claim-scoped equivalence requires deeper dependency-semantics comparison. |
+| R6 typed claim states | P | P | N | Both transactional systems distinguish candidate/accepted dispositions, but PCR's epistemic vocabulary is broader. |
 | R7 guarded transitions | D | D | P | Major convergence. |
 | R8 WAIT/HOLD/BLOCKED | P | P | N | CK `Defer` is adjacent but not automatically equivalent to PCR's justified no-action semantics. |
-| R9 executable negative knowledge | N/P | P | N | Rejection/retraction is adjacent; PCR's `REOPEN_IF` closure semantics remain unestablished. |
+| R9 executable negative knowledge | P | P | N | Rejection/retraction is adjacent; PCR's `REOPEN_IF` closure semantics remain unestablished. |
 | R10 reflection != correction | N | P | P | MemTX validation and IML external measurement are useful mechanisms, not full solution. |
 | R11 safeguard exit conditions | P | P | P | Stable dispositions/detection rules help, but PCR requirement is broader. |
-| R12 oversight/execution/context separation | P | P | D/P | All separate some governance function from execution; exact PCR role separation is not established. |
+| R12 oversight/execution/context separation | P | P | P | All separate some governance function from execution; exact PCR role separation is not established. |
 | R13 human agency/project purpose | N | N | P | IML can encode an admission behavior space, but evolving human/project purpose is not established. |
 | R14 cold-start reconstruction | N | N | N | Major residual PCR research surface. |
 | R15 kernel not sole truth source | P | P | P | All support separation of operational projection/control from deeper state/evidence in different ways. |
 
-This table is provisional and must be revised after full-text claim-level reading. `D` never means "solves PCR universally"; it means the reviewed source directly addresses the core mechanism named in that requirement.
+This table is provisional and must be revised after full-text claim-level reading.
 
 # Preliminary T1–T6 pressure matrix
 
-Legend: `S` strong direct mitigation/mechanism; `P` partial/indirect; `—` not established.
+Legend: `S` strong direct mitigation/mechanism overlap; `P` partial/indirect; `—` not established. These are not efficacy scores.
 
 | Failure class | CK | MemTX | IML | Note |
 |---|---:|---:|---:|---|
 | T1 Orientation Drift | — | — | P | None demonstrates fresh-successor orientation. |
-| T2 Epistemic-State Drift | P | S | P | MemTX is strongest here because belief commit/validity/retraction are explicit. |
+| T2 Epistemic-State Drift | P | S | P | MemTX is strongest in direct mechanism overlap because belief commit/validity/retraction are explicit. |
 | T3 Authority Drift | S | S | P | CK is especially direct about pre-state authority and authorized heads. |
 | T4 Transition Drift | S | S | P | Transactional admission/activation directly addresses invalid promotions. |
 | T5 Negative-Knowledge Loss | P | P | — | Reject/retract helps, but durable closure + reopen conditions remain distinct. |
-| T6 Metacognitive Drift | — | P | S/P | IML provides an independent trajectory measurement layer; neither proves semantic self-reframing. |
+| T6 Metacognitive Drift | — | P | P | IML provides an independent trajectory measurement layer; none here establishes semantic self-reframing. |
 
 # What this changes
 
