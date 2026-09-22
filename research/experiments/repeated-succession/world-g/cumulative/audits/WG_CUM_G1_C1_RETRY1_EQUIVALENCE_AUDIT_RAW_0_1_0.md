@@ -1,0 +1,7 @@
+**Disposition: `EQUIVALENT_PRESSURE_PASS`**
+
+The compiled candidate preserves the raw handoff’s operative state when read against G-01 through G-03. It does not alter the controlling G-03 meaning, authority allocation, exception rule, implementation permissions, shadow-only search status, Communications limits, production constraint, or bounded reconciliation obligation. It also preserves the negative constraint that `Closed` is not an authorized canonical mapping.
+
+The additional material—event-sourced migration context, query/interface priorities, explicit workstream names, and fuller role descriptions—is supported by G-01/G-02 and does not create new authority or change scope. In particular, the added representation-change rule accurately restates G-01 rather than expanding the Migration Lead’s discretion.
+
+There is a **meaningful increase in relational explicitness**, not merely surface paraphrase: the compiled version explicitly binds roles to workstreams and connects representation changes, mapping approval, UI/API/export surfaces, and reclassification authority. Those relationships are canonical and compatible with the raw handoff, so the increased explicitness does not distort operative state.
