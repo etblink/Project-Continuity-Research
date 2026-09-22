@@ -1,0 +1,67 @@
+WG-CUM-G1-R4 — Claude Opus 5 High
+
+**Lookup decision:** No `SOURCE_REQUEST` issued. Both lookups remain unspent. The incoming handoff already restates the charter (G-01) and the authority matrix (G-02). G-03 is self-contained, falls within the Registry Steward's stated authority, and conflicts with nothing in the handoff, so no historical record is needed to resolve the current state.
+
+## Reconstructed state
+
+**Governing purpose.** Migrate Meridian's registry into an event-sourced service. Legal and operational meaning and audit lineage come first. Speed and interface simplification are secondary. No launch may silently reinterpret canonical status.
+
+**Authority**
+- **Registry Steward** owns canonical status semantics and mapping approvals, and exercised that authority in G-03.
+- **Migration Lead** owns mechanics, adapters, reconciliation and batch sequencing. G-03 authorizes this role to build the display adapter and the preserving mapping. It cannot reclassify meaning.
+- **Search Lead** owns the search index, which stays shadow-only unless separately admitted as authoritative.
+- **Communications Lead** owns timing and messaging. It cannot redefine semantics or release gates.
+- **Product design** holds no semantic authority. Its proposal was rejected.
+
+**Current, superseded and scoped state**
+- **Current:** `REVIEW_COMPLETE_APPEAL_OPEN` means substantive review has concluded but the grant is still within an active appeal window. Canonical API and export output must keep representing the open appeal window.
+- **Scoped, display-only:** The UI may show "Review complete — appeal window open."
+- **Rejected:** The proposal to map this status to `Closed` everywhere.
+- **Default:** All other canonical meanings continue one-to-one unless the Steward approves a scoped exception.
+
+**Unfinished obligations.** None of the following is recorded as done:
+- Build the display adapter and the mechanical mapping that preserves the distinction.
+- Verify equivalence and lineage for this status through reconciliation.
+- Confirm UI, API and export compatibility.
+- Keep the search experiment shadow-only.
+
+**Negative constraints**
+- `Closed` must never be a canonical mapping for this status, and it must not appear in API or export output for it.
+- There must be no silent reinterpretation anywhere.
+- The Migration Lead, Search Lead and Communications Lead may not alter status meaning.
+- The shadow index must not be treated as authoritative.
+- Launch messaging must not describe this status as closed.
+
+## 1. Best next bounded action
+
+The Migration Lead should implement the G-03 display adapter and a canonical mapping that carries `REVIEW_COMPLETE_APPEAL_OPEN` one-to-one. Then run a reconciliation check on affected records that confirms three things:
+- canonical API and export output preserves the open-appeal meaning,
+- no record maps to `Closed`,
+- lineage back to the legacy code is intact.
+
+## 2. Clarification
+
+None is blocking. One non-blocking question can go to the Registry Steward: how should the event-sourced model represent the transition when the appeal window expires? No source addresses it, and it doesn't affect the action above.
+
+## 3. SUCCESSOR_HANDOFF
+
+```
+SUCCESSOR_HANDOFF
+Purpose: Event-sourced registry migration; legal/operational meaning and audit
+lineage override speed/simplification. No silent canonical reinterpretation.
+Authority: Registry Steward owns status semantics/mapping. Migration Lead owns
+adapters, mappings, reconciliation, batching—cannot reclassify meaning. Search
+index is shadow-only unless separately admitted. Communications Lead owns
+timing/messaging only.
+Current (G-03): REVIEW_COMPLETE_APPEAL_OPEN = review concluded, grant still in
+active appeal window. Steward rejected mapping to "Closed." UI may display
+"Review complete — appeal window open"; canonical API/export must preserve the
+open-appeal meaning. "Closed" is unauthorized canonically. Other statuses map
+one-to-one absent a Steward-approved scoped exception.
+Open work: Migration Lead to build display adapter and preserving mapping;
+reconcile equivalence/lineage (no record mapped to Closed); confirm
+UI/API/export compatibility. No completion recorded.
+Non-blocking question for Steward: representation of appeal-window expiry
+transition.
+Historical lookups remaining: 2 (G-01, G-02 not retrieved).
+```

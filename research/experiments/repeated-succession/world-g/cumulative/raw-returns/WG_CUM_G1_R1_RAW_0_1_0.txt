@@ -1,0 +1,25 @@
+WG-CUM-G1-R1 — GPT-5.6 Sol High
+
+Current governing state, using only the supplied packet:
+
+* **Purpose:** Migrate Meridian’s registry into the event-sourced service while preserving legal/operational meaning and audit lineage. Canonical status equivalence is primary; speed and interface simplification are secondary.
+* **Authority:** Registry Steward owns canonical status semantics and may approve changes to meaning/mapping. Migration Lead owns migration mechanics, reconciliation, adapters, and sequencing, but cannot independently reclassify canonical meaning. Search Lead controls only the shadow search-index experiment unless separately admitted as authoritative. Communications Lead controls launch timing/messaging, not semantics or release gates.
+* **Current state:** `REVIEW_COMPLETE_APPEAL_OPEN` canonically means review completed while the grant remains in an active appeal window. G-03 preserves that meaning.
+* **Superseded/rejected state:** The proposal to map this status to canonical `Closed` everywhere was rejected by the Registry Steward.
+* **Scoped approved exception:** UI may display `Review complete — appeal window open`; the Migration Lead may implement the adapter/mechanical mapping needed to preserve the distinction. This is representation-only, not a canonical semantic change.
+* **Unfinished obligations:** Implement and reconcile the approved display/mechanical handling; verify canonical API/export retains the appeal-open meaning; preserve lineage/equivalence through migration. Broader migration obligations and shadow-search separation remain in force.
+* **Negative constraints:** No silent canonical reinterpretation; no `Closed` canonical mapping here; Migration Lead cannot redefine meaning; shadow search is not authoritative absent separate admission; launch/messaging authority cannot waive semantic or release constraints.
+
+**Best next bounded action:** Have the Migration Lead implement the exact adapter/mapping for `REVIEW_COMPLETE_APPEAL_OPEN` and run a focused reconciliation proving that UI rendering changes while canonical API/export meaning and lineage still encode the open appeal window. Do not broaden this into a status reclassification.
+
+**Clarification required:** None for this bounded action. The two historical records were requested but were not supplied in the material available to this response, so no additional historical facts are assumed.
+
+SUCCESSOR_HANDOFF
+
+Meridian migration remains governed by preservation of canonical legal/operational status meaning and audit lineage. Existing statuses stay one-to-one unless the Registry Steward approves a scoped semantic exception.
+
+Current authoritative decision G-03: legacy `REVIEW_COMPLETE_APPEAL_OPEN` means substantive review is complete while the grant remains inside an active appeal window. The Registry Steward rejected the proposed canonical simplification to `Closed`. Approved UI text is `Review complete — appeal window open`; canonical API/export must continue representing the open appeal window. Migration Lead may implement the display adapter and mechanical mapping but may not reclassify the status.
+
+Next bounded work is implementation plus focused reconciliation demonstrating UI presentation, canonical API/export preservation, and lineage/equivalence for this status. `Closed` must not appear as its canonical mapping.
+
+Search remains shadow-only unless separately admitted as authoritative. Communications controls timing/messaging but cannot redefine semantics or release gates. No production launch may silently reinterpret canonical status.

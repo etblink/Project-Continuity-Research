@@ -1,0 +1,60 @@
+WG-CUM-G1-R3 — Claude Opus 5 High
+
+## Reconstructed state
+
+**Governing purpose.** Meridian is migrating the registry to an event-sourced service. The priorities are to preserve legal and operational meaning and audit lineage. Speed and interface simplification come second. No production launch may silently reinterpret canonical status.
+
+**Authority.**
+- **Registry Steward** is the sole owner of canonical status meaning and mapping, and approves any scoped exceptions to one-to-one legacy meaning.
+- **Migration Lead** owns mechanics, adapters, reconciliation runs, and batch sequencing. They may not reclassify status meaning.
+- **Search Lead** owns the search-index experiment, which is shadow-only and non-authoritative unless separately admitted.
+- **Communications Lead** owns launch timing and messaging. They may not redefine semantics or release gates.
+- **Workstreams:** W-G1 checks semantic equivalence and lineage, W-G2 runs search experiments, and W-G3 checks meaning across UI, API, and export.
+
+**Current, rejected, and scoped items.**
+- **Current (G-03):** `REVIEW_COMPLETE_APPEAL_OPEN` means substantive review has concluded but the grant is still within an active appeal window.
+- **Rejected:** Product design's proposal to map this status to `Closed` everywhere. The Steward rejected it, so it was never authoritative. `Closed` is not an authorized canonical mapping for this status.
+- **Scoped, display-only approval:** The UI may show "Review complete — appeal window open."
+- **Canonical requirement:** API and export must continue to represent the open appeal window.
+
+**Unfinished obligations.**
+- Migration Lead must implement the display adapter and the mechanical mapping that preserve the distinction.
+- W-G1 must verify semantic equivalence and lineage for records with this code.
+- W-G3 must verify that UI, API, and export agree.
+- The packet does not specify the target identifier in the new service or how the status changes when the appeal window closes. I have not assumed either.
+
+**Negative constraints.**
+- No `Closed` canonical mapping for this status.
+- No change in canonical meaning without the Steward's approval of that exact change.
+- The search index must not serve as an authoritative source.
+- Launch messaging must not describe this status as closed.
+
+**Historical lookups: none requested (budget of 2 unused).** The incoming handoff already restates the charter and authority matrix. G-03 is self-contained and explicitly assigns implementation. Neither G-01 nor G-02 would change the next action.
+
+## 1. Best next bounded action
+
+The Migration Lead should implement the one-to-one canonical mapping for `REVIEW_COMPLETE_APPEAL_OPEN`, preserving its appeal-open meaning, plus the approved UI display adapter. Then run a reconciliation over all legacy records carrying this code. The run should confirm three things:
+- zero records map to `Closed`;
+- API and export output still represent the open appeal window;
+- event lineage traces back to each legacy record.
+
+W-G1 and W-G3 should sign off on the results before any batch containing this status is sequenced for production.
+
+## 2. Clarification required
+
+This is conditional. If the new service keeps the legacy code or its meaning unchanged, no clarification is needed. If the target schema renames or restructures this status canonically, the Registry Steward must approve that exact representation before implementation.
+
+## 3. SUCCESSOR_HANDOFF
+
+```
+SUCCESSOR_HANDOFF
+Project: Meridian registry migration to event-sourced service. Priority: preserve legal/operational meaning and audit lineage; no silent canonical reinterpretation at launch.
+
+Authority: Registry Steward alone owns status semantics/mapping and scoped exceptions. Migration Lead owns adapters, mapping mechanics, reconciliation, batch sequencing—cannot reclassify meaning. Search index is shadow-only. Communications Lead cannot redefine semantics or gates.
+
+Current decision (G-03): REVIEW_COMPLETE_APPEAL_OPEN = substantive review concluded, grant still in active appeal window. Steward rejected mapping it to "Closed"; Closed is unauthorized canonically. UI may display "Review complete — appeal window open"; API/export must still represent open appeal window.
+
+Open work: Migration Lead implements display adapter and one-to-one mechanical mapping; reconciliation must show zero Closed mappings, API/export preserve appeal-open meaning, lineage intact. W-G1 (equivalence/lineage) and W-G3 (UI/API/export) sign-off required before production batching.
+
+Unresolved: target-schema identifier and appeal-window-expiry transition not specified. Any canonical rename needs Steward approval of that exact change. Launch messaging must not call this status closed.
+```
