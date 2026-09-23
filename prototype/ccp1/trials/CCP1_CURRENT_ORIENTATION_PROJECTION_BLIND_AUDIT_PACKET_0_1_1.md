@@ -1,0 +1,1123 @@
+# CCP-1 Current Orientation Projection — Blind Re-Audit Packet 0.1.1
+
+Use a genuinely fresh evaluator context. Review only the materials in this packet. Do not inspect prior audit results, later repository history, human-trial answers/scores, or the repair rationale.
+
+## Task
+
+Audit the candidate `CURRENT_ORIENTATION.md` as a non-canonical orientation projection over the frozen source snapshot.
+
+Determine whether it:
+1. states the project purpose faithfully;
+2. identifies the current phase faithfully;
+3. preserves completed vs remaining gates;
+4. preserves architecture-candidate status;
+5. preserves all material authorization/prohibition boundaries;
+6. identifies a source-supported bounded next operation;
+7. reports the machine checkpoint accurately and with correct limitations;
+8. maps an unfamiliar reader to appropriate source/evidence classes;
+9. avoids turning historical truth into current authority;
+10. is sufficiently complete for orientation without pretending to be canonical state.
+
+Allowed dispositions:
+- `ORIENTATION_PROJECTION_PASS`
+- `FAIL_DECISION_CRITICAL_OMISSION`
+- `FAIL_AUTHORITY_OR_SCOPE_DISTORTION`
+- `FAIL_CURRENT_STATE_OR_GATE_DISTORTION`
+- `FAIL_UNGROUNDED_OR_MISLEADING_SUMMARY`
+
+If passing, identify any non-blocking weakness separately.
+
+---
+
+## Candidate projection
+
+# Project Continuity Research — Current Orientation
+
+Projection version: 0.1.0  
+Source snapshot: `dec58643dbeb65adf90178f0bedd214dfa40b812`  
+Status: **ORIENTATION PROJECTION — NOT CANONICAL PROJECT STATE**
+
+## Why this project exists
+
+Project Continuity Research is trying to discover the minimum durable architecture needed for successive humans and AI agents to preserve purpose, truth/evidence, authority, current state, permissible action, negative knowledge, succession continuity, and human agency across arbitrarily long projects.
+
+The system should work for someone who did not invent it without requiring the originator to remain the permanent executive-function patch.
+
+Verify: `BIG_PICTURE_ROADMAP.md`.
+
+## Where the project is now
+
+```text
+CURRENT_PHASE = Phase 4 — CCP-1 adversarial hardening
+P1_ATTACK_FAMILY = COMPLETE
+AUTONOMOUS_SECONDARY_ATTACK_SET = COMPLETE
+CCP1_COMPLETE = NO
+```
+
+Verify:
+- `BIG_PICTURE_ROADMAP.md`
+- `prototype/ccp1/README.md`
+- `prototype/ccp1/CCP1_AUTONOMOUS_SECONDARY_ATTACK_FAMILY_RESULT_0_1_0.md`
+
+## Cold-start gate state before the next major phase
+
+```text
+BLIND_AGENT_TRIAL_1 = PROVISIONAL_PASS
+HUMAN_COLD_START_TRIAL_1 = PREPARED / NOT_YET_RUN
+POST_TRIAL_DESIGN_REVIEW = REQUIRED AFTER THE HUMAN TRIAL
+CCP1_COMPLETE = NO
+```
+
+The first blind-agent cold-start trial has already produced a provisional pass. That result does not complete CCP-1.
+
+The remaining external gate is the unfamiliar-human cold-start / usability trial, followed by the required post-trial design review.
+
+Only after CCP-1 survives its full exit gate may CCP-2 be considered.
+
+Verify:
+- `BIG_PICTURE_ROADMAP.md`
+- `prototype/ccp1/CCP1_AUTONOMOUS_SECONDARY_ATTACK_FAMILY_RESULT_0_1_0.md`
+- `prototype/ccp1/trials/COLD_START_SCORECARD_0_1_0.md`
+
+## What is *not* authorized
+
+```text
+CCP2_AUTHORIZED = NO
+LIVE_PROJECT_MUTATION = NOT_AUTHORIZED
+LIVE_PROJECT_CONTROL_PLANE_INTEGRATION = NOT_AUTHORIZED
+CCP_IS_FINAL_UNIVERSAL_ARCHITECTURE = NO
+```
+
+Passing machine tests does not authorize the next phase or live control.
+
+Verify:
+- `BIG_PICTURE_ROADMAP.md`
+- `prototype/ccp1/README.md`
+- `prototype/ccp0/CCP0_ADVANCEMENT_DECISION_0_1_0.md`
+
+## Current bounded next operation
+
+Run and adjudicate the unfamiliar-human cold-start / usability trial against the frozen project state, then perform the required post-trial design review.
+
+Do not rerun Blind-Agent Trial 1 merely because it is provisional, and do not begin CCP-2 merely because the autonomous attack suites are green.
+
+Verify:
+- `BIG_PICTURE_ROADMAP.md`
+- `prototype/ccp1/CCP1_AUTONOMOUS_SECONDARY_ATTACK_FAMILY_RESULT_0_1_0.md`
+
+## Machine-verification checkpoint
+
+At this frozen snapshot, the autonomous CCP-1 program reports:
+
+```text
+CCP0_REGRESSION_SUITE = 27 / 27 PASS
+CCP1_ADVERSARIAL_SUITE = 97 / 97 PASS
+TOTAL = 124 / 124 PASS
+```
+
+This is a bounded machine-verification checkpoint, not proof that CCP is complete, human-usable, production-ready, or universally correct.
+
+Verify:
+- `prototype/ccp1/README.md`
+- `prototype/ccp1/CCP1_AUTONOMOUS_SECONDARY_ATTACK_FAMILY_RESULT_0_1_0.md`
+
+## Where to look
+
+### Big-picture orientation
+
+`BIG_PICTURE_ROADMAP.md`
+
+Use this to understand the program's North Star, phase map, advancement gates, and major prohibitions.
+
+### Exact CCP-1 state and machine checkpoint
+
+`prototype/ccp1/README.md`
+
+Use this as the CCP-1 working summary, then verify important claims in the named result artifacts.
+
+### Completed adversarial attacks
+
+Look under `prototype/ccp1/` for paired `*_ATTACK_*.md` and `*_RESULT_*.md` files.
+
+Major completed attack families include:
+- authority spoofing;
+- bad-policy enforcement;
+- stale/concurrent transitions;
+- kernel omission;
+- reopen-predicate brittleness;
+- evidence authenticity;
+- accepted-event correction;
+- authority durability / identity boundary;
+- orientation-contract quality;
+- supersession graph scale;
+- project-agnostic portability.
+
+A result file should state both what passed and what the bounded result does **not** establish.
+
+### Historical research
+
+Root-level research artifacts preserve the empirical taxonomy, adjacent-field review, requirements, architecture competition, and earlier reasoning. Historical truth does not automatically equal current authority.
+
+## Open limitations
+
+CCP remains a prototype candidate. The frozen snapshot does not establish:
+- human usability;
+- durable distributed storage correctness;
+- production readiness;
+- universal architecture validity;
+- authorization to control a live project.
+
+## Orientation rule
+
+Start here, but verify consequential claims in the linked source artifacts.
+
+```text
+ORIENTATION_PROJECTION != SOLE_SOURCE_OF_TRUTH
+```
+
+
+---
+
+## Frozen sources
+
+### BIG_PICTURE_ROADMAP.md
+
+# Project Continuity Research — Big-Picture Roadmap 0.1.0
+
+Date: 2026-09-20  
+Status: **ACTIVE ORIENTATION ROADMAP — NOT CANONICAL PROJECT STATE**
+
+## North Star
+
+Discover, test, and eventually publish the minimum durable architecture required
+for successive humans and AI agents to preserve:
+
+```text
+PURPOSE
+TRUTH / EVIDENCE
+AUTHORITY
+CURRENT STATE
+PERMISSIBLE ACTION
+NEGATIVE KNOWLEDGE
+SUCCESSION CONTINUITY
+HUMAN AGENCY
+```
+
+across arbitrarily long projects.
+
+The project should produce something that a person who did not invent it can
+use without becoming the permanent human executive-function patch.
+
+## What this roadmap is
+
+This file is the project's **big-picture orientation surface**.
+
+It answers:
+
+- where the research program came from;
+- what phase it is in;
+- what must be learned before the next phase;
+- what remains deliberately unauthorized.
+
+It is intentionally much smaller than the research history.
+
+## What this roadmap is not
+
+This file is **not**:
+
+- the source of truth for scientific findings;
+- the current-state ledger;
+- an event history;
+- a replacement for exact Git provenance;
+- the CCP specification;
+- a promise that CCP will remain the winning architecture;
+- a task tracker.
+
+Exact current work belongs in the active research issue/branch. Historical
+claims remain bound to their original artifacts and commits.
+
+---
+
+# Phase map
+
+## Phase 0 — Empirical failure discovery
+
+Status:
+
+```text
+COMPLETE FOR FIRST TAXONOMY
+```
+
+Work:
+
+- initial long-horizon incident corpus;
+- corroboration pass;
+- positive controls;
+- failed self-corrections;
+- silent successes;
+- targeted transition / authority / negative-knowledge sampling.
+
+Outcome:
+
+Six provisional empirical failure classes:
+
+1. Orientation Drift
+2. Epistemic-State Drift
+3. Authority Drift
+4. Transition Drift
+5. Negative-Knowledge Loss
+6. Metacognitive Drift
+
+Advance condition met: recurring structures appeared across multiple projects
+and both failures and positive controls.
+
+---
+
+## Phase 1 — Adjacent-field comparison
+
+Status:
+
+```text
+COMPLETE FOR FIRST REQUIREMENTS SET
+```
+
+Compared against:
+
+- hierarchical planning;
+- event sourcing;
+- provenance;
+- distributed systems;
+- statecharts;
+- STPA / safety control;
+- organizational memory;
+- mission intent;
+- cognitive control;
+- LLM memory, planning, reflection, and long-horizon research.
+
+Outcome:
+
+- 15 post-literature requirements;
+- Project Kernel reframed as an auditable orientation projection rather than
+  the sole source of truth;
+- memory recognized as one subsystem of a broader executive-continuity problem.
+
+---
+
+## Phase 2 — Architecture competition
+
+Status:
+
+```text
+COMPLETE
+```
+
+Candidates tested:
+
+1. document-centric kernel;
+2. event-sourced state;
+3. typed state / policy gate;
+4. provenance / evidence graph.
+
+No pure candidate covered the critical requirement set.
+
+Derived candidate:
+
+```text
+COMPOSITE E
+= EVENT-SOURCED PROVENANCE CONTROL PLANE
+```
+
+Working implementation name:
+
+```text
+CCP — Continuity Control Plane
+```
+
+Important:
+
+CCP is the current prototype candidate, **not frozen as the final architecture**.
+
+---
+
+## Phase 3 — CCP-0 semantic feasibility
+
+Status:
+
+```text
+COMPLETE
+```
+
+CCP-0 implemented the minimum semantic mechanisms needed to replay historical
+failures:
+
+- append-only accepted events;
+- provenance/source identity;
+- typed state;
+- scoped supersession;
+- negative knowledge + reopen predicates;
+- guarded transitions;
+- safeguard exit conditions;
+- worker return -> adjudication -> accepted event;
+- generated Project Kernel with freshness identity;
+- external-source freshness tracking.
+
+Frozen result:
+
+```text
+CCP0_SEMANTIC_FEASIBILITY = PASS
+LIVE_PROJECT_CONTROL_PLANE_INTEGRATION = NOT_AUTHORIZED
+```
+
+CCP-0 advanced to adversarial hardening rather than live deployment.
+
+---
+
+## Phase 4 — CCP-1 adversarial hardening
+
+Status:
+
+```text
+ACTIVE
+P1_ATTACK_FAMILY = COMPLETE
+AUTONOMOUS_SECONDARY_ATTACK_SET = COMPLETE
+INITIAL_COLD_START_GATE = NEXT
+```
+
+Governing issue:
+
+```text
+GitHub Issue #1
+[CCP-1] Bounded adversarial hardening in read-only / shadow mode
+```
+
+Research branch:
+
+```text
+research/ccp1-adversarial-hardening
+```
+
+### P1 attack family
+
+The first attack family targets assumptions most capable of making CCP-0 look
+stronger than it is:
+
+1. authority spoofing;
+2. bad-policy enforcement;
+3. stale / concurrent transitions;
+4. kernel omission;
+5. reopen-predicate brittleness.
+
+P1 status:
+
+```text
+COMPLETE — first bounded adversarial family survived
+```
+
+Exact test counts remain in the CCP-1 branch README and Issue #1 rather than
+this roadmap.
+
+### Secondary CCP-1 attacks
+
+Status:
+
+```text
+AUTONOMOUS_SET = COMPLETE
+EXTERNAL_PARTICIPANT_GATE = NEXT
+```
+
+Completed autonomous secondary program:
+
+- evidence authenticity / reproducible evidence adapters;
+- disputed or invalid accepted-event correction;
+- authority durability / identity authentication boundaries;
+- supersession / graph scale;
+- orientation-contract quality;
+- project-agnostic portability.
+
+Remaining initial CCP-1 exit trials:
+
+- blind agent cold-start;
+- unfamiliar-human cold-start / usability.
+
+These remaining trials cannot be validly self-administered by the same
+conversation/context that designed the architecture.
+
+### CCP-1 exit gate
+
+CCP-1 may advance only if:
+
+- CCP-0 historical replays remain green;
+- every P1 attack has negative and positive controls;
+- deliberately injected failures are actually detected;
+- limitations are frozen before advancement;
+- no real observed project is mutated;
+- correct operation does not depend on hidden conversation context;
+- at least one valid blind-agent cold-start trial is adjudicated;
+- at least one valid unfamiliar-human cold-start/usability trial is adjudicated;
+- the cold-start trial design itself survives post-trial review.
+
+If a P1 attack exposes a structural failure that cannot be repaired without
+project-specific hard-coding or circular governance, return to architecture
+research instead of patching forward.
+
+---
+
+## Phase 5 — CCP-2 durable shadow prototype
+
+Status:
+
+```text
+CONDITIONAL / NOT YET AUTHORIZED
+```
+
+Possible scope if CCP-1 survives:
+
+- durable append/replay storage;
+- portable human-readable export;
+- explicit authority/grant persistence;
+- expected-version transaction semantics;
+- policy provenance/version migration;
+- reproducible evidence adapters;
+- deterministic current-state/kernel regeneration;
+- shadow operation over one real project without mutation.
+
+Primary question:
+
+> Does the architecture still work when its state must survive process restarts,
+> independent successors, and realistic repository scale?
+
+Do not begin merely because CCP-1 accumulates enough tests.
+
+---
+
+## Phase 6 — Expanded cross-model / cross-person validation
+
+Status:
+
+```text
+FUTURE / GATED AFTER CCP-2
+```
+
+Phase 4 contains the **first** blind-agent and unfamiliar-human cold-start gate.
+That initial gate tests whether CCP-1 is coherent enough to justify building a
+durable CCP-2 shadow prototype.
+
+Phase 6 is different: it repeats and broadens cold-start/usability testing
+against the durable CCP-2 implementation.
+
+Expanded trials should include:
+
+### Multiple agent cold starts
+
+Fresh models/providers receive only the permitted durable artifacts and must
+recover:
+
+- project purpose;
+- authoritative current state;
+- evidence basis;
+- open uncertainty;
+- held/closed routes;
+- next authorized operation or correct reason to wait.
+
+### Multiple human cold starts
+
+People who did not invent the architecture must be able to:
+
+- understand the project;
+- inspect why a route is held;
+- determine what would reopen it;
+- understand a rejected transition;
+- distinguish historical state from current authority.
+
+### Cross-model / cross-person comparison
+
+The architecture should not depend on one model family, one evaluator, or the
+inventor's tacit knowledge.
+
+Failure here can send the project back to Phase 5, Phase 4, or Phase 2.
+
+---
+
+## Phase 7 — Multi-project read-only shadow trials
+
+Status:
+
+```text
+FUTURE / GATED
+```
+
+Candidate stress domains:
+
+- software/product development;
+- scientific comparison/governance;
+- theorem/research audit;
+- long-running portfolio/observatory work.
+
+Project Observatory is a useful laboratory but must not become the protocol's
+hidden special case.
+
+Goal:
+
+Demonstrate project-agnostic core semantics with domain-specific extensions
+only where genuinely necessary.
+
+---
+
+## Phase 8 — Limited real-world control participation
+
+Status:
+
+```text
+NOT AUTHORIZED
+```
+
+Possible future progression:
+
+```text
+READ-ONLY OBSERVATION
+→ ADVISORY / PROPOSED TRANSITIONS
+→ HUMAN-CONFIRMED WRITE
+→ LIMITED AUTOMATED WRITE
+```
+
+Each arrow requires a separate gate.
+
+No current result authorizes CCP to mutate HiVenues, NFC, FCP, PGH, Project
+Observatory, or any other live project automatically.
+
+---
+
+## Phase 9 — Public protocol / reference release
+
+Status:
+
+```text
+FUTURE
+```
+
+A public protocol/specification becomes warranted only after:
+
+- blind successor tests;
+- multi-project trials;
+- failure/attack results are published with the successes;
+- project-agnostic terminology stabilizes;
+- migration/versioning rules exist;
+- licensing and contribution governance remain appropriate.
+
+Potential outputs:
+
+- protocol/specification;
+- lightweight reference implementation;
+- conformance/adversarial test suite;
+- starter project profile;
+- examples;
+- migration guidance.
+
+The final system may retain the CCP name, rename it, or replace it if evidence
+demands.
+
+---
+
+# Cross-phase invariants
+
+These should remain true unless explicitly superseded by a later research
+decision:
+
+```text
+FACT != AUTHORITY
+EVIDENCE != STATE
+STATE != NEXT_STATE_AUTHORIZATION
+SELECTION != EXECUTION
+CANDIDATE != CANONICAL
+MACHINE_PASS != ACCEPTANCE
+FUNCTIONAL_SUCCESS != PRODUCT_READINESS
+HISTORICAL_TRUTH != CURRENT_AUTHORITY
+SUPERSESSION != WHOLE_DOCUMENT_REPLACEMENT
+HOLD != FORGOTTEN_TASK
+NO_ACTION != FAILURE
+KERNEL != SOLE_SOURCE_OF_TRUTH
+REFLECTION != VERIFIED_CORRECTION
+```
+
+---
+
+# Program-level stop / reconsideration conditions
+
+Return to earlier research rather than forcing forward progress if:
+
+- CCP requires project-specific hard-coding to preserve basic semantics;
+- blind successors cannot orient without hidden coaching;
+- authority cannot be represented in a portable/auditable way;
+- negative knowledge either permanently blocks legitimate discovery or fails to
+  prevent repeated dead-end work;
+- the generated Kernel repeatedly omits decision-critical state with no usable
+  sufficiency discipline;
+- the control plane becomes more complex to understand than the project it is
+  meant to orient;
+- a competing architecture materially outperforms CCP on the frozen
+  requirements;
+- external research reveals an existing mature solution that makes this work
+  redundant.
+
+Truth-seeking outranks architectural attachment.
+
+---
+
+# Relationship to licensing
+
+Current repository license:
+
+```text
+Apache-2.0
+```
+
+The license is a reasoned default, not an immutable doctrine.
+
+`LICENSE_POLICY.md` defines the conditions that reopen license review.
+
+Roadmap advancement by itself is **not** a reason to change the license.
+
+---
+
+# Roadmap update rule
+
+Update this roadmap only when:
+
+- a major phase opens or closes;
+- an advancement gate materially changes;
+- the program's North Star changes;
+- the architecture candidate is replaced;
+- a new program-level stop condition is learned.
+
+Do **not** update it for ordinary commits, test-count changes, or small
+implementation details.
+
+That information belongs in the active phase artifacts.
+
+The roadmap should remain small enough that a fresh successor can read it before
+working.
+
+
+### prototype/ccp1/README.md
+
+# CCP-1 — Adversarial Hardening Prototype
+
+CCP-1 attacks the assumptions that survived CCP-0.
+
+It remains read-only / shadow mode with respect to real projects.
+
+## P1 attack sequence
+
+1. authority spoofing — **complete: bounded pass**
+2. bad-policy enforcement — **complete: disposition C**
+3. stale / concurrent transitions — **complete: disposition C**
+4. kernel omission — **complete: disposition C**
+5. reopen-predicate brittleness — **complete: disposition C**
+
+```text
+P1_ATTACK_FAMILY = COMPLETE
+```
+
+## Verified P1 checkpoint
+
+GitHub Actions run `35535927777`:
+
+```text
+CCP0_REGRESSION_SUITE  = 27 / 27 PASS
+CCP1_ADVERSARIAL_SUITE = 41 / 41 PASS
+TOTAL                  = 68 / 68 PASS
+```
+
+The CCP-0 prototype and its frozen 27-test suite remain unchanged under
+`prototype/ccp0/` and serve as the regression baseline.
+
+## Secondary CCP-1 program
+
+Next bounded work:
+
+1. evidence authenticity / reproducible evidence adapters;
+2. disputed/invalid accepted-event correction;
+3. authority durability / identity-authentication boundary;
+4. orientation-contract quality;
+5. supersession / graph scale;
+6. project-agnostic portability;
+7. blind cold-start and human usability when independent participants are
+   available.
+
+```text
+LIVE_PROJECT_MUTATION = NOT_AUTHORIZED
+CCP2 = NOT YET AUTHORIZED
+```
+
+Frozen result artifacts:
+
+- `CCP1_AUTHORITY_SPOOFING_RESULT_0_1_0.md`
+- `CCP1_BAD_POLICY_RESULT_0_1_0.md`
+- `CCP1_STALE_CONCURRENT_TRANSITION_RESULT_0_1_0.md`
+- `CCP1_KERNEL_OMISSION_RESULT_0_1_0.md`
+- `CCP1_REOPEN_PREDICATE_RESULT_0_1_0.md`
+- `CCP1_P1_ATTACK_FAMILY_RESULT_0_1_0.md`
+
+
+## Secondary CCP-1 results
+
+- Evidence authenticity / reproducible Git-object identity — **complete: disposition C, bounded pass**
+
+Verified checkpoint:
+
+```text
+CCP0 = 27 / 27 PASS
+CCP1 = 51 / 51 PASS
+TOTAL = 78 / 78 PASS
+
+NEXT_SECONDARY_ATTACK = INVALID_ACCEPTED_EVENT_CORRECTION
+```
+
+Frozen secondary result artifacts:
+
+- `CCP1_EVIDENCE_AUTHENTICITY_RESULT_0_1_0.md`
+
+
+- Accepted-event correction — **complete: disposition C, claim-level bounded pass**
+
+Current verified checkpoint:
+
+```text
+CCP0 = 27 / 27 PASS
+CCP1 = 60 / 60 PASS
+TOTAL = 87 / 87 PASS
+
+NEXT_SECONDARY_ATTACK = AUTHORITY_DURABILITY_AND_IDENTITY_BOUNDARY
+```
+
+Additional frozen result:
+
+- `CCP1_ACCEPTED_EVENT_CORRECTION_RESULT_0_1_0.md`
+
+
+- Authority durability / identity-authentication boundary — **complete: disposition C, bounded pass**
+
+Current verified checkpoint:
+
+```text
+CCP0 = 27 / 27 PASS
+CCP1 = 69 / 69 PASS
+TOTAL = 96 / 96 PASS
+
+NEXT_SECONDARY_ATTACK = ORIENTATION_CONTRACT_QUALITY
+```
+
+Additional frozen result:
+
+- `CCP1_AUTHORITY_DURABILITY_IDENTITY_RESULT_0_1_0.md`
+
+
+- Orientation-contract quality / external review — **complete: disposition C, bounded pass**
+
+Current verified checkpoint:
+
+```text
+CCP0 = 27 / 27 PASS
+CCP1 = 78 / 78 PASS
+TOTAL = 105 / 105 PASS
+
+NEXT_SECONDARY_ATTACK = SUPERSESSION_GRAPH_SCALE
+```
+
+Additional frozen result:
+
+- `CCP1_ORIENTATION_CONTRACT_QUALITY_RESULT_0_1_0.md`
+
+
+- Supersession graph scale / scoped chain resolution — **complete: disposition C, bounded pass**
+
+Current verified checkpoint:
+
+```text
+CCP0 = 27 / 27 PASS
+CCP1 = 88 / 88 PASS
+TOTAL = 115 / 115 PASS
+
+NEXT_SECONDARY_ATTACK = PROJECT_AGNOSTIC_PORTABILITY
+```
+
+Additional frozen result:
+
+- `CCP1_SUPERSESSION_GRAPH_SCALE_RESULT_0_1_0.md`
+
+
+- Project-agnostic portability profiles — **complete: disposition C, bounded pass**
+
+Current verified checkpoint:
+
+```text
+CCP0 = 27 / 27 PASS
+CCP1 = 97 / 97 PASS
+TOTAL = 124 / 124 PASS
+
+AUTONOMOUS_SECONDARY_ATTACK_SET = COMPLETE
+NEXT_GATE = BLIND_AGENT_COLD_START + HUMAN_COLD_START_USABILITY
+```
+
+Additional frozen result:
+
+- `CCP1_PROJECT_AGNOSTIC_PORTABILITY_RESULT_0_1_0.md`
+
+
+## Autonomous secondary attack family
+
+```text
+STATUS = COMPLETE
+FINAL_VERIFIED_CHECKPOINT = 124 / 124 PASS
+CCP1_COMPLETE = NO
+```
+
+The remaining CCP-1 gates require participants that are genuinely independent
+of the design context:
+
+- blind agent cold-start;
+- unfamiliar-human cold-start / usability.
+
+Frozen family result:
+
+- `CCP1_AUTONOMOUS_SECONDARY_ATTACK_FAMILY_RESULT_0_1_0.md`
+
+```text
+CCP2_AUTHORIZED = NO
+LIVE_PROJECT_MUTATION = NOT_AUTHORIZED
+```
+
+
+### CCP1 autonomous secondary family result
+
+# CCP-1 Autonomous Secondary Attack Family Result 0.1.0
+
+Date: 2026-09-20  
+Status: **AUTONOMOUS SECONDARY ATTACK SET COMPLETE — EXTERNAL COLD-START GATE NEXT**
+
+## Scope
+
+After the five P1 attacks survived their bounded first pass, CCP-1 continued
+with secondary attacks that could still be executed honestly by the current
+research operator without requiring an independent participant.
+
+Those secondary attacks are now complete.
+
+## Frozen results
+
+| Secondary attack | Disposition |
+|---|---|
+| Evidence authenticity / reproducible Git identity | C — PASS WITH BOUNDED SCOPE |
+| Accepted-event correction | C — PASS WITH BOUNDED SCOPE |
+| Authority durability / identity boundary | C — PASS WITH BOUNDED SCOPE |
+| Orientation-contract quality | C — PASS WITH BOUNDED SCOPE |
+| Supersession graph scale | C — PASS WITH BOUNDED SCOPE |
+| Project-agnostic portability | C — PASS WITH BOUNDED SCOPE |
+
+## Final autonomous CI checkpoint
+
+The exact project-agnostic portability implementation at:
+
+```text
+b76a6fc3fc0e6e117bb914531a657cd112643482
+```
+
+was verified by GitHub Actions run:
+
+```text
+35542032351
+```
+
+with:
+
+```text
+CCP0_REGRESSION_SUITE = 27 / 27 PASS
+CCP1_ADVERSARIAL_SUITE = 97 / 97 PASS
+
+TOTAL = 124 / 124 PASS
+FAIL = 0
+ERROR = 0
+```
+
+## Combined CCP-1 attack inventory
+
+### P1 family
+
+- authority spoofing;
+- bad-policy enforcement;
+- stale / concurrent transitions;
+- kernel omission;
+- reopen-predicate brittleness.
+
+### Autonomous secondary family
+
+- evidence authenticity;
+- accepted-event correction;
+- durable authority + identity boundary;
+- external review of orientation contracts;
+- supersession chain/fork/cycle scale;
+- project-agnostic portability profiles.
+
+## What the autonomous program now supports
+
+Within the bounded semantic prototype:
+
+```text
+ROLE LABEL != AUTHORITY
+POLICY ENFORCEMENT != POLICY JUSTIFICATION
+PLAN VALIDITY != ACCEPTANCE-TIME VALIDITY
+FRESH KERNEL != SUFFICIENT KERNEL
+REOPEN BURDEN != MAGIC EVENT LABEL
+EVIDENCE REF != VERIFIED OBJECT
+HISTORICALLY ACCEPTED != CURRENTLY EFFECTIVE
+AUTHENTICATION != AUTHORIZATION
+CONTRACT SATISFACTION != CONTRACT ADMISSION
+DIRECT REPLACEMENT != GRAPH RESOLUTION
+SOURCE-PROJECT VOCABULARY != CORE SEMANTICS
+```
+
+These distinctions are now represented by executable adversarial tests rather
+than prose alone.
+
+## Why autonomous testing stops here
+
+Two remaining CCP-1 gates cannot be honestly satisfied by the same agent that
+designed the architecture and knows the research history:
+
+1. blind agent cold-start;
+2. unfamiliar-human cold-start / usability.
+
+Running those "blind" trials inside the same conversation/context would create
+false evidence.
+
+Therefore:
+
+```text
+SAME_CONTEXT_SELF_TEST != BLIND_SUCCESSOR_TEST
+INVENTOR_USABILITY != UNFAMILIAR_HUMAN_USABILITY
+```
+
+## Advancement state
+
+```text
+P1_ATTACK_FAMILY = COMPLETE
+AUTONOMOUS_SECONDARY_ATTACK_SET = COMPLETE
+
+BLIND_AGENT_COLD_START = REQUIRED
+HUMAN_COLD_START_USABILITY = REQUIRED
+
+CCP1_COMPLETE = NO
+CCP2_AUTHORIZED = NO
+LIVE_PROJECT_MUTATION = NOT_AUTHORIZED
+```
+
+## Next operation
+
+Freeze reproducible cold-start protocols and trial packet rules, then hand them
+to independent participants without conversational coaching.
+
+No advancement decision should be made until those results return.
+
+
+### CCP0 advancement decision
+
+# CCP-0 Advancement Decision 0.1.0
+
+Date: 2026-09-20  
+Decision type: Prototype-phase gate.
+
+## Decision
+
+```text
+CCP0 = ACCEPT_FOR_SEMANTIC_FEASIBILITY
+
+CCP1 = AUTHORIZED_AS_BOUNDED_RESEARCH_PROTOTYPE
+
+LIVE_PROJECT_CONTROL_PLANE_INTEGRATION = NOT_AUTHORIZED
+
+AUTOMATIC_MUTATION_OF_HIVENUES_NFC_FCP_PGH = NOT_AUTHORIZED
+```
+
+## Rationale
+
+CCP-0 has earned continuation because:
+
+- all ten historical replay scenarios pass;
+- six counterfactual controls demonstrate that the system is not merely
+  fail-closed;
+- seven self-audits test the integrity of the continuity mechanism itself;
+- three external-freshness tests distinguish frozen reconstruction from later
+  source movement;
+- the Project Observatory shadow trial produced a useful real-world result;
+- several mechanisms explain multiple incidents rather than one rule being
+  written per incident.
+
+CCP-0 has **not** earned production integration because authority, concurrency,
+policy correctness, evidence authenticity, human usability, and blind successor
+orientation remain untested.
+
+## CCP-1 objective
+
+Build the smallest durable/read-only control-plane prototype that can operate
+over a real project corpus without becoming the project's authority itself.
+
+CCP-1 should add only the mechanisms required to attack CCP-0's highest-risk
+assumptions:
+
+1. explicit actor/role/authority grants;
+2. durable append/replay;
+3. expected-version concurrency guards;
+4. policy provenance/versioning;
+5. evidence verification adapters;
+6. kernel-omission adversarial testing;
+7. flexible reopen-predicate testing;
+8. blind agent cold-start trial.
+
+## CCP-1 hard boundary
+
+CCP-1 remains:
+
+```text
+READ_ONLY_OR_SHADOW_MODE
+```
+
+with respect to the real projects unless a later gate separately authorizes
+mutation.
+
+No migration should occur merely because the prototype can model a project's
+state.
+
+## Stop condition
+
+CCP-1 should stop and return to architecture research if any of the following
+occur:
+
+- authority cannot be represented without domain-specific hard-coding;
+- correct replay requires hidden conversational knowledge;
+- scoped supersession becomes un-auditable at realistic scale;
+- kernel projection repeatedly omits decision-critical state;
+- reopen semantics either allow obvious dead-end repetition or prevent obvious
+  legitimate reopening;
+- concurrency creates ambiguous canonical state that cannot be resolved without
+  an ad hoc human rule.
+
+## Current research posture
+
+This is neither:
+
+```text
+"Composite E is proven"
+```
+
+nor:
+
+```text
+"we should keep theorizing indefinitely"
+```
+
+The warranted state is:
+
+```text
+PROMISING_ENOUGH_TO_ATTACK_AT_HIGHER_REALISM
+```
+
