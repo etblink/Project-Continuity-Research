@@ -26,15 +26,20 @@ Verify:
 - `prototype/ccp1/README.md`
 - `prototype/ccp1/CCP1_AUTONOMOUS_SECONDARY_ATTACK_FAMILY_RESULT_0_1_0.md`
 
-## What remains before the next major phase
+## Cold-start gate state before the next major phase
 
-The current phase still requires genuinely independent cold-start evidence:
+```text
+BLIND_AGENT_TRIAL_1 = PROVISIONAL_PASS
+HUMAN_COLD_START_TRIAL_1 = PREPARED / NOT_YET_RUN
+POST_TRIAL_DESIGN_REVIEW = REQUIRED AFTER THE HUMAN TRIAL
+CCP1_COMPLETE = NO
+```
 
-- blind-agent cold start;
-- unfamiliar-human cold-start / usability;
-- post-trial review of the cold-start design and results.
+The first blind-agent cold-start trial has already produced a provisional pass. That result does not complete CCP-1.
 
-Only after CCP-1 survives its exit gate may CCP-2 be considered.
+The remaining external gate is the unfamiliar-human cold-start / usability trial, followed by the required post-trial design review.
+
+Only after CCP-1 survives its full exit gate may CCP-2 be considered.
 
 Verify:
 - `BIG_PICTURE_ROADMAP.md`
@@ -59,7 +64,9 @@ Verify:
 
 ## Current bounded next operation
 
-Run and adjudicate the independent cold-start trials against the frozen project state. Do not begin CCP-2 merely because the autonomous attack suites are green.
+Run and adjudicate the unfamiliar-human cold-start / usability trial against the frozen project state, then perform the required post-trial design review.
+
+Do not rerun Blind-Agent Trial 1 merely because it is provisional, and do not begin CCP-2 merely because the autonomous attack suites are green.
 
 Verify:
 - `BIG_PICTURE_ROADMAP.md`
