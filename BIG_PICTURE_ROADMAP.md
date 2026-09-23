@@ -197,7 +197,8 @@ ACTIVE
 P1_ATTACK_FAMILY = COMPLETE
 AUTONOMOUS_SECONDARY_ATTACK_SET = COMPLETE
 BLIND_AGENT_TRIAL_1 = PROVISIONAL_PASS
-HUMAN_COLD_START_TRIAL_1 = PREPARED / NOT_YET_RUN
+HUMAN_COLD_START_TRIAL_1 = FAIL — ORIENTATION / USABILITY
+HUMAN_ORIENTATION_REPAIR = ACTIVE
 ```
 
 Governing issue:
@@ -254,8 +255,10 @@ Completed autonomous secondary program:
 Remaining initial CCP-1 exit trials:
 
 - blind agent cold-start — **first trial provisionally passed**;
-- unfamiliar-human cold-start / usability — **still required; HTML-reader trial prepared, not yet run**;
-- post-trial design review — **still required after the human trial**.
+- unfamiliar-human cold-start / usability — **Trial 1 failed at 3/12; orientation repair required**;
+- Trial-1 post-trial design review — **complete; first-class current-orientation surface authorized as bounded repair**;
+- repaired unfamiliar-human trial using a different participant — **required before any CCP-2 decision**;
+- post-repair design review — **required after the repaired trial**.
 
 These remaining trials cannot be validly self-administered by the same
 conversation/context that designed the architecture.
