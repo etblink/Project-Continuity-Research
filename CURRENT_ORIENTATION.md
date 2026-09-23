@@ -1,8 +1,8 @@
 # Project Continuity Research — Current Orientation
 
-Projection version: 0.1.0  
+Projection version: 0.1.2  
 Source snapshot: `dec58643dbeb65adf90178f0bedd214dfa40b812`  
-Status: **ORIENTATION PROJECTION — NOT CANONICAL PROJECT STATE**
+Status: **ORIENTATION PROJECTION FOR THIS FROZEN SNAPSHOT — NOT CANONICAL PROJECT STATE**
 
 ## Why this project exists
 
@@ -12,7 +12,7 @@ The system should work for someone who did not invent it without requiring the o
 
 Verify: `BIG_PICTURE_ROADMAP.md`.
 
-## Where the project is now
+## Where this frozen snapshot is in the program
 
 ```text
 CURRENT_PHASE = Phase 4 — CCP-1 adversarial hardening
@@ -26,27 +26,25 @@ Verify:
 - `prototype/ccp1/README.md`
 - `prototype/ccp1/CCP1_AUTONOMOUS_SECONDARY_ATTACK_FAMILY_RESULT_0_1_0.md`
 
-## Cold-start gate state before the next major phase
+## Cold-start gates at this snapshot
+
+At this frozen boundary, both independent cold-start gates remain required:
 
 ```text
-BLIND_AGENT_TRIAL_1 = PROVISIONAL_PASS
-HUMAN_COLD_START_TRIAL_1 = PREPARED / NOT_YET_RUN
-POST_TRIAL_DESIGN_REVIEW = REQUIRED AFTER THE HUMAN TRIAL
+BLIND_AGENT_COLD_START = REQUIRED
+UNFAMILIAR_HUMAN_COLD_START_USABILITY = REQUIRED
+POST_TRIAL_DESIGN_REVIEW = REQUIRED
 CCP1_COMPLETE = NO
 ```
 
-The first blind-agent cold-start trial has already produced a provisional pass. That result does not complete CCP-1.
-
-The remaining external gate is the unfamiliar-human cold-start / usability trial, followed by the required post-trial design review.
-
-Only after CCP-1 survives its full exit gate may CCP-2 be considered.
+No cold-start result is represented here as already completed.
 
 Verify:
 - `BIG_PICTURE_ROADMAP.md`
 - `prototype/ccp1/CCP1_AUTONOMOUS_SECONDARY_ATTACK_FAMILY_RESULT_0_1_0.md`
 - `prototype/ccp1/trials/COLD_START_SCORECARD_0_1_0.md`
 
-## What is *not* authorized
+## What is not authorized
 
 ```text
 CCP2_AUTHORIZED = NO
@@ -60,17 +58,16 @@ Passing machine tests does not authorize the next phase or live control.
 Verify:
 - `BIG_PICTURE_ROADMAP.md`
 - `prototype/ccp1/README.md`
-- `prototype/ccp0/CCP0_ADVANCEMENT_DECISION_0_1_0.md`
 
-## Current bounded next operation
+## Current bounded next operation at this snapshot
 
-Run and adjudicate the unfamiliar-human cold-start / usability trial against the frozen project state, then perform the required post-trial design review.
+Freeze reproducible cold-start protocols and trial packet rules, then hand them to genuinely independent participants without conversational coaching.
 
-Do not rerun Blind-Agent Trial 1 merely because it is provisional, and do not begin CCP-2 merely because the autonomous attack suites are green.
+Do not make an advancement decision until both the blind-agent and unfamiliar-human cold-start results return and the trial design receives post-trial review.
 
 Verify:
-- `BIG_PICTURE_ROADMAP.md`
 - `prototype/ccp1/CCP1_AUTONOMOUS_SECONDARY_ATTACK_FAMILY_RESULT_0_1_0.md`
+- `BIG_PICTURE_ROADMAP.md`
 
 ## Machine-verification checkpoint
 
@@ -94,19 +91,19 @@ Verify:
 
 `BIG_PICTURE_ROADMAP.md`
 
-Use this to understand the program's North Star, phase map, advancement gates, and major prohibitions.
+Use this for the North Star, phase map, advancement gates, and major prohibitions.
 
-### Exact CCP-1 state and machine checkpoint
+### CCP-1 working state and machine checkpoint
 
 `prototype/ccp1/README.md`
 
-Use this as the CCP-1 working summary, then verify important claims in the named result artifacts.
+Use this as a working summary, then verify consequential claims in the named result artifacts.
 
 ### Completed adversarial attacks
 
-Look under `prototype/ccp1/` for paired `*_ATTACK_*.md` and `*_RESULT_*.md` files.
+Under `prototype/ccp1/`, paired `*_ATTACK_*.md` and `*_RESULT_*.md` files describe what was tested, what passed, and what the bounded result still does not establish.
 
-Major completed attack families include:
+Completed families include:
 - authority spoofing;
 - bad-policy enforcement;
 - stale/concurrent transitions;
@@ -119,16 +116,25 @@ Major completed attack families include:
 - supersession graph scale;
 - project-agnostic portability.
 
-A result file should state both what passed and what the bounded result does **not** establish.
+### Cold-start evaluation
+
+`prototype/ccp1/trials/COLD_START_SCORECARD_0_1_0.md`
+
+This defines the preregistered cold-start evaluation structure and advancement discipline. It does not itself establish that either cold-start trial has already occurred.
 
 ### Historical research
 
-Root-level research artifacts preserve the empirical taxonomy, adjacent-field review, requirements, architecture competition, and earlier reasoning. Historical truth does not automatically equal current authority.
+Root-level research artifacts preserve the empirical taxonomy, adjacent-field review, requirements, architecture competition, and earlier reasoning.
+
+```text
+HISTORICAL_TRUTH != CURRENT_AUTHORITY
+```
 
 ## Open limitations
 
-CCP remains a prototype candidate. The frozen snapshot does not establish:
+CCP remains a prototype candidate. This frozen snapshot does not establish:
 - human usability;
+- blind-successor performance;
 - durable distributed storage correctness;
 - production readiness;
 - universal architecture validity;
@@ -141,3 +147,5 @@ Start here, but verify consequential claims in the linked source artifacts.
 ```text
 ORIENTATION_PROJECTION != SOLE_SOURCE_OF_TRUTH
 ```
+
+This projection describes the frozen snapshot named above. Later project history is outside this trial boundary.
