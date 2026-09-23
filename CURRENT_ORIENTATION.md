@@ -1,6 +1,6 @@
 # Project Continuity Research — Current Orientation
 
-Projection version: 0.1.2  
+Projection version: 0.1.3  
 Source snapshot: `dec58643dbeb65adf90178f0bedd214dfa40b812`  
 Status: **ORIENTATION PROJECTION FOR THIS FROZEN SNAPSHOT — NOT CANONICAL PROJECT STATE**
 
@@ -25,6 +25,22 @@ Verify:
 - `BIG_PICTURE_ROADMAP.md`
 - `prototype/ccp1/README.md`
 - `prototype/ccp1/CCP1_AUTONOMOUS_SECONDARY_ATTACK_FAMILY_RESULT_0_1_0.md`
+
+## Immediate objective at this snapshot
+
+Determine whether CCP-1 can orient genuinely independent successors well enough to justify **considering** a CCP-2 durable shadow prototype, without hidden conversational coaching or dependence on the originator.
+
+Success at this phase requires:
+- a valid blind-agent cold-start;
+- a valid unfamiliar-human cold-start / usability trial;
+- post-trial review of whether the trial design exposed weakness or contamination.
+
+This objective is **not** to prove CCP universally correct or production-ready, and it does not itself authorize CCP-2.
+
+Verify:
+- `BIG_PICTURE_ROADMAP.md`
+- `prototype/ccp1/CCP1_AUTONOMOUS_SECONDARY_ATTACK_FAMILY_RESULT_0_1_0.md`
+- `prototype/ccp1/trials/COLD_START_SCORECARD_0_1_0.md`
 
 ## Cold-start gates at this snapshot
 
