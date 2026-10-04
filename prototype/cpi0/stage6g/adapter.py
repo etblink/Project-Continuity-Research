@@ -1,14 +1,12 @@
 from __future__ import annotations
 
 import copy
-import importlib.util
-import sys
+import json
 from pathlib import Path
 from typing import Any, Dict, Mapping
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
-sys.path.insert(0, str(ROOT))
 
 from cpi_profile_v0_1_3 import validate_projection
 from collector import (
@@ -31,14 +29,11 @@ class AdapterInconsistent(RuntimeError):
     pass
 
 
-def _load_stage6e_adapter():
-    path = ROOT / "stage6e" / "adapter.py"
-    spec = importlib.util.spec_from_file_location("cpi_stage6e_adapter_for_stage6g", path)
-    if spec is None or spec.loader is None:
-        raise RuntimeError("cannot load Stage-6E adapter")
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    return module
+def _stage6e_projection(project_id: str) -> Dict[str, Any]:
+    data = json.loads(
+        (ROOT / "stage6e" / "generated_projections.json").read_text(encoding="utf-8")
+    )
+    return copy.deepcopy(data[project_id])
 
 
 def _upgrade_source(source: Mapping[str, Any]) -> Dict[str, Any]:
@@ -55,15 +50,13 @@ def _upgrade_source(source: Mapping[str, Any]) -> Dict[str, Any]:
         s["revision"] = f"derived_snapshot:{repo}:{s['native_id']}:sha256:{digest}"
     else:
         raise AdapterIncomplete(
-            f"Stage-6G legacy upgrade does not accept non-Git source kind {kind}"
+            f"unchanged-project upgrade does not accept source kind {kind}"
         )
     return s
 
 
 def _upgrade_stage6e_projection(project_id: str) -> Dict[str, Any]:
-    e = _load_stage6e_adapter()
-    fn = {"NFC": e.adapt_nfc, "FCP": e.adapt_fcp, "PGH": e.adapt_pgh}[project_id]
-    p = copy.deepcopy(fn())
+    p = _stage6e_projection(project_id)
     p["profile_version"] = PROFILE_VERSION
     p["producer"] = ADAPTER_VERSION
     p["observed_sources"] = [_upgrade_source(x) for x in p["observed_sources"]]
@@ -71,12 +64,57 @@ def _upgrade_stage6e_projection(project_id: str) -> Dict[str, Any]:
     return p
 
 
+def _fcp_native_current_block() -> Dict[str, str]:
+    path = ROOT / "stage6e" / "native" / "FCP_CURRENT_STATE.md"
+    text = path.read_text(encoding="utf-8")
+    if text.count("NEXT_RECOMMENDED_OPERATION =") <= 1:
+        raise AdapterIncomplete("FCP regression fixture lost historical repeated routing keys")
+    precedence = (
+        "Operational-routing fields inside named completed-milestone sections in "
+        "this document are checkpoint-era historical snapshots. They remain "
+        "intentionally preserved; the controlling present-tense routing is the "
+        "Open dependencies and Next-task status material above."
+    )
+    if precedence not in text.replace(chr(96), ""):
+        raise AdapterIncomplete("FCP native precedence rule missing")
+    marker = (
+        "EVIDENCE_TRIGGER_PGH = "
+        "T1_STABLE_NEW_FOUNDATIONAL_COMPETITOR_CANDIDATE__FULFILLED"
+    )
+    if text.count(marker) != 1:
+        raise AdapterIncomplete("FCP fulfilled-PGH current marker is not unique")
+    idx = text.index(marker)
+    fence = chr(96) * 3
+    start = text.rfind(fence, 0, idx)
+    newline = text.find("\n", start)
+    end = text.find(fence, idx)
+    if start < 0 or newline < 0 or end < 0:
+        raise AdapterIncomplete("FCP current block malformed")
+    kv: Dict[str, str] = {}
+    for line in text[newline + 1 : end].splitlines():
+        if " = " in line:
+            key, value = line.split(" = ", 1)
+            if key.strip() in kv:
+                raise AdapterIncomplete("FCP current block duplicate key")
+            kv[key.strip()] = value.strip()
+    return kv
+
+
 def adapt_nfc() -> Dict[str, Any]:
     return _upgrade_stage6e_projection("NFC")
 
 
 def adapt_fcp() -> Dict[str, Any]:
-    return _upgrade_stage6e_projection("FCP")
+    p = _upgrade_stage6e_projection("FCP")
+    kv = _fcp_native_current_block()
+    expected = p["transitions"][0]
+    if kv.get("NEXT_RECOMMENDED_OPERATION") != expected["transition_id"]:
+        raise AdapterInconsistent("FCP frozen projection disagrees with full native file")
+    if kv.get("NEXT_OPERATION_AUTHORIZED") != expected["authorization_basis"]:
+        raise AdapterInconsistent("FCP authorization disagrees with full native file")
+    if kv.get("NEXT_OPERATION_AUTHORIZATION_BOUNDARY") != expected["authorization_boundary"]:
+        raise AdapterInconsistent("FCP boundary disagrees with full native file")
+    return p
 
 
 def adapt_pgh() -> Dict[str, Any]:
@@ -109,10 +147,9 @@ def _owner_decision_sources(collected: Mapping[str, Any]) -> Dict[str, list[Mapp
 def adapt_hivenues_current(reader: NativeReader) -> Dict[str, Any]:
     collected = collect_hivenues_current(reader)
 
-    # Reuse the already independently closed Stage-6E Git binding for merged-main
-    # README; upgrade only its profile revision form.
-    e = _load_stage6e_adapter()
-    old = e.adapt_hivenues()
+    # Reuse the already independently closed Stage-6E Git-bound merged-main
+    # source descriptor; only the profile revision form changes in 0.1.3.
+    old = _stage6e_projection("HIVenues")
     main_old = next(x for x in old["observed_sources"] if x["source_id"] == "main")
     main = _upgrade_source(main_old)
 
