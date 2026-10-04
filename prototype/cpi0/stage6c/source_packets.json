@@ -1,0 +1,165 @@
+{
+  "NFC": {
+    "project_id": "NFC",
+    "observed_at": "2026-10-04T17:45:47Z",
+    "current_main": "5072d563b0a3dd4a7643be427cd47108216d8793",
+    "sources": {
+      "provenance": {
+        "repository": "etblink/Nested-Fibrational-Cosmology",
+        "path": "PROVENANCE.md",
+        "blob_sha": "69cdd64069cd0d24779a344fac0cd309bc54d811",
+        "source_kind": "git",
+        "ref": "main",
+        "revision": "git:5072d563b0a3dd4a7643be427cd47108216d8793:blob:69cdd64069cd0d24779a344fac0cd309bc54d811",
+        "text": "## Canonical theorem-source rule\nFor analysis of the frozen NFC scientific canon, use this exact source identity:\nREF = archive/nfc-canonical-ed3047c2\nTAG = nfc-canonical-ed3047c2\nCOMMIT = ed3047c2cbc0abc34d2549dd27754e4d3d05af78\nTREE = 00ef55ff36d5e9663ca1ef2c9566e2bc1396f973\nMECHANICAL_PROVENANCE_SEQUENCE = ESTABLISHED\nREPRESENTATIVE_CONTENT_CONTINUITY = ESTABLISHED\nHUMAN_POLICY_INTENT = UNRESOLVED\nDo not use default-branch presence as a proxy for scientific authority.\n",
+        "content_sha256": "df11e5ca1c3b74e03e8d5359b25a00c7c0a9bec729355f72d527a21a6d3f8e6f",
+        "packet_sha256": "008c6ae238f5e3271b15cdb8555465e1ae7983013cdbe72fcafa7a4ed1d7df86"
+      }
+    }
+  },
+  "FCP": {
+    "project_id": "FCP",
+    "observed_at": "2026-10-04T17:45:47Z",
+    "current_main": "a41bc6101b63140ee2687e0cf67a47ab6be77215",
+    "sources": {
+      "current_state": {
+        "repository": "etblink/Foundational-Convergence-Program",
+        "path": "CURRENT_STATE.md",
+        "blob_sha": "b5949af93a1855ae1d072fa4aaa4b1c29033579c",
+        "source_kind": "git",
+        "ref": "main",
+        "contract_role": "present_tense_routing_with_precedence",
+        "revision": "git:a41bc6101b63140ee2687e0cf67a47ab6be77215:blob:b5949af93a1855ae1d072fa4aaa4b1c29033579c",
+        "text": "METHOD = 0.2.1_ACTIVE_PROSPECTIVELY\n\n[CURRENT ROUTING WINDOW]\nPOST_RECURRENCE_DELTA_SCIENTIFIC_SEQUENCING_ADJUDICATION = CANONICALLY_ACCEPTED_READ_ONLY_DECISION\nPOST_RECURRENCE_DELTA_SCIENTIFIC_SEQUENCING_COMMIT = 98e02f288b12948dc382be7c0c23f105dddb801b\nPRIOR_SEQUENCING_SELECTION = EVIDENCE_TRIGGERED_HOLD\nEVIDENCE_TRIGGER_PGH = T1_STABLE_NEW_FOUNDATIONAL_COMPETITOR_CANDIDATE__FULFILLED\nFCP_PGH_STAGE1_SOURCE_INTAKE = CANONICALLY_COMPLETE\nFCP_PGH_STAGE2_A_H_TAXONOMY_GATE = CANONICALLY_COMPLETE\nPGH_TOP_LEVEL_TAXONOMY_OUTCOME = B__CLASSIFY_AS_NONFRAMEWORK_PHYSICAL_MODEL_OR_POSTULATE\nPGH_FRAMEWORK_ADMISSION = FAIL__CONTROLLING_CRITERION_G\nFW_PGH_CREATED = NO\nPGH_EXISTING_FRAMEWORK_HOST = NONE_ESTABLISHED\nPGH_EMPIRICAL_TRUTH_STATUS = UNADJUDICATED\nACTIVE_SCIENTIFIC_OPERATION = NONE\nNEXT_EXECUTION_STEP = POST_PGH_STAGE2_SCIENTIFIC_SEQUENCING_ADJUDICATION\nNEXT_RECOMMENDED_OPERATION = POST_PGH_STAGE2_SCIENTIFIC_SEQUENCING_ADJUDICATION\nNEXT_OPERATION_CLASS = READ_ONLY_SCIENTIFIC_SEQUENCING_ADJUDICATION\nNEXT_OPERATION_AUTHORIZED = YES__STANDING_PROJECT_LEAD_DELEGATION\nNEXT_OPERATION_AUTHORIZATION_BOUNDARY = SEQUENCING_ONLY__NO_SUBSEQUENT_FCP_SCIENCE_BEFORE_SELECTION\nNEXT_NUMBERED_PHASE_SELECTED = NO\nFCP27_SELECTED = NO\nNEXT_SCIENTIFIC_PHASE = NONE__POST_PGH_STAGE2_SEQUENCING_PENDING\n\nThe process-matrix chain, Reduced-NFC/process-matrix comparison, recurrence delta, and prior evidence-triggered hold remain canonical history. That hold was subsequently and prospectively satisfied by the named PGH T1 trigger.\n\n[PRECEDENCE RULE]\nHistorical and pre-integration labels may remain inside exact qualified artifacts as provenance. This file is the intended mutable surface for present-tense program state.\nOperational-routing fields inside named completed-milestone sections in this document are checkpoint-era historical snapshots. They remain intentionally preserved; the controlling present-tense routing is the `Open dependencies` and `Next-task status` material above.\n",
+        "content_sha256": "f1df34619474a18cdae4d0f541b671064debdd469a5bcd68101ebd5281ef5dbc",
+        "packet_sha256": "f56bc1c96f29cdead1fa5e916161f046731d03c8d7f836ecad1e1988ba23a5a4"
+      },
+      "charter": {
+        "repository": "etblink/Foundational-Convergence-Program",
+        "path": "FCP_CHARTER.md",
+        "blob_sha": "579819121d1733e1746868941a3a282de2cf1ac9",
+        "source_kind": "git",
+        "ref": "main",
+        "revision": "git:a41bc6101b63140ee2687e0cf67a47ab6be77215:blob:579819121d1733e1746868941a3a282de2cf1ac9",
+        "text": "Historical/versioned phase artifacts remain records of what was true at their phase and are not rewritten merely to track later program state.\nEvery substantive future phase requires separate bounded authorization and an explicit source/provenance window; no future task receives scientific authorization from this charter text alone.\nSeek truth about reality.\nPreserve results, not theories.\n",
+        "content_sha256": "9ee9d0132fac98a33adf92049711b50f4b29a56939b5551770fef588707a6c30",
+        "packet_sha256": "d226c2fb715241c9bbeebdbb763df45ab768d092e114ae61f0cfd0ac470f990d"
+      }
+    }
+  },
+  "PGH": {
+    "project_id": "PGH",
+    "observed_at": "2026-10-04T17:45:47Z",
+    "current_main": "2923875b40ea6901dfafda56a771c36876c4a220",
+    "sources": {
+      "current_state": {
+        "repository": "etblink/Physical-Grammar-Hypothesis",
+        "path": "CURRENT_STATE.md",
+        "blob_sha": "32c799bdd42d6c921140bf13bdb988fefa445169",
+        "source_kind": "git",
+        "ref": "main",
+        "revision": "git:2923875b40ea6901dfafda56a771c36876c4a220:blob:32c799bdd42d6c921140bf13bdb988fefa445169",
+        "text": "ACTUAL_APPARATUS = NONE_BOUND\nNEXT_SCIENTIFIC_OPERATION = APPARATUS_REALIZATION_AND_TARGET_FREEZE\nNEXT_SCIENTIFIC_OPERATION_REQUIRES_EXTERNAL_PHYSICAL_ACTION = YES\nPHYSICAL_TRIAL_EXECUTION_AUTHORIZED = NO\nPUBLIC_TARGET_SEARCH = SUSPENDED\nWEB_TARGET_SEARCH = FORBIDDEN_WITHOUT_NEW_INDEPENDENT_TRIGGER\nREGISTRY_TARGET_SEARCH = FORBIDDEN_WITHOUT_NEW_INDEPENDENT_TRIGGER\n<!-- PGH_CURRENT_STATE_CAPSULE_BEGIN -->\n```json\n{\"capsule_schema_version\":\"0.2.0\",\"project\":\"Physical Grammar Hypothesis\",\"current_phase\":\"PGH-1_D1_ADVERSARIAL_PHYSICAL_INTERFACE_QUALIFIED__AWAITING_APPARATUS_REALIZATION\",\"canonical_hypothesis\":\"HYPOTHESIS.md\",\"active_candidate_grammar\":\"PGH-GRAM-0010\",\"active_candidate_package\":\"PGH-OBJ-0052\",\"selected_design_id\":\"PGH-EXP-DESIGN-0001\",\"selected_interface_class\":\"D1__MECHANICALLY_GANGED_THREE_POLE_SWITCH_INTERFACE\",\"actual_apparatus\":null,\"target_id\":null,\"next_available_target_id\":\"TGT-047\",\"physical_response_data\":false,\"current_handoff\":\"handoffs/PGH1_D1_ADVERSARIAL_PHYSICAL_INTERFACE_DESIGN_GATE_HANDOFF_0_1_0.md\",\"source_bound_status\":\"PGH_OBJ_0052_A0_A9_PASS__FCP_OUTCOME_B_NONFRAMEWORK__D1_INTERFACE_QUALIFIED__EMPIRICALLY_UNTESTED__AWAITING_APPARATUS_REALIZATION\",\"fcp_relationship\":\"FCP_OUTCOME_B__NONFRAMEWORK_PHYSICAL_MODEL_OR_POSTULATE__NO_HOST__NO_EMPIRICAL_CREDIT\",\"next_scientific_operation\":\"APPARATUS_REALIZATION_AND_TARGET_FREEZE\",\"physical_trials_authorized\":false,\"do_not_assume\":[\"PGH_IS_AN_FCP_FRAMEWORK\",\"PGH_OBJ_0052_HAS_EMPIRICAL_SUPPORT\",\"PGH_OBJ_0052_IS_REFUTED\",\"D1_DESIGN_EXPECTATION_IS_EVIDENCE\",\"TGT_047_IS_ASSIGNED\",\"ACTUAL_APPARATUS_IS_BOUND\",\"ANALYSIS_PREREGISTRATION_IS_COMPLETE\",\"PHYSICAL_TRIALS_ARE_AUTHORIZED\",\"TARGET_SEARCH_SHOULD_RESUME\",\"R2B_HAS_PASSED\",\"STRONG_PGH_IS_CONFIRMED\"]}\n```\n<!-- PGH_CURRENT_STATE_CAPSULE_END -->\n",
+        "content_sha256": "c4ddfc449fb21932f1aec89864dfeaf5f52d0475ad7f4fe230611efeee4e87c5",
+        "packet_sha256": "f14e16df463dea3082472ef486209a3ce36942106ce6448dda50638f11b05001"
+      }
+    }
+  },
+  "HIVenues": {
+    "project_id": "HIVenues",
+    "observed_at": "2026-10-04T17:45:47Z",
+    "current_main": "4fed1b4bcd65606124579fe8a643e55828655093",
+    "sources": {
+      "readme": {
+        "repository": "etblink/HiVenues",
+        "path": "README.md",
+        "blob_sha": "ad9a0c0b64d0e074e0a315450713ddfb3d9c8f6a",
+        "source_kind": "git",
+        "ref": "main",
+        "revision": "git:4fed1b4bcd65606124579fe8a643e55828655093:blob:ad9a0c0b64d0e074e0a315450713ddfb3d9c8f6a",
+        "text": "Doctrine defines the destination, the roadmap defines the journey, active issue charters define bounded work, and current product tests protect accepted contracts. Implementation archaeology does not set product priority.\n",
+        "content_sha256": "0f2915d80b52d029625cf23cedf237e857a797f4d74ff745f6184897b367d8e7",
+        "packet_sha256": "3e21133ab44e19f8e3be2f079c3e621517678c6f8a4b05312f1f0eb3286990fe"
+      },
+      "issue_398": {
+        "repository": "etblink/HiVenues",
+        "kind": "github_issue",
+        "source_kind": "github_issue",
+        "issue_number": 398,
+        "ref": "issue-398",
+        "state": "open",
+        "updated_at": "2026-10-04T15:30:48Z",
+        "revision": "github_issue:398:updated_at:2026-10-04T15:30:48Z",
+        "text": "## Acceptance\nOwner must be able to use the redesigned path from first instinct without being coached on the internal state machine.\nThe evaluation question is not “can the owner eventually reason it out?” but “does the product make the next safe action obvious?”\nNo fresh-human qualification is required; owner acceptance governs #374.\n",
+        "content_sha256": "214a20e6d6621c49f1a3a94412aab42533363fe912664c922391b60363e9214b",
+        "packet_sha256": "f53aa01900305141917daab1ab0654443518f9c314c8f388d0302304de11a1eb"
+      },
+      "issue_398_owner_comment": {
+        "repository": "etblink/HiVenues",
+        "kind": "github_issue_comment",
+        "source_kind": "github_issue_comment",
+        "issue_number": 398,
+        "comment_id": 5981621191,
+        "ref": "issue-398-comment-5981621191",
+        "author_association": "OWNER",
+        "created_at": "2026-10-04T15:30:47Z",
+        "updated_at": "2026-10-04T15:30:47Z",
+        "revision": "github_issue_comment:5981621191:updated_at:2026-10-04T15:30:47Z",
+        "text": "## Owner usability result — current A–C candidate rejected\n\nThe owner has now exercised the exact competitive-pattern candidate as a first-time-user simulation and reached the point where they would **exit HiVenues rather than continue**.\n\nThis is the decisive acceptance result for the current Stage 5D A–C implementation.\n\nObserved failures during the owner walkthrough:\n\n1. **First-run/home state is still ambiguous.** Fixture/example places appear under “Your places” and visually dominate the smaller “Create a place” action.\n2. **Direct manipulation expectation is unmet.** The owner's first instinct in Studio was to click visible page content (for example the headline) to edit it. Visible content was not directly editable.\n3. **Studio controls visually masquerade as host content.** Controls such as “Edit first impression”, “Edit activity”, “Edit content & visit facts”, image controls, etc. look like they belong to the visitor-facing design.\n4. **Contextual editing loses object intent.** Clicking “Edit content & visit facts” beside visible menu/offering content opened a broad semantic form (identity, visit, story, invitation, etc.) rather than the content the owner expected to edit. The relationship between fields and rendered output was unclear.\n5. **Editor/Preview fidelity failure.** The Studio canvas and Draft Preview are materially different compositions. The canvas showed duplicated offering/menu content that disappeared in Preview, and ordering/layout differed. The owner cannot confidently infer that editing the canvas means editing what visitors will actually see.\n6. The cumulative result was not merely hesitation or excess reading. The owner stated that, as a first-time HiVenues user, **they would quit the program at this point**.\n\n### Consequence\n\n- Current A–C owner acceptance: **FAIL**\n- PR #399 must remain draft/unmerged.\n- Do not proceed to D–E.\n- Do not declare #374 satisfied.\n- Do not treat this as copy polish.\n\n### Required redesign direction\n\nThe next pass should reconsider the editor around a familiar visual-builder interaction grammar.\n\nPreserve the exact Release/deployment/public-proof safety model underneath. The problem is the operator-facing authoring model.\n\nStop for redesign review before further broad implementation.\n",
+        "content_sha256": "eb413bfeb2b2aa6236d5619b9030419b5f0a943f551dfbbe307bf4a5c74f8f74",
+        "packet_sha256": "828a8c1d9dd0fbcaf0988cd149304a7477a2ead5721849879a1477df0f9c7e18"
+      },
+      "pr_397": {
+        "repository": "etblink/HiVenues",
+        "kind": "github_pull_request",
+        "source_kind": "github_pull_request",
+        "pr_number": 397,
+        "ref": "PR-397",
+        "state": "open",
+        "draft": false,
+        "merged": false,
+        "base_sha": "4fed1b4bcd65606124579fe8a643e55828655093",
+        "head_sha": "e469282b39d533f1803dcd47b61663dbf05043de",
+        "updated_at": "2026-10-04T02:42:06Z",
+        "revision": "github_pull_request:397:head:e469282b39d533f1803dcd47b61663dbf05043de:updated_at:2026-10-04T02:42:06Z:state:open:draft:false",
+        "text": "PR #397 remains open and unmerged. Final usability acceptance remains with the project owner under #374. No live infrastructure action is performed by this PR.",
+        "content_sha256": "9e7ff521fa18bef10d2146d6ca36dda7ff4136d86cfb3facd806353b8791ff1c",
+        "packet_sha256": "6512637b350a04a3c05941493141b28dc14504b7fc6cb7ee33bc2e87caf32b17"
+      },
+      "pr_399": {
+        "repository": "etblink/HiVenues",
+        "kind": "github_pull_request",
+        "source_kind": "github_pull_request",
+        "pr_number": 399,
+        "ref": "PR-399",
+        "state": "open",
+        "draft": true,
+        "merged": false,
+        "base_sha": "4fed1b4bcd65606124579fe8a643e55828655093",
+        "head_sha": "28eaf662df350e23ed02c25bde17bf78b311fa04",
+        "updated_at": "2026-10-04T15:30:51Z",
+        "revision": "github_pull_request:399:head:28eaf662df350e23ed02c25bde17bf78b311fa04:updated_at:2026-10-04T15:30:51Z:state:open:draft:true",
+        "text": "Stage 5D A–C candidate. PR #399 is open, draft, and unmerged. Current HEAD is 28eaf662df350e23ed02c25bde17bf78b311fa04. No real provider, VPS, DNS, TLS, Hive, payment or other external mutation was performed. Stop for owner review. Do not merge #397, proceed to D–E, or declare #374 satisfied.",
+        "content_sha256": "d533e9143c3dce2ec4aaa804cb8b60bc63090c1de727be82539cc93f3a3544d8",
+        "packet_sha256": "3f478f55947e553eaa5f713949b85e9539d927f2d187a548567a350711416a27"
+      }
+    }
+  },
+  "OBSERVATORY_V0_2": {
+    "project_id": "OBSERVATORY",
+    "observed_at": "2026-09-14T21:04:00Z",
+    "sources": {
+      "snapshot": {
+        "repository": "etblink/Project-Observatory",
+        "path": "snapshots/PROJECT_OBSERVATORY_SNAPSHOT_V0_2.md",
+        "blob_sha": "e62a0b86e2317d7b441eb3d5ecf8ee71cc49460a",
+        "source_kind": "derived_snapshot",
+        "ref": "PROJECT_OBSERVATORY_SNAPSHOT_V0_2",
+        "revision": "derived_snapshot:PROJECT_OBSERVATORY_SNAPSHOT_V0_2:blob:e62a0b86e2317d7b441eb3d5ecf8ee71cc49460a",
+        "text": "PROJECT_OBSERVATORY_SNAPSHOT_V0_2\nObserved at: 2026-09-14T21:04:00Z\nFCP_PROJECT_STATE = WAITING_FOR_EVIDENCE\nFCP_CANONICAL_REF = main\nFCP_CANONICAL_COMMIT = a41bc6101b63140ee2687e0cf67a47ab6be77215\nHIVENUES_PROJECT_STATE = ACTIVE\nHIVENUES_CANONICAL_REF = main\nHIVENUES_CANONICAL_COMMIT = bf9a0b4e61d57eed6bb5a81504d6e030f8b6ff7c\nSnapshot v0.1 is not rewritten or retroactively corrected. V0.2 supersedes it only as the current reconstruction layer.\n",
+        "content_sha256": "593964b48d9313b15da83a7656cc1137c698ead6cea1c3a0459d72cd718c6ab6",
+        "packet_sha256": "3ff84000957c4f86af4856456df3079a3cf41d541c9ce1f06f75e74bd08f91b4"
+      }
+    }
+  }
+}
