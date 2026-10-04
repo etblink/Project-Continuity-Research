@@ -1,0 +1,27 @@
+name: CPI-0 Stage 6G qualification
+
+on:
+  push:
+    branches:
+      - repair/cpi0-stage6g-live-enumeration
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  stage6g:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact branch commit
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile Stage 6G
+        run: |
+          python -m py_compile             prototype/cpi0/cpi_profile_v0_1_3.py             prototype/cpi0/stage6g/collector.py             prototype/cpi0/stage6g/adapter.py             prototype/cpi0/stage6g/test_stage6g.py
+      - name: Run Stage 6G regressions
+        run: |
+          python -m unittest -v prototype/cpi0/stage6g/test_stage6g.py
