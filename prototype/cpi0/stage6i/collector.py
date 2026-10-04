@@ -106,7 +106,7 @@ def _enumerate_pages(
         if page > 1000:
             raise CollectorError(f"{endpoint}: pagination guard exceeded")
 
-    return _sorted_rows(rows_all), {
+    return rows_all, {
         "repository": repository,
         "endpoint": endpoint,
         "pages": pages,
@@ -191,6 +191,10 @@ def _single_sweep(transport: Any, repository: str) -> Dict[str, Any]:
     _validate_receipt(r374, repository, "issues/374/comments", issue374_comments)
     _validate_receipt(ropen, repository, "pulls?state=open", open_prs)
 
+    issue398_comments = _sorted_rows(issue398_comments)
+    issue374_comments = _sorted_rows(issue374_comments)
+    open_prs = _sorted_rows(open_prs)
+
     pr_details: Dict[str, Mapping[str, Any]] = {}
     pr_comments: Dict[str, List[Mapping[str, Any]]] = {}
     pr_reviews: Dict[str, List[Mapping[str, Any]]] = {}
@@ -223,6 +227,10 @@ def _single_sweep(transport: Any, repository: str) -> Dict[str, Any]:
         _validate_receipt(rc, repository, f"issues/{number}/comments", comments)
         _validate_receipt(rr, repository, f"pulls/{number}/reviews", reviews)
         _validate_receipt(ri, repository, f"pulls/{number}/comments", inline)
+
+        comments = _sorted_rows(comments)
+        reviews = _sorted_rows(reviews)
+        inline = _sorted_rows(inline)
 
         pr_details[key] = detail
         pr_comments[key] = comments
