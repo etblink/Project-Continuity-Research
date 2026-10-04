@@ -25,3 +25,26 @@ jobs:
       - name: Run Stage 6G regressions
         run: |
           python -m unittest -v prototype/cpi0/stage6g/test_stage6g.py
+      - name: Read-only native GitHub integration
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          import sys
+          sys.path.insert(0, "prototype/cpi0/stage6g")
+          sys.path.insert(0, "prototype/cpi0")
+          from collector import GitHubRestReader
+          from adapter import adapt_hivenues_current
+
+          projection = adapt_hivenues_current(GitHubRestReader())
+          open_set = next(
+              x for x in projection["material_objects"]
+              if x["object_id"] == "NATIVE-DIRECT-OPEN-PR-SET"
+          )
+          assert open_set["receipt_mode"] == "native_direct"
+          assert open_set["members"] == [397, 399], open_set["members"]
+          assert projection["transitions"][0]["state"] == "rejected"
+          assert projection["transitions"][0]["next_action"] == "redesign_review_before_further_broad_implementation"
+          print("NATIVE_DIRECT_HIVENUES = PASS")
+          print("OPEN_PRS =", open_set["members"])
+          PY
