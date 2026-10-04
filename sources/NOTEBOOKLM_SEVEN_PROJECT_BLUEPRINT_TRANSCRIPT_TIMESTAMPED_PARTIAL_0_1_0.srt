@@ -1,0 +1,999 @@
+1
+00:00:00,390 --> 00:00:02,870
+(Transcribed by TurboScribe. Go Unlimited to remove this message.) Imagine trying to build this single machine, right?
+
+2
+00:00:03,190 --> 00:00:06,570
+One that can somehow manage a neighborhood bar,
+
+3
+00:00:07,290 --> 00:00:11,150
+but also simultaneously solve the foundational laws of
+
+4
+00:00:11,150 --> 00:00:11,950
+quantum physics.
+
+5
+00:00:12,430 --> 00:00:14,970
+Yeah, and don't forget evaluating stock market strategies
+
+6
+00:00:14,970 --> 00:00:16,150
+at the exact same time.
+
+7
+00:00:16,250 --> 00:00:16,430
+Right.
+
+8
+00:00:16,970 --> 00:00:19,090
+And on top of all that, tracking the
+
+9
+00:00:19,090 --> 00:00:21,790
+evolution of an artificial intelligence over the next
+
+10
+00:00:21,790 --> 00:00:22,390
+hundred years.
+
+11
+00:00:22,730 --> 00:00:24,690
+I mean, it sounds completely impossible.
+
+12
+00:00:25,150 --> 00:00:25,710
+It really does.
+
+13
+00:00:26,390 --> 00:00:28,050
+It sounds like the fever dream of a
+
+14
+00:00:28,050 --> 00:00:30,870
+mad scientist trying to, you know, simulate the
+
+15
+00:00:30,870 --> 00:00:32,490
+entire universe in their garage.
+
+16
+00:00:32,670 --> 00:00:33,150
+Exactly.
+
+17
+00:00:33,750 --> 00:00:36,030
+But today we are actually looking at the
+
+18
+00:00:36,030 --> 00:00:38,130
+blueprints of someone who has built the pieces
+
+19
+00:00:38,130 --> 00:00:39,450
+to do exactly that.
+
+20
+00:00:39,830 --> 00:00:42,390
+It is genuinely staggering when you lay it
+
+21
+00:00:42,390 --> 00:00:42,810
+all out.
+
+22
+00:00:43,270 --> 00:00:45,250
+Like when we first opened the materials for
+
+23
+00:00:45,250 --> 00:00:47,650
+today's deep dive, it felt like walking into
+
+24
+00:00:47,650 --> 00:00:50,590
+this massive, sprawling research institute.
+
+25
+00:00:50,770 --> 00:00:51,410
+Oh, totally.
+
+26
+00:00:51,890 --> 00:00:55,550
+A place where every single door leads to
+
+27
+00:00:55,550 --> 00:00:57,630
+a completely different scientific discipline.
+
+28
+00:00:57,630 --> 00:00:58,330
+Right.
+
+29
+00:00:58,470 --> 00:01:00,710
+But all the researchers, all the distinct architects,
+
+30
+00:01:00,970 --> 00:01:03,090
+they're all somehow the exact same person.
+
+31
+00:01:03,370 --> 00:01:05,770
+And that person is you, Evan Thomas Kotler.
+
+32
+00:01:05,990 --> 00:01:07,590
+So welcome to the deep dive, Evan.
+
+33
+00:01:07,830 --> 00:01:08,370
+Yes, welcome.
+
+34
+00:01:08,610 --> 00:01:11,110
+We received your specific request and honestly, it
+
+35
+00:01:11,110 --> 00:01:13,050
+immediately grabbed our attention just because of the
+
+36
+00:01:13,050 --> 00:01:14,150
+sheer ambition of it.
+
+37
+00:01:14,310 --> 00:01:15,630
+Yeah, the scope is just massive.
+
+38
+00:01:15,890 --> 00:01:17,610
+You wrote to us saying, my name is
+
+39
+00:01:17,610 --> 00:01:19,510
+Evan Thomas Kotler and I love listening to
+
+40
+00:01:19,510 --> 00:01:20,170
+your deep dives.
+
+41
+00:01:20,630 --> 00:01:22,150
+Please explain to me how I can build
+
+42
+00:01:22,150 --> 00:01:24,030
+a system around all these projects to have
+
+43
+00:01:24,030 --> 00:01:25,370
+them inform one another more.
+
+44
+00:01:25,810 --> 00:01:27,630
+After all, they all exist in the same
+
+45
+00:01:27,630 --> 00:01:28,430
+global universe.
+
+46
+00:01:28,770 --> 00:01:31,390
+And that phrase right there, the same global
+
+47
+00:01:31,390 --> 00:01:34,290
+universe, that is the absolute crux of what
+
+48
+00:01:34,290 --> 00:01:35,010
+we are doing today.
+
+49
+00:01:35,230 --> 00:01:35,570
+Absolutely.
+
+50
+00:01:36,110 --> 00:01:38,570
+Because you provided us with seven distinct GitHub
+
+51
+00:01:38,570 --> 00:01:39,530
+repositories, Evan.
+
+52
+00:01:39,850 --> 00:01:42,110
+Seven massive architectural pillars, really.
+
+53
+00:01:42,270 --> 00:01:42,490
+Right.
+
+54
+00:01:42,770 --> 00:01:44,430
+And our mission today is to extract the
+
+55
+00:01:44,430 --> 00:01:46,030
+core governing rules of each one of them,
+
+56
+00:01:46,430 --> 00:01:49,230
+decode the underlying DNA, and basically construct a
+
+57
+00:01:49,230 --> 00:01:50,350
+master blueprint for you.
+
+58
+00:01:50,350 --> 00:01:51,930
+Yeah, we're going to show you how to
+
+59
+00:01:51,930 --> 00:01:55,830
+wire these seemingly isolated islands together into a
+
+60
+00:01:55,830 --> 00:01:57,830
+unified, self-informing ecosystem.
+
+61
+00:01:58,230 --> 00:01:59,450
+Okay, so let's unpack this.
+
+62
+00:01:59,770 --> 00:02:01,490
+Because looking at the raw materials on the
+
+63
+00:02:01,490 --> 00:02:05,090
+table, the immediate challenge is just cognitive whiplash.
+
+64
+00:02:05,230 --> 00:02:05,690
+Oh, for sure.
+
+65
+00:02:05,970 --> 00:02:07,690
+You get whiplash just reading the titles.
+
+66
+00:02:08,070 --> 00:02:10,230
+I mean, Evan, you've given us evidence-based
+
+67
+00:02:10,230 --> 00:02:12,830
+market methods, right, which is all about financial
+
+68
+00:02:12,830 --> 00:02:13,690
+research governance.
+
+69
+00:02:14,070 --> 00:02:14,210
+Right.
+
+70
+00:02:14,490 --> 00:02:16,850
+But then you've got the Foundational Convergence Program,
+
+71
+00:02:17,070 --> 00:02:19,670
+or FCP, which is this hyper-rigorous comparative
+
+72
+00:02:19,670 --> 00:02:20,690
+physics framework.
+
+73
+00:02:20,850 --> 00:02:21,030
+Yeah.
+
+74
+00:02:21,170 --> 00:02:23,150
+And then suddenly we jump to Hive Venues,
+
+75
+00:02:23,290 --> 00:02:25,630
+which is a Hive-powered social and venue
+
+76
+00:02:25,630 --> 00:02:26,090
+platform.
+
+77
+00:02:26,350 --> 00:02:27,570
+And it doesn't even stop there.
+
+78
+00:02:27,790 --> 00:02:28,530
+No, it doesn't.
+
+79
+00:02:28,590 --> 00:02:32,330
+We also have Nested Fibrational Cosmology, or NFC.
+
+80
+00:02:32,930 --> 00:02:35,550
+That one is a first principles mathematical physics
+
+81
+00:02:35,550 --> 00:02:35,910
+program.
+
+82
+00:02:36,230 --> 00:02:36,990
+Heavy stuff.
+
+83
+00:02:37,150 --> 00:02:37,830
+Very heavy.
+
+84
+00:02:38,130 --> 00:02:41,630
+Plus there's the Physical Grammar Hypothesis, PGH, which
+
+85
+00:02:41,630 --> 00:02:43,310
+is a bit more of a speculative physics
+
+86
+00:02:43,310 --> 00:02:43,690
+framework.
+
+87
+00:02:43,690 --> 00:02:44,150
+Okay.
+
+88
+00:02:44,250 --> 00:02:46,770
+So that's two physics frameworks, a finance repo,
+
+89
+00:02:46,970 --> 00:02:47,910
+a social platform.
+
+90
+00:02:48,150 --> 00:02:48,270
+Right.
+
+91
+00:02:48,450 --> 00:02:50,270
+But then we shift gears entirely into the
+
+92
+00:02:50,270 --> 00:02:50,690
+meta level.
+
+93
+00:02:50,990 --> 00:02:54,470
+There's project continuity research, exploring AI and human
+
+94
+00:02:54,470 --> 00:02:57,190
+project management theory over these really long horizons.
+
+95
+00:02:57,630 --> 00:03:00,170
+And finally, Project Observatory, which looks like a
+
+96
+00:03:00,170 --> 00:03:01,630
+cross-project tracking hub.
+
+97
+00:03:01,930 --> 00:03:02,370
+Exactly.
+
+98
+00:03:02,690 --> 00:03:04,370
+It's an incredibly diverse stack.
+
+99
+00:03:04,510 --> 00:03:07,590
+You literally have theoretical physics sitting right next
+
+100
+00:03:07,590 --> 00:03:09,010
+to social platform architecture.
+
+101
+00:03:09,250 --> 00:03:11,570
+But Evan, here's the teaser for today's deep
+
+102
+00:03:11,570 --> 00:03:11,810
+dive.
+
+103
+00:03:11,810 --> 00:03:14,890
+You actually already have the architectural blueprints for
+
+104
+00:03:14,890 --> 00:03:17,130
+this global system hidden in plain sight.
+
+105
+00:03:17,370 --> 00:03:17,850
+Yes, you do.
+
+106
+00:03:18,510 --> 00:03:20,790
+The solution isn't to code something entirely new
+
+107
+00:03:20,790 --> 00:03:21,290
+from scratch.
+
+108
+00:03:21,650 --> 00:03:22,170
+Right.
+
+109
+00:03:22,270 --> 00:03:24,150
+It's to elevate what you have already designed
+
+110
+00:03:24,150 --> 00:03:26,130
+within two of your own meta projects.
+
+111
+00:03:27,010 --> 00:03:27,530
+Precisely.
+
+112
+00:03:27,590 --> 00:03:29,130
+Because if you want to build a system
+
+113
+00:03:29,130 --> 00:03:31,990
+where vastly different projects inform each other, you
+
+114
+00:03:31,990 --> 00:03:33,810
+run into an immediate translation problem.
+
+115
+00:03:34,370 --> 00:03:35,370
+Like a language barrier.
+
+116
+00:03:35,910 --> 00:03:37,190
+Exactly like a language barrier.
+
+117
+00:03:37,190 --> 00:03:40,570
+If a theoretical physics project and a consumer
+
+118
+00:03:40,570 --> 00:03:43,310
+software project are going to communicate, they have
+
+119
+00:03:43,310 --> 00:03:45,210
+to agree on how to define reality.
+
+120
+00:03:45,790 --> 00:03:46,130
+Right.
+
+121
+00:03:46,230 --> 00:03:48,410
+They need a universal language for what constitutes
+
+122
+00:03:48,410 --> 00:03:51,210
+truth or, you know, state.
+
+123
+00:03:51,630 --> 00:03:53,770
+Without that, they're just shouting into the void.
+
+124
+00:03:54,610 --> 00:03:56,830
+The physics project says one thing, the social
+
+125
+00:03:56,830 --> 00:03:58,070
+app hears something else.
+
+126
+00:03:58,430 --> 00:04:00,390
+So to find that universal language, we really
+
+127
+00:04:00,390 --> 00:04:03,210
+had to look at your strictest, most unforgiving
+
+128
+00:04:03,210 --> 00:04:04,250
+repositories, Evan.
+
+129
+00:04:04,670 --> 00:04:07,310
+We needed to find the engine of truth.
+
+130
+00:04:07,930 --> 00:04:09,850
+And when we look for strictness in your
+
+131
+00:04:09,850 --> 00:04:14,350
+work, we immediately hit this absolute wall of
+
+132
+00:04:14,350 --> 00:04:17,990
+pure, unadulterated discipline in the evidence-based market
+
+133
+00:04:17,990 --> 00:04:18,970
+methods repository.
+
+134
+00:04:19,430 --> 00:04:20,130
+Oh my gosh, yes.
+
+135
+00:04:20,690 --> 00:04:23,170
+This repo investigates financial market methods and their
+
+136
+00:04:23,170 --> 00:04:24,050
+empirical validity.
+
+137
+00:04:24,450 --> 00:04:26,990
+But what really stands out isn't the financial
+
+138
+00:04:26,990 --> 00:04:27,390
+math.
+
+139
+00:04:27,830 --> 00:04:29,170
+No, it's the governance.
+
+140
+00:04:29,510 --> 00:04:30,790
+It's the rules you set up.
+
+141
+00:04:30,790 --> 00:04:33,450
+There is this absolutely rigid rule.
+
+142
+00:04:34,290 --> 00:04:37,510
+A file called state.yaml is the sole
+
+143
+00:04:37,510 --> 00:04:40,750
+canonical representation of the current mutable project state.
+
+144
+00:04:40,850 --> 00:04:42,370
+That rule is so foundational.
+
+145
+00:04:43,230 --> 00:04:45,110
+I mean, Evan explicitly engineered this so that
+
+146
+00:04:45,110 --> 00:04:48,750
+no readme section, no issue thread, no casual
+
+147
+00:04:48,750 --> 00:04:50,290
+discussion, nothing else matters.
+
+148
+00:04:50,750 --> 00:04:52,410
+Not even a generated view, right?
+
+149
+00:04:52,610 --> 00:04:55,310
+Absolutely no generated view may redefine the current
+
+150
+00:04:55,310 --> 00:04:55,970
+project state.
+
+151
+00:04:56,430 --> 00:04:59,290
+The active scope, the current conclusions, the next
+
+152
+00:04:59,290 --> 00:05:04,030
+actions, they belong only in state.yaml. It's
+
+153
+00:05:04,030 --> 00:05:04,410
+intense.
+
+154
+00:05:04,730 --> 00:05:06,590
+It means GitHub issues can be used to
+
+155
+00:05:06,590 --> 00:05:09,250
+coordinate the messy day-to-day work, right?
+
+156
+00:05:09,550 --> 00:05:11,670
+Yeah, but they are strictly non-authoritative.
+
+157
+00:05:12,150 --> 00:05:13,670
+It's like, I was thinking about this.
+
+158
+00:05:13,750 --> 00:05:16,470
+It's like locking down the control room of
+
+159
+00:05:16,470 --> 00:05:17,270
+a nuclear submarine.
+
+160
+00:05:17,450 --> 00:05:18,370
+Oh, it's a great analogy.
+
+161
+00:05:18,510 --> 00:05:19,950
+You can debate the mission in the mess
+
+162
+00:05:19,950 --> 00:05:20,830
+hall all you want, right?
+
+163
+00:05:20,890 --> 00:05:22,490
+You can scribble ideas on a whiteboard.
+
+164
+00:05:22,490 --> 00:05:25,350
+But the actual truth of what the submarine
+
+165
+00:05:25,350 --> 00:05:28,110
+is doing only exists in one highly guarded
+
+166
+00:05:28,110 --> 00:05:28,990
+navigation computer.
+
+167
+00:05:29,250 --> 00:05:29,450
+Yes.
+
+168
+00:05:30,410 --> 00:05:32,630
+I find this fascinating because in most software
+
+169
+00:05:32,630 --> 00:05:35,630
+development, truth is super fluid.
+
+170
+00:05:35,910 --> 00:05:36,190
+Oh, yeah.
+
+171
+00:05:36,330 --> 00:05:38,850
+It's scattered across pull requests, JIRA tickets, Slack
+
+172
+00:05:38,850 --> 00:05:39,210
+messages.
+
+173
+00:05:39,490 --> 00:05:39,790
+Exactly.
+
+174
+00:05:40,110 --> 00:05:42,310
+But here, derived summaries, if they even exist
+
+175
+00:05:42,310 --> 00:05:45,270
+at all, must be mechanically generated and are
+
+176
+00:05:45,270 --> 00:05:47,710
+explicitly labeled as non-authoritative.
+
+177
+00:05:47,890 --> 00:05:48,990
+So why do you think he did that?
+
+178
+00:05:48,990 --> 00:05:52,090
+What was fascinating here is why Evan engineered
+
+179
+00:05:52,090 --> 00:05:52,390
+this.
+
+180
+00:05:52,570 --> 00:05:54,870
+In financial market methods, just like in physics,
+
+181
+00:05:55,130 --> 00:05:57,050
+the biggest risk isn't bad data.
+
+182
+00:05:57,310 --> 00:05:57,830
+What is it then?
+
+183
+00:05:58,250 --> 00:05:59,970
+It's the human tendency to fool ourselves.
+
+184
+00:06:00,510 --> 00:06:02,610
+We let our interpretations drift over time.
+
+185
+00:06:03,130 --> 00:06:03,710
+Ah, right.
+
+186
+00:06:03,770 --> 00:06:05,990
+We kind of massage the data to fit
+
+187
+00:06:05,990 --> 00:06:06,450
+our narrative.
+
+188
+00:06:06,710 --> 00:06:07,030
+Exactly.
+
+189
+00:06:07,470 --> 00:06:09,830
+But by centralizing truth into a single machine
+
+190
+00:06:09,830 --> 00:06:12,910
+-readable YAML file, Evan ensures that any other
+
+191
+00:06:12,910 --> 00:06:15,910
+system, whether it's human or AI, can query
+
+192
+00:06:15,910 --> 00:06:16,570
+that file.
+
+193
+00:06:16,830 --> 00:06:18,770
+And know exactly where the project stands.
+
+194
+00:06:18,990 --> 00:06:19,290
+Right.
+
+195
+00:06:19,650 --> 00:06:21,990
+Without having to interpret a 50-comment debate
+
+196
+00:06:21,990 --> 00:06:23,470
+in an issue thread to figure out what
+
+197
+00:06:23,470 --> 00:06:24,670
+the actual conclusion was.
+
+198
+00:06:25,210 --> 00:06:27,610
+It is the ultimate epistemic firewall.
+
+199
+00:06:28,450 --> 00:06:30,430
+And we see a parallel, maybe even a
+
+200
+00:06:30,430 --> 00:06:32,590
+more intense version of this discipline, in the
+
+201
+00:06:32,590 --> 00:06:34,870
+Foundational Convergence Program, the FCP.
+
+202
+00:06:35,290 --> 00:06:35,810
+Oh, definitely.
+
+203
+00:06:36,650 --> 00:06:39,090
+The FCP is practically a masterclass in preventing
+
+204
+00:06:39,090 --> 00:06:39,870
+self-deception.
+
+205
+00:06:40,130 --> 00:06:42,030
+So what is FCP for the listener who
+
+206
+00:06:42,030 --> 00:06:43,470
+might be getting lost in the acronyms?
+
+207
+00:06:43,930 --> 00:06:46,070
+FCP is a comparative research program.
+
+208
+00:06:46,170 --> 00:06:46,410
+Okay.
+
+209
+00:06:46,410 --> 00:06:49,830
+It's designed to test which structures recur across
+
+210
+00:06:49,830 --> 00:06:51,670
+different foundational approaches to physics.
+
+211
+00:06:51,930 --> 00:06:54,290
+So it's trying to find the bedrock of
+
+212
+00:06:54,290 --> 00:06:54,690
+reality?
+
+213
+00:06:55,110 --> 00:06:55,250
+Right.
+
+214
+00:06:55,670 --> 00:06:58,270
+But to do that without bias, the program
+
+215
+00:06:58,270 --> 00:07:00,010
+enforces incredible rules.
+
+216
+00:07:00,250 --> 00:07:02,950
+And the first major one is source selection
+
+217
+00:07:02,950 --> 00:07:04,830
+is frozen before adjudication.
+
+218
+00:07:05,310 --> 00:07:08,150
+Meaning you absolutely cannot choose your sources after
+
+219
+00:07:08,150 --> 00:07:09,370
+you know what result they're going to give
+
+220
+00:07:09,370 --> 00:07:09,570
+you.
+
+221
+00:07:09,710 --> 00:07:10,130
+Exactly.
+
+222
+00:07:10,550 --> 00:07:11,910
+Which makes perfect sense, right?
+
+223
+00:07:12,050 --> 00:07:14,390
+If you select the source after you see
+
+224
+00:07:14,390 --> 00:07:17,450
+the outcome, you're just committing the Texas sharpshooter
+
+225
+00:07:17,450 --> 00:07:17,830
+fallacy.
+
+226
+00:07:18,350 --> 00:07:19,470
+Oh, where you shoot the side of a
+
+227
+00:07:19,470 --> 00:07:21,030
+barn and then paint the bullseye around the
+
+228
+00:07:21,030 --> 00:07:21,430
+bullet hole?
+
+229
+00:07:21,750 --> 00:07:22,190
+Precisely.
+
+230
+00:07:22,330 --> 00:07:22,770
+Precisely.
+
+231
+00:07:23,010 --> 00:07:24,490
+You're just painting the target to prove your
+
+232
+00:07:24,490 --> 00:07:24,750
+point.
+
+233
+00:07:25,410 --> 00:07:27,690
+You must declare what you were looking at
+
+234
+00:07:27,690 --> 00:07:29,150
+before you analyze it.
+
+235
+00:07:29,570 --> 00:07:30,730
+Okay, that's rule one.
+
+236
+00:07:30,950 --> 00:07:31,550
+What's next?
+
+237
+00:07:32,110 --> 00:07:34,550
+Then there is the rule that separation precedes
+
+238
+00:07:34,550 --> 00:07:35,050
+admission.
+
+239
+00:07:36,490 --> 00:07:37,670
+Separation precedes admission.
+
+240
+00:07:38,110 --> 00:07:38,910
+Okay, break that down.
+
+241
+00:07:39,150 --> 00:07:40,910
+It means a scientific object, like a theory
+
+242
+00:07:40,910 --> 00:07:43,630
+or a framework, has to be distinctly separated
+
+243
+00:07:43,630 --> 00:07:46,710
+from neighboring frameworks and generic tools before it's
+
+244
+00:07:46,710 --> 00:07:48,810
+even allowed into the FCP for evaluation.
+
+245
+00:07:49,170 --> 00:07:49,610
+Got it.
+
+246
+00:07:49,950 --> 00:07:51,610
+And that brings us to perhaps the most
+
+247
+00:07:51,610 --> 00:07:54,830
+crucial algorithmic rule for a unified system, which
+
+248
+00:07:54,830 --> 00:07:57,950
+Evan calls null subtraction is explicit.
+
+249
+00:07:58,050 --> 00:07:58,250
+Yes.
+
+250
+00:07:58,750 --> 00:08:00,030
+Null subtraction explicit.
