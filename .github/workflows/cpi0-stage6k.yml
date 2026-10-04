@@ -1,0 +1,85 @@
+name: CPI-0 Stage 6K qualification
+
+on:
+  push:
+    branches:
+      - repair/cpi0-stage6k-owner-authority-reducer
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  stage6k:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact branch commit
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile Stage 6K
+        run: |
+          python -m py_compile \
+            prototype/cpi0/cpi_profile_v0_1_5.py \
+            prototype/cpi0/stage6k/collector.py \
+            prototype/cpi0/stage6k/adapter.py \
+            prototype/cpi0/stage6k/test_stage6k.py
+      - name: Run Stage 6K regressions
+        run: |
+          python -m unittest -v prototype/cpi0/stage6k/test_stage6k.py
+      - name: Read-only stabilized native GitHub integration
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          import os
+          import sys
+
+          sys.path.insert(0, "prototype/cpi0/stage6k")
+          sys.path.insert(0, "prototype/cpi0")
+
+          from adapter import adapt_hivenues_current
+
+          p = adapt_hivenues_current(
+              token=os.environ.get("GITHUB_TOKEN"),
+              max_sweeps=4,
+          )
+
+          obs = p["observation"]
+          assert obs["mode"] == "stabilized_native_window"
+          assert obs["consecutive_equal_sweeps"] == 2
+          assert p["observed_at"] == obs["capture_cutoff"]
+
+          source_set = next(
+              x for x in p["material_objects"]
+              if x["object_id"] == "STABILIZED-NATIVE-SOURCE-SET"
+          )
+          history = next(
+              x for x in p["material_objects"]
+              if x["object_id"] == "OWNER-AUTHORITY-HISTORY"
+          )
+
+          ids = {x["source_id"] for x in history["events"]}
+          assert "pr399-comment-5981621690" in ids
+          assert "issue374-comment-5981621424" in ids
+          assert "issue398-comment-5981621191" in ids
+
+          assert source_set["members"] == [397, 399], source_set["members"]
+          assert p["transitions"][0]["state"] == "rejected"
+          assert p["transitions"][0]["owner_result"] == "FAIL_OR_HOLD"
+          assert p["transitions"][0]["d_e_authorized_by_cpi"] is False
+
+          print("STAGE6K_NATIVE = PASS")
+          print("OPEN_PRS =", source_set["members"])
+          print("STABLE_DIGEST =", obs["stable_digest"])
+          print("WINDOW_START =", obs["window_start"])
+          print("CAPTURE_CUTOFF =", obs["capture_cutoff"])
+          print("WINDOW_END =", obs["window_end"])
+          print("BASELINE_STATE =", p["transitions"][0]["state"])
+          print("BASELINE_OWNER_RESULT =", p["transitions"][0]["owner_result"])
+          print("AUTHORITY_EVENT_COUNT =", len(history["events"]))
+          print("LATEST_GATE =", history["gate_latest"])
+          print("LATEST_CANDIDATE =", history["candidate_latest"])
+          PY
