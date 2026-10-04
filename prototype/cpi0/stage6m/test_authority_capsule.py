@@ -281,6 +281,32 @@ class AuthorityCapsuleTests(unittest.TestCase):
         with self.assertRaises(A.CapsuleChainError):
             self.verify([])
 
+    def test_031_deterministic_ed25519_vector(self):
+        key = Ed25519PrivateKey.from_private_bytes(bytes(range(32)))
+        capsule = A.sign_capsule(
+            private_key=key,
+            project="example/project",
+            authority_domain="owner.acceptance",
+            subject="gate:1",
+            candidate="candidate:alpha",
+            candidate_revision="rev-001",
+            sequence=1,
+            predecessor=None,
+            decision="PASS",
+        )
+        self.assertEqual(
+            capsule["signer_key_id"],
+            "ed25519-sha256:56475aa75463474c0285df5dbf2bcab73da651358839e9b77481b2eab107708c",
+        )
+        self.assertEqual(
+            capsule["signature"],
+            "EaEyWmU+y/o7pJ42NLBrJja5Ii6CMB040iDtfY25V32xo9C3kgwNVVUOCGRpp6OAezaQydjn6s4oV6uYlQFuBw==",
+        )
+        self.assertEqual(
+            A.capsule_digest(capsule),
+            "f8e9c77a95b206a58d553200a58405075357c80a21f5ea72bb3c8e7808f0105b",
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
