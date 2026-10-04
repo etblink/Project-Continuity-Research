@@ -1,0 +1,79 @@
+{
+  "schema": "cpi0-stage6e-native-source-manifest-0.1.0",
+  "observed_at": "2026-10-04T19:50:00Z",
+  "git_sources": {
+    "nfc_provenance": {
+      "repository": "etblink/Nested-Fibrational-Cosmology",
+      "ref": "main",
+      "commit": "5072d563b0a3dd4a7643be427cd47108216d8793",
+      "path": "PROVENANCE.md",
+      "blob_sha": "69cdd64069cd0d24779a344fac0cd309bc54d811",
+      "mirror": "native/NFC_PROVENANCE.md"
+    },
+    "fcp_current_state": {
+      "repository": "etblink/Foundational-Convergence-Program",
+      "ref": "main",
+      "commit": "a41bc6101b63140ee2687e0cf67a47ab6be77215",
+      "path": "CURRENT_STATE.md",
+      "blob_sha": "b5949af93a1855ae1d072fa4aaa4b1c29033579c",
+      "mirror": "native/FCP_CURRENT_STATE.md"
+    },
+    "fcp_charter": {
+      "repository": "etblink/Foundational-Convergence-Program",
+      "ref": "main",
+      "commit": "a41bc6101b63140ee2687e0cf67a47ab6be77215",
+      "path": "FCP_CHARTER.md",
+      "blob_sha": "579819121d1733e1746868941a3a282de2cf1ac9",
+      "mirror": "native/FCP_CHARTER.md"
+    },
+    "pgh_current_state": {
+      "repository": "etblink/Physical-Grammar-Hypothesis",
+      "ref": "main",
+      "commit": "2923875b40ea6901dfafda56a771c36876c4a220",
+      "path": "CURRENT_STATE.md",
+      "blob_sha": "32c799bdd42d6c921140bf13bdb988fefa445169",
+      "mirror": "native/PGH_CURRENT_STATE.md"
+    },
+    "hivenues_readme": {
+      "repository": "etblink/HiVenues",
+      "ref": "main",
+      "commit": "4fed1b4bcd65606124579fe8a643e55828655093",
+      "path": "README.md",
+      "blob_sha": "ad9a0c0b64d0e074e0a315450713ddfb3d9c8f6a",
+      "mirror": "native/HIVENUES_README.md"
+    },
+    "observatory_snapshot": {
+      "repository": "etblink/Project-Observatory",
+      "ref": "main",
+      "commit": null,
+      "path": "snapshots/PROJECT_OBSERVATORY_SNAPSHOT_V0_2.md",
+      "blob_sha": "e62a0b86e2317d7b441eb3d5ecf8ee71cc49460a",
+      "mirror": "native/PROJECT_OBSERVATORY_SNAPSHOT_V0_2.md"
+    }
+  },
+  "github_sources": {
+    "hivenues_core_snapshot": "native/HIVENUES_GITHUB_NATIVE_CORE.json",
+    "hivenues_pr_snapshot": "native/HIVENUES_GITHUB_NATIVE_PRS.json",
+    "hivenues_pr_aux_snapshot": "native/HIVENUES_GITHUB_NATIVE_PR_AUX.json"
+  },
+  "completeness_contract": {
+    "governing_issue": 398,
+    "linked_usability_issue": 374,
+    "require_open_pr_page2_empty": true,
+    "require_issue398_comment_page2_empty": true,
+    "require_all_open_pr_detail_objects": true,
+    "require_all_open_pr_conversation_comment_page2_empty": true,
+    "require_all_open_pr_review_page2_empty": true,
+    "require_all_open_pr_inline_comment_page2_empty": true,
+    "expected_frozen_open_pr_numbers": [
+      397,
+      399
+    ],
+    "expected_frozen_issue398_comment_ids": [
+      5981621191
+    ],
+    "expected_frozen_pr399_conversation_comment_ids": [
+      5981621690
+    ]
+  }
+}
