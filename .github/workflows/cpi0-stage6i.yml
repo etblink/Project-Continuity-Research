@@ -1,0 +1,89 @@
+name: CPI-0 Stage 6I qualification
+
+on:
+  push:
+    branches:
+      - repair/cpi0-stage6i-authority-stabilization
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  stage6i:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact branch commit
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile Stage 6I
+        run: |
+          python -m py_compile \
+            prototype/cpi0/cpi_profile_v0_1_4.py \
+            prototype/cpi0/stage6i/collector.py \
+            prototype/cpi0/stage6i/adapter.py \
+            prototype/cpi0/stage6i/test_stage6i.py
+      - name: Run Stage 6I regressions
+        run: |
+          python -m unittest -v prototype/cpi0/stage6i/test_stage6i.py
+      - name: Read-only stabilized native GitHub integration
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          import os
+          import sys
+
+          sys.path.insert(0, "prototype/cpi0/stage6i")
+          sys.path.insert(0, "prototype/cpi0")
+
+          from adapter import adapt_hivenues_current
+
+          p = adapt_hivenues_current(
+              token=os.environ.get("GITHUB_TOKEN"),
+              max_sweeps=4,
+          )
+
+          observation = p["observation"]
+          assert observation["mode"] == "stabilized_native_window"
+          assert observation["consecutive_equal_sweeps"] == 2
+
+          source_set = next(
+              x for x in p["material_objects"]
+              if x["object_id"] == "STABILIZED-NATIVE-SOURCE-SET"
+          )
+          assert source_set["status"] == "stable_across_two_consecutive_complete_native_sweeps"
+          assert source_set["members"] == [397, 399], source_set["members"]
+
+          assert p["transitions"][0]["state"] == "rejected"
+          assert p["transitions"][0]["next_action"] == "redesign_review_before_further_broad_implementation"
+
+          review_count = sum(
+              1 for x in p["observed_sources"]
+              if x["source_kind"] == "github_pull_request_review"
+          )
+          inline_count = sum(
+              1 for x in p["observed_sources"]
+              if x["source_kind"] == "github_pull_request_review_comment"
+          )
+          issue374_count = sum(
+              1 for x in p["observed_sources"]
+              if x["source_id"].startswith("issue374-comment-")
+          )
+
+          assert review_count >= 11
+          assert inline_count >= 12
+          assert issue374_count >= 8
+
+          print("STABILIZED_NATIVE_HIVENUES = PASS")
+          print("OPEN_PRS =", source_set["members"])
+          print("STABLE_DIGEST =", observation["stable_digest"])
+          print("WINDOW_START =", observation["window_start"])
+          print("WINDOW_END =", observation["window_end"])
+          print("PR_REVIEW_SOURCES =", review_count)
+          print("INLINE_REVIEW_COMMENT_SOURCES =", inline_count)
+          print("ISSUE374_COMMENT_SOURCES =", issue374_count)
+          PY
