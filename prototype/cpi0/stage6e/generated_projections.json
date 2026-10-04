@@ -1,0 +1,491 @@
+{
+  "NFC": {
+    "profile_version": "0.1.2",
+    "producer": "cpi0-stage6e-native-binding-0.1.2",
+    "observed_at": "2026-10-04T19:50:00Z",
+    "project_id": "NFC",
+    "projection_id": "NFC:5072d563b0a3",
+    "observed_sources": [
+      {
+        "source_id": "publication-main",
+        "repository": "etblink/Nested-Fibrational-Cosmology",
+        "ref": "main",
+        "role": "publication_provenance_surface",
+        "source_kind": "git",
+        "native_id": "git:etblink/Nested-Fibrational-Cosmology:PROVENANCE.md@5072d563b0a3dd4a7643be427cd47108216d8793",
+        "content_sha256": "808beb4fd50b28c4b7e398ed6bc34afaa666c2974945920c71b2507fc31f2910",
+        "revision": "git:5072d563b0a3dd4a7643be427cd47108216d8793:blob:69cdd64069cd0d24779a344fac0cd309bc54d811:sha256:808beb4fd50b28c4b7e398ed6bc34afaa666c2974945920c71b2507fc31f2910",
+        "commit": "5072d563b0a3dd4a7643be427cd47108216d8793",
+        "path": "PROVENANCE.md",
+        "blob_sha": "69cdd64069cd0d24779a344fac0cd309bc54d811"
+      },
+      {
+        "source_id": "frozen-theorem-canon",
+        "repository": "etblink/Nested-Fibrational-Cosmology",
+        "ref": "archive/nfc-canonical-ed3047c2",
+        "role": "scientific_theorem_canon",
+        "source_kind": "derived_snapshot",
+        "native_id": "NFC_THEOREM_CANON:ed3047c2cbc0abc34d2549dd27754e4d3d05af78:00ef55ff36d5e9663ca1ef2c9566e2bc1396f973",
+        "content_sha256": "93253b8bec5a84f53e222558a0539af5c4d0c815d12adeb4c8b74ad34b19b2e7",
+        "revision": "derived_snapshot:NFC_THEOREM_CANON:ed3047c2cbc0abc34d2549dd27754e4d3d05af78:00ef55ff36d5e9663ca1ef2c9566e2bc1396f973:sha256:93253b8bec5a84f53e222558a0539af5c4d0c815d12adeb4c8b74ad34b19b2e7"
+      }
+    ],
+    "authority_map": [
+      {
+        "purpose": "publication_routing",
+        "source_id": "publication-main",
+        "authority_scope": "publication_and_provenance"
+      },
+      {
+        "purpose": "scientific_theorem_analysis",
+        "source_id": "frozen-theorem-canon",
+        "authority_scope": "frozen_theorem_bearing_corpus"
+      }
+    ],
+    "material_objects": [],
+    "negative_knowledge": [
+      {
+        "kind": "unresolved",
+        "subject": "historical_remove_human_policy_intent",
+        "basis": "HUMAN_POLICY_INTENT = UNRESOLVED"
+      }
+    ],
+    "dependencies": [],
+    "triggers": [],
+    "transitions": []
+  },
+  "FCP": {
+    "profile_version": "0.1.2",
+    "producer": "cpi0-stage6e-native-binding-0.1.2",
+    "observed_at": "2026-10-04T19:50:00Z",
+    "project_id": "FCP",
+    "projection_id": "FCP:a41bc6101b63",
+    "observed_sources": [
+      {
+        "source_id": "current-state",
+        "repository": "etblink/Foundational-Convergence-Program",
+        "ref": "main",
+        "role": "current_scientific_and_routing_state",
+        "source_kind": "git",
+        "native_id": "git:etblink/Foundational-Convergence-Program:CURRENT_STATE.md@a41bc6101b63140ee2687e0cf67a47ab6be77215",
+        "content_sha256": "5f4b33e7194a31bdb601f22932690d1bf87a3acad7715cfc349fcb62b2f606f4",
+        "revision": "git:a41bc6101b63140ee2687e0cf67a47ab6be77215:blob:b5949af93a1855ae1d072fa4aaa4b1c29033579c:sha256:5f4b33e7194a31bdb601f22932690d1bf87a3acad7715cfc349fcb62b2f606f4",
+        "commit": "a41bc6101b63140ee2687e0cf67a47ab6be77215",
+        "path": "CURRENT_STATE.md",
+        "blob_sha": "b5949af93a1855ae1d072fa4aaa4b1c29033579c"
+      },
+      {
+        "source_id": "charter",
+        "repository": "etblink/Foundational-Convergence-Program",
+        "ref": "main",
+        "role": "governance_authority",
+        "source_kind": "git",
+        "native_id": "git:etblink/Foundational-Convergence-Program:FCP_CHARTER.md@a41bc6101b63140ee2687e0cf67a47ab6be77215",
+        "content_sha256": "cf51596d591b1165dfd834016dbe13103a570f54a62f9e203bcb5ed300fea05a",
+        "revision": "git:a41bc6101b63140ee2687e0cf67a47ab6be77215:blob:579819121d1733e1746868941a3a282de2cf1ac9:sha256:cf51596d591b1165dfd834016dbe13103a570f54a62f9e203bcb5ed300fea05a",
+        "commit": "a41bc6101b63140ee2687e0cf67a47ab6be77215",
+        "path": "FCP_CHARTER.md",
+        "blob_sha": "579819121d1733e1746868941a3a282de2cf1ac9"
+      }
+    ],
+    "authority_map": [
+      {
+        "purpose": "current_routing",
+        "source_id": "current-state",
+        "authority_scope": "native_current_state_precedence_and_post_pgh_block"
+      },
+      {
+        "purpose": "future_phase_authorization_rule",
+        "source_id": "charter",
+        "authority_scope": "governance_rule"
+      }
+    ],
+    "material_objects": [
+      {
+        "object_id": "method",
+        "role": "current_prospective_method",
+        "status": "0.2.1_ACTIVE_PROSPECTIVELY"
+      },
+      {
+        "object_id": "routing",
+        "role": "current_routing_state",
+        "status": "POST_PGH_STAGE2_SCIENTIFIC_SEQUENCING_ADJUDICATION"
+      },
+      {
+        "object_id": "fcp27",
+        "role": "phase_selection",
+        "status": "not_selected"
+      }
+    ],
+    "negative_knowledge": [
+      {
+        "kind": "historical_marker",
+        "subject": "prior_evidence_triggered_hold",
+        "basis": "prior EVIDENCE_TRIGGERED_HOLD fulfilled by named PGH T1",
+        "status": "fulfilled"
+      },
+      {
+        "kind": "authorization_boundary",
+        "subject": "subsequent_fcp_science",
+        "basis": "SEQUENCING_ONLY__NO_SUBSEQUENT_FCP_SCIENCE_BEFORE_SELECTION"
+      }
+    ],
+    "dependencies": [],
+    "triggers": [
+      {
+        "trigger_id": "PGH-T1",
+        "trigger_type": "evidence_event",
+        "status": "fulfilled",
+        "consequence": "prior hold satisfied; PGH Stage 1/2 canonically completed"
+      }
+    ],
+    "transitions": [
+      {
+        "transition_id": "POST_PGH_STAGE2_SCIENTIFIC_SEQUENCING_ADJUDICATION",
+        "state": "selected_authorized",
+        "consequence_class": "read_only_scientific_sequencing",
+        "operation_class": "READ_ONLY_SCIENTIFIC_SEQUENCING_ADJUDICATION",
+        "authorization_basis": "YES__STANDING_PROJECT_LEAD_DELEGATION",
+        "authorization_boundary": "SEQUENCING_ONLY__NO_SUBSEQUENT_FCP_SCIENCE_BEFORE_SELECTION",
+        "next_scientific_phase": "NONE__POST_PGH_STAGE2_SEQUENCING_PENDING"
+      }
+    ]
+  },
+  "PGH": {
+    "profile_version": "0.1.2",
+    "producer": "cpi0-stage6e-native-binding-0.1.2",
+    "observed_at": "2026-10-04T19:50:00Z",
+    "project_id": "PGH",
+    "projection_id": "PGH:2923875b40ea",
+    "observed_sources": [
+      {
+        "source_id": "current-state",
+        "repository": "etblink/Physical-Grammar-Hypothesis",
+        "ref": "main",
+        "role": "current_research_and_governance_state",
+        "source_kind": "git",
+        "native_id": "git:etblink/Physical-Grammar-Hypothesis:CURRENT_STATE.md@2923875b40ea6901dfafda56a771c36876c4a220",
+        "content_sha256": "fc9747c6919654008823b3a83d2a742b83977c72884ff6532a38fe2c042d4363",
+        "revision": "git:2923875b40ea6901dfafda56a771c36876c4a220:blob:32c799bdd42d6c921140bf13bdb988fefa445169:sha256:fc9747c6919654008823b3a83d2a742b83977c72884ff6532a38fe2c042d4363",
+        "commit": "2923875b40ea6901dfafda56a771c36876c4a220",
+        "path": "CURRENT_STATE.md",
+        "blob_sha": "32c799bdd42d6c921140bf13bdb988fefa445169"
+      }
+    ],
+    "authority_map": [
+      {
+        "purpose": "current_research_and_governance_state",
+        "source_id": "current-state",
+        "authority_scope": "canonical_markdown_plus_git_provenance"
+      }
+    ],
+    "material_objects": [
+      {
+        "object_id": "PGH-OBJ-0052",
+        "role": "active_candidate_package",
+        "status": "empirically_untested"
+      }
+    ],
+    "negative_knowledge": [
+      {
+        "kind": "forbidden_assumptions",
+        "subject": "PGH-OBJ-0052",
+        "basis": "current-state do_not_assume capsule",
+        "items": [
+          "PGH_IS_AN_FCP_FRAMEWORK",
+          "PGH_OBJ_0052_HAS_EMPIRICAL_SUPPORT",
+          "PGH_OBJ_0052_IS_REFUTED",
+          "D1_DESIGN_EXPECTATION_IS_EVIDENCE",
+          "TGT_047_IS_ASSIGNED",
+          "ACTUAL_APPARATUS_IS_BOUND",
+          "ANALYSIS_PREREGISTRATION_IS_COMPLETE",
+          "PHYSICAL_TRIALS_ARE_AUTHORIZED",
+          "TARGET_SEARCH_SHOULD_RESUME",
+          "R2B_HAS_PASSED",
+          "STRONG_PGH_IS_CONFIRMED"
+        ]
+      },
+      {
+        "kind": "suspended",
+        "subject": "target_search",
+        "basis": "new independent trigger required",
+        "reopen_if": "new_independent_trigger"
+      }
+    ],
+    "dependencies": [
+      {
+        "dependency_id": "real-apparatus",
+        "class": "HARD",
+        "status": "UNSATISFIED",
+        "basis": "actual apparatus is unbound",
+        "counterfactual": "synthetic readiness cannot replace physical apparatus"
+      }
+    ],
+    "triggers": [
+      {
+        "trigger_id": "apparatus-realization",
+        "trigger_type": "physical_prerequisite",
+        "status": "unsatisfied",
+        "consequence": "APPARATUS_REALIZATION_AND_TARGET_FREEZE"
+      }
+    ],
+    "transitions": [
+      {
+        "transition_id": "APPARATUS_REALIZATION_AND_TARGET_FREEZE",
+        "state": "blocked_external",
+        "consequence_class": "physical_experiment_preparation"
+      },
+      {
+        "transition_id": "PHYSICAL_TRIAL_EXECUTION",
+        "state": "prohibited",
+        "consequence_class": "physical_experiment"
+      }
+    ]
+  },
+  "HIVenues": {
+    "profile_version": "0.1.2",
+    "producer": "cpi0-stage6e-native-binding-0.1.2",
+    "observed_at": "2026-10-04T19:50:00Z",
+    "project_id": "HIVenues",
+    "projection_id": "HIVenues:4fed1b4bcd65:issue398:pr399",
+    "observed_sources": [
+      {
+        "source_id": "main",
+        "repository": "etblink/HiVenues",
+        "ref": "main",
+        "role": "canonical_merged_code",
+        "source_kind": "git",
+        "native_id": "git:etblink/HiVenues:README.md@4fed1b4bcd65606124579fe8a643e55828655093",
+        "content_sha256": "da3b6ceed2da44a215b3ddb023d4471745e808f1ca7afcd2956bf779efddf5d6",
+        "revision": "git:4fed1b4bcd65606124579fe8a643e55828655093:blob:ad9a0c0b64d0e074e0a315450713ddfb3d9c8f6a:sha256:da3b6ceed2da44a215b3ddb023d4471745e808f1ca7afcd2956bf779efddf5d6",
+        "commit": "4fed1b4bcd65606124579fe8a643e55828655093",
+        "path": "README.md",
+        "blob_sha": "ad9a0c0b64d0e074e0a315450713ddfb3d9c8f6a"
+      },
+      {
+        "source_id": "issue398",
+        "repository": "etblink/HiVenues",
+        "ref": "issue-398",
+        "role": "active_bounded_work_charter",
+        "source_kind": "github_issue",
+        "native_id": "issue:398",
+        "content_sha256": "9af92f821d2acf0a5b260bf1e701b4970c4e80e39ef29b78f13258f28aead231",
+        "revision": "github_issue:398:updated_at:2026-10-04T15:30:48Z:sha256:9af92f821d2acf0a5b260bf1e701b4970c4e80e39ef29b78f13258f28aead231",
+        "issue_number": 398,
+        "updated_at": "2026-10-04T15:30:48Z"
+      },
+      {
+        "source_id": "issue374",
+        "repository": "etblink/HiVenues",
+        "ref": "issue-374",
+        "role": "usability_gate_charter",
+        "source_kind": "github_issue",
+        "native_id": "issue:374",
+        "content_sha256": "ec4054131d84f540e599476272e6da7db0b0a8f5994fcf8a68ca293abfb89f45",
+        "revision": "github_issue:374:updated_at:2026-10-04T15:30:49Z:sha256:ec4054131d84f540e599476272e6da7db0b0a8f5994fcf8a68ca293abfb89f45",
+        "issue_number": 374,
+        "updated_at": "2026-10-04T15:30:49Z"
+      },
+      {
+        "source_id": "pr397",
+        "repository": "etblink/HiVenues",
+        "ref": "PR-397",
+        "role": "open_pull_request_candidate",
+        "source_kind": "github_pull_request",
+        "native_id": "pull_request:397",
+        "content_sha256": "65bfea553059fbee8c666c2d1ec0c0ad08321b5a0c93276da57ca454ebf3e008",
+        "revision": "github_pull_request:397:head:e469282b39d533f1803dcd47b61663dbf05043de:base:4fed1b4bcd65606124579fe8a643e55828655093:state:open:draft:false:updated_at:2026-10-04T02:42:06Z:sha256:65bfea553059fbee8c666c2d1ec0c0ad08321b5a0c93276da57ca454ebf3e008",
+        "pr_number": 397,
+        "head_sha": "e469282b39d533f1803dcd47b61663dbf05043de",
+        "base_sha": "4fed1b4bcd65606124579fe8a643e55828655093",
+        "state": "open",
+        "draft": false,
+        "updated_at": "2026-10-04T02:42:06Z"
+      },
+      {
+        "source_id": "pr399",
+        "repository": "etblink/HiVenues",
+        "ref": "PR-399",
+        "role": "open_pull_request_candidate",
+        "source_kind": "github_pull_request",
+        "native_id": "pull_request:399",
+        "content_sha256": "87f1ed377b82fdb2d480d786a3b770966491e37a6a646d0b62a969a335a8b109",
+        "revision": "github_pull_request:399:head:28eaf662df350e23ed02c25bde17bf78b311fa04:base:4fed1b4bcd65606124579fe8a643e55828655093:state:open:draft:true:updated_at:2026-10-04T15:30:51Z:sha256:87f1ed377b82fdb2d480d786a3b770966491e37a6a646d0b62a969a335a8b109",
+        "pr_number": 399,
+        "head_sha": "28eaf662df350e23ed02c25bde17bf78b311fa04",
+        "base_sha": "4fed1b4bcd65606124579fe8a643e55828655093",
+        "state": "open",
+        "draft": true,
+        "updated_at": "2026-10-04T15:30:51Z"
+      },
+      {
+        "source_id": "issue398-comment-5981621191",
+        "repository": "etblink/HiVenues",
+        "ref": "issue-398-comment-5981621191",
+        "role": "governing_issue_conversation_comment",
+        "source_kind": "github_issue_comment",
+        "native_id": "issue_comment:5981621191",
+        "content_sha256": "b4c9bfc750813f87d0a581cec9f90aad9269e857b07ed65abe50b34f2f6360f9",
+        "revision": "github_issue_comment:5981621191:issue:398:updated_at:2026-10-04T15:30:47Z:sha256:b4c9bfc750813f87d0a581cec9f90aad9269e857b07ed65abe50b34f2f6360f9",
+        "comment_id": 5981621191,
+        "issue_number": 398,
+        "updated_at": "2026-10-04T15:30:47Z",
+        "author_association": "OWNER"
+      },
+      {
+        "source_id": "pr399-comment-5981621690",
+        "repository": "etblink/HiVenues",
+        "ref": "issue-399-comment-5981621690",
+        "role": "pull_request_conversation_comment",
+        "source_kind": "github_issue_comment",
+        "native_id": "issue_comment:5981621690",
+        "content_sha256": "5c790858775adcf1180c58ac0e814c2113f53573a71458f80f53a77500ec05ff",
+        "revision": "github_issue_comment:5981621690:issue:399:updated_at:2026-10-04T15:30:51Z:sha256:5c790858775adcf1180c58ac0e814c2113f53573a71458f80f53a77500ec05ff",
+        "comment_id": 5981621690,
+        "issue_number": 399,
+        "updated_at": "2026-10-04T15:30:51Z",
+        "author_association": "OWNER"
+      }
+    ],
+    "authority_map": [
+      {
+        "purpose": "canonical_merged_code",
+        "source_id": "main",
+        "authority_scope": "merged_main"
+      },
+      {
+        "purpose": "stage5d_work_charter",
+        "source_id": "issue398",
+        "authority_scope": "bounded_stage5d_work"
+      },
+      {
+        "purpose": "stage5_usability_gate",
+        "source_id": "issue374",
+        "authority_scope": "owner_acceptance_gate"
+      },
+      {
+        "purpose": "stage5d_current_candidate",
+        "source_id": "pr399",
+        "authority_scope": "candidate_only"
+      },
+      {
+        "purpose": "stage5d_usability_acceptance",
+        "source_id": "issue398-comment-5981621191",
+        "authority_scope": "owner_acceptance_decision"
+      },
+      {
+        "purpose": "stage5d_candidate_review_confirmation",
+        "source_id": "pr399-comment-5981621690",
+        "authority_scope": "concordant_owner_hold_decision"
+      }
+    ],
+    "material_objects": [
+      {
+        "object_id": "OPEN-PR-SET",
+        "role": "discovery_result",
+        "status": "complete",
+        "members": [
+          397,
+          399
+        ]
+      },
+      {
+        "object_id": "PR-397",
+        "role": "prior_candidate",
+        "status": "open_unmerged_prior_lineage"
+      },
+      {
+        "object_id": "PR-399",
+        "role": "current_candidate",
+        "status": "rejected_by_owner_draft_unmerged"
+      },
+      {
+        "object_id": "OWNER-ISSUE-DECISION",
+        "role": "human_acceptance_decision",
+        "status": "FAIL"
+      },
+      {
+        "object_id": "OWNER-PR399-CONFIRMATION",
+        "role": "human_acceptance_confirmation",
+        "status": "HOLD_REDESIGN_REQUIRED"
+      }
+    ],
+    "negative_knowledge": [
+      {
+        "kind": "rejected",
+        "subject": "PR-399-current-A-C-candidate",
+        "basis": "owner acceptance FAIL on complete Issue #398 comment stream",
+        "reopen_if": "new_redesign_candidate_plus_owner_acceptance"
+      },
+      {
+        "kind": "forbidden",
+        "subject": "proceed_to_D_E",
+        "basis": "both owner decision surfaces prohibit D-E progression",
+        "reopen_if": "later_explicit_owner_acceptance_and_bounded_authorization"
+      },
+      {
+        "kind": "forbidden",
+        "subject": "declare_issue_374_satisfied",
+        "basis": "owner decision says do not declare #374 satisfied",
+        "reopen_if": "later_explicit_owner_acceptance"
+      },
+      {
+        "kind": "forbidden",
+        "subject": "shadow_reconstruction_authorizes_external_effect",
+        "basis": "read-only CPI reconstruction has no consequence authority",
+        "reopen_if": "separate_project_local_authorization"
+      }
+    ],
+    "dependencies": [
+      {
+        "dependency_id": "owner-usability-acceptance",
+        "class": "HARD",
+        "status": "CURRENT_CANDIDATE_REJECTED",
+        "basis": "complete owner decision set for Issue #398/current PR #399",
+        "counterfactual": "a redesigned candidate must return for owner acceptance"
+      }
+    ],
+    "triggers": [
+      {
+        "trigger_id": "redesign-review",
+        "trigger_type": "human_owner_acceptance",
+        "status": "new_candidate_required",
+        "consequence": "only a later redesigned candidate may return to owner acceptance"
+      }
+    ],
+    "transitions": [
+      {
+        "transition_id": "stage5d-current-candidate",
+        "state": "rejected",
+        "consequence_class": "product_canonicalization",
+        "owner_result": "FAIL",
+        "next_action": "redesign_review_before_further_broad_implementation"
+      }
+    ]
+  },
+  "OBSERVATORY_COMPARISON": {
+    "adapter_version": "cpi0-stage6e-native-binding-0.1.2",
+    "snapshot_identity": "PROJECT_OBSERVATORY_SNAPSHOT_V0_2",
+    "snapshot_blob_sha": "e62a0b86e2317d7b441eb3d5ecf8ee71cc49460a",
+    "snapshot_content_sha256": "20d28d0f98502fa1ad8f2060f7396063cd0df08c62568d29aa1af71406a1979e",
+    "overall_validity": "MIXED__NO_BLANKET_VALIDITY",
+    "rewrite_authorized": false,
+    "project_results": {
+      "FCP": {
+        "snapshot_commit": "a41bc6101b63140ee2687e0cf67a47ab6be77215",
+        "snapshot_state": "WAITING_FOR_EVIDENCE",
+        "native_current_routing_at_same_commit": "POST_PGH_STAGE2_SCIENTIFIC_SEQUENCING_ADJUDICATION",
+        "historical_validity": "CONTRADICTED_BY_REFERENCED_NATIVE_STATE",
+        "freshness": "same_revision_semantic_conflict",
+        "rewrite_authorized": false
+      },
+      "HIVenues": {
+        "observed_commit": "bf9a0b4e61d57eed6bb5a81504d6e030f8b6ff7c",
+        "current_commit": "4fed1b4bcd65606124579fe8a643e55828655093",
+        "historical_validity": "VALID_IDENTITY_AT_OBSERVATION_BOUNDARY",
+        "freshness": "stale",
+        "rewrite_authorized": false
+      }
+    }
+  }
+}
