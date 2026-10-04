@@ -1,0 +1,104 @@
+{
+  "NFC": {
+    "project_id": "NFC",
+    "current_main": "5072d563b0a3dd4a7643be427cd47108216d8793",
+    "sources": {
+      "provenance": {
+        "repository": "etblink/Nested-Fibrational-Cosmology",
+        "path": "PROVENANCE.md",
+        "blob_sha": "69cdd64069cd0d24779a344fac0cd309bc54d811",
+        "text": "## Canonical theorem-source rule\nFor analysis of the frozen NFC scientific canon, use this exact source identity:\nREF = archive/nfc-canonical-ed3047c2\nTAG = nfc-canonical-ed3047c2\nCOMMIT = ed3047c2cbc0abc34d2549dd27754e4d3d05af78\nTREE = 00ef55ff36d5e9663ca1ef2c9566e2bc1396f973\nMECHANICAL_PROVENANCE_SEQUENCE = ESTABLISHED\nREPRESENTATIVE_CONTENT_CONTINUITY = ESTABLISHED\nHUMAN_POLICY_INTENT = UNRESOLVED\nDo not use default-branch presence as a proxy for scientific authority.\n",
+        "content_sha256": "df11e5ca1c3b74e03e8d5359b25a00c7c0a9bec729355f72d527a21a6d3f8e6f",
+        "packet_sha256": "e15d802fb81b2a91603685c08a025450e0a305be4874ef0839e8818e209ad013"
+      }
+    }
+  },
+  "FCP": {
+    "project_id": "FCP",
+    "current_main": "a41bc6101b63140ee2687e0cf67a47ab6be77215",
+    "sources": {
+      "current_state": {
+        "repository": "etblink/Foundational-Convergence-Program",
+        "path": "CURRENT_STATE.md",
+        "blob_sha": "b5949af93a1855ae1d072fa4aaa4b1c29033579c",
+        "text": "METHOD = 0.2.1_ACTIVE_PROSPECTIVELY\nHISTORICAL_RESULT\nCURRENT_PROSPECTIVE_RESULT\nCURRENT_ROUTING_STATE\nPRIOR_SEQUENCING_SELECTION = EVIDENCE_TRIGGERED_HOLD\nFCP27_SELECTED = NO\nNEXT_RECOMMENDED_OPERATION = POST_RECURRENCE_SCIENTIFIC_SEQUENCING_ADJUDICATION\nNEXT_EXECUTION_STEP = SEPARATE_POST_RECURRENCE_SCIENTIFIC_SEQUENCING_ADJUDICATION_AUTHORIZATION\nNEXT_SCIENTIFIC_PHASE = NONE__POST_RECURRENCE_SCIENTIFIC_SEQUENCING_ADJUDICATION_PENDING_SEPARATE_READ_ONLY_AUTHORIZATION\n",
+        "content_sha256": "67220b3d8f79b1ca8c702bc5086a439e59e52ac3692c019aa082f095c308a6f1",
+        "packet_sha256": "f885a40116bd9e146c68c6df2f87463bb4f81f199d0911831f927d889fa5c667"
+      },
+      "charter": {
+        "repository": "etblink/Foundational-Convergence-Program",
+        "path": "FCP_CHARTER.md",
+        "blob_sha": "579819121d1733e1746868941a3a282de2cf1ac9",
+        "text": "Historical/versioned phase artifacts remain records of what was true at their phase and are not rewritten merely to track later program state.\nEvery substantive future phase requires separate bounded authorization and an explicit source/provenance window; no future task receives scientific authorization from this charter text alone.\nSeek truth about reality.\nPreserve results, not theories.\n",
+        "content_sha256": "9ee9d0132fac98a33adf92049711b50f4b29a56939b5551770fef588707a6c30",
+        "packet_sha256": "4597daf4c5249ad0a091fdbdf298416b4381c77f20d9b132b13f2483fdba8082"
+      }
+    }
+  },
+  "PGH": {
+    "project_id": "PGH",
+    "current_main": "2923875b40ea6901dfafda56a771c36876c4a220",
+    "sources": {
+      "current_state": {
+        "repository": "etblink/Physical-Grammar-Hypothesis",
+        "path": "CURRENT_STATE.md",
+        "blob_sha": "32c799bdd42d6c921140bf13bdb988fefa445169",
+        "text": "ACTUAL_APPARATUS = NONE_BOUND\nNEXT_SCIENTIFIC_OPERATION = APPARATUS_REALIZATION_AND_TARGET_FREEZE\nNEXT_SCIENTIFIC_OPERATION_REQUIRES_EXTERNAL_PHYSICAL_ACTION = YES\nPHYSICAL_TRIAL_EXECUTION_AUTHORIZED = NO\nPUBLIC_TARGET_SEARCH = SUSPENDED\nWEB_TARGET_SEARCH = FORBIDDEN_WITHOUT_NEW_INDEPENDENT_TRIGGER\nREGISTRY_TARGET_SEARCH = FORBIDDEN_WITHOUT_NEW_INDEPENDENT_TRIGGER\n<!-- PGH_CURRENT_STATE_CAPSULE_BEGIN -->\n```json\n{\"capsule_schema_version\":\"0.2.0\",\"project\":\"Physical Grammar Hypothesis\",\"current_phase\":\"PGH-1_D1_ADVERSARIAL_PHYSICAL_INTERFACE_QUALIFIED__AWAITING_APPARATUS_REALIZATION\",\"canonical_hypothesis\":\"HYPOTHESIS.md\",\"active_candidate_grammar\":\"PGH-GRAM-0010\",\"active_candidate_package\":\"PGH-OBJ-0052\",\"selected_design_id\":\"PGH-EXP-DESIGN-0001\",\"selected_interface_class\":\"D1__MECHANICALLY_GANGED_THREE_POLE_SWITCH_INTERFACE\",\"actual_apparatus\":null,\"target_id\":null,\"next_available_target_id\":\"TGT-047\",\"physical_response_data\":false,\"current_handoff\":\"handoffs/PGH1_ADVERSARIAL_PHYSICAL_INTERFACE_DESIGN_GATE_HANDOFF_0_1_0.md\",\"source_bound_status\":\"PGH_OBJ_0052_A0_A9_PASS__FCP_OUTCOME_B_NONFRAMEWORK__D1_INTERFACE_QUALIFIED__EMPIRICALLY_UNTESTED__AWAITING_APPARATUS_REALIZATION\",\"fcp_relationship\":\"FCP_OUTCOME_B__NONFRAMEWORK_PHYSICAL_MODEL_OR_POSTULATE__NO_HOST__NO_EMPIRICAL_CREDIT\",\"next_scientific_operation\":\"APPARATUS_REALIZATION_AND_TARGET_FREEZE\",\"physical_trials_authorized\":false,\"do_not_assume\":[\"PGH_IS_AN_FCP_FRAMEWORK\",\"PGH_OBJ_0052_HAS_EMPIRICAL_SUPPORT\",\"PGH_OBJ_0052_IS_REFUTED\",\"D1_DESIGN_EXPECTATION_IS_EVIDENCE\",\"TGT_047_IS_ASSIGNED\",\"ACTUAL_APPARATUS_IS_BOUND\",\"ANALYSIS_PREREGISTRATION_IS_COMPLETE\",\"PHYSICAL_TRIALS_ARE_AUTHORIZED\",\"TARGET_SEARCH_SHOULD_RESUME\",\"R2B_HAS_PASSED\",\"STRONG_PGH_IS_CONFIRMED\"]}\n```\n<!-- PGH_CURRENT_STATE_CAPSULE_END -->\n",
+        "content_sha256": "c4ddfc449fb21932f1aec89864dfeaf5f52d0475ad7f4fe230611efeee4e87c5",
+        "packet_sha256": "96746b7467fbae6f788ebe4f6c37c6c4f755fd6114dd1f4d5534ffd998cace16"
+      }
+    }
+  },
+  "HIVenues": {
+    "project_id": "HIVenues",
+    "current_main": "4fed1b4bcd65606124579fe8a643e55828655093",
+    "sources": {
+      "readme": {
+        "repository": "etblink/HiVenues",
+        "path": "README.md",
+        "blob_sha": "ad9a0c0b64d0e074e0a315450713ddfb3d9c8f6a",
+        "text": "Doctrine defines the destination, the roadmap defines the journey, active issue charters define bounded work, and current product tests protect accepted contracts. Implementation archaeology does not set product priority.\n",
+        "content_sha256": "0f2915d80b52d029625cf23cedf237e857a797f4d74ff745f6184897b367d8e7",
+        "packet_sha256": "dda1383c82e16154aceac53a311be3a823be26a41eb71782f94c8fd352c70b1f"
+      },
+      "issue_398": {
+        "repository": "etblink/HiVenues",
+        "kind": "github_issue",
+        "issue_number": 398,
+        "updated_at": "2026-10-04T15:30:48Z",
+        "state": "open",
+        "title": "Era 7 Stage 5D — owner-facing visual and interaction redesign",
+        "text": "Owner must be able to use the redesigned path from first instinct without being coached on the internal state machine.\nNo fresh-human qualification is required; owner acceptance governs #374.\nThis is an interaction-design failure, not merely a copy defect.\n",
+        "content_sha256": "886881e67623e3901ab5cc5d35f92b1352dea6b20c856034586e56fde8d314df",
+        "packet_sha256": "24f0fb2c99a7f15711eab699cdd8ca50c82c90b4e0cec57cea52bf907ec5dd4b"
+      },
+      "pr_397": {
+        "repository": "etblink/HiVenues",
+        "kind": "github_pr",
+        "pr_number": 397,
+        "state": "open",
+        "merged": false,
+        "base_sha": "4fed1b4bcd65606124579fe8a643e55828655093",
+        "head_sha": "e469282b39d533f1803dcd47b61663dbf05043de",
+        "title": "Era 7 Stage 5C: make Release and deployment lifecycle legible",
+        "text": "No live infrastructure action is performed by this PR. Final usability acceptance remains with the project owner under #374.",
+        "content_sha256": "49ad3cc40d13f8dfbcf693221eaa9e5e2b2000219e0bc1b4b61889dae6148379",
+        "packet_sha256": "f6a765cade1db8dc79d7f2f4b74be79dd78f2d6e1c822167fbf72ab6d3b95f73"
+      }
+    }
+  },
+  "OBSERVATORY_V0_2": {
+    "project_id": "OBSERVATORY",
+    "sources": {
+      "snapshot": {
+        "repository": "etblink/Project-Observatory",
+        "path": "snapshots/PROJECT_OBSERVATORY_SNAPSHOT_V0_2.md",
+        "blob_sha": "e62a0b86e2317d7b441eb3d5ecf8ee71cc49460a",
+        "snapshot_identity": "PROJECT_OBSERVATORY_SNAPSHOT_V0_2",
+        "text": "HIVENUES_PROJECT_STATE = ACTIVE\nHIVENUES_CANONICAL_REF = main\nHIVENUES_CANONICAL_COMMIT = bf9a0b4e61d57eed6bb5a81504d6e030f8b6ff7c\nHIVENUES_CANONICAL_TREE = 677ea895205fbd360ae37a2169c8e2968575cc4a\nSnapshot v0.1 is not rewritten or retroactively corrected. V0.2 supersedes it only as the current reconstruction layer.\n",
+        "content_sha256": "e0393834be7a36805e14de4b83613b1e9c2fb81e05aea037ea340f50b3c60ef2",
+        "packet_sha256": "d5cf512f6d5d0206294da4f09ff9ce923e9d11f45c77fa394c1b58119906f705"
+      }
+    }
+  }
+}
