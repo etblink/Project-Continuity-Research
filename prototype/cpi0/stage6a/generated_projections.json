@@ -1,0 +1,112 @@
+{
+  "FCP": {
+    "adapter_version": "cpi0-stage6a-source-contract-0.1.0",
+    "authority_map": [
+      {"authority_scope": "CURRENT_STATE", "purpose": "current_routing", "source_id": "current-state"},
+      {"authority_scope": "governance_rule", "purpose": "future_phase_authorization_rule", "source_id": "charter"}
+    ],
+    "completeness": "COMPLETE",
+    "dependencies": [],
+    "material_objects": [
+      {"object_id": "historical", "role": "historical_result", "status": "distinct"},
+      {"object_id": "prospective", "role": "current_prospective_result", "status": "0.2.1_ACTIVE_PROSPECTIVELY"},
+      {"object_id": "routing", "role": "current_routing_state", "status": "POST_RECURRENCE_SCIENTIFIC_SEQUENCING_ADJUDICATION"},
+      {"object_id": "fcp27", "role": "phase_selection", "status": "not_selected"}
+    ],
+    "negative_knowledge": [
+      {"basis": "PRIOR_SEQUENCING_SELECTION = EVIDENCE_TRIGGERED_HOLD", "kind": "historical_marker", "subject": "prior_evidence_triggered_hold"},
+      {"basis": "separate bounded authorization and explicit source/provenance window required", "kind": "authorization_boundary", "subject": "future_substantive_phase"}
+    ],
+    "observed_sources": [
+      {"commit": "a41bc6101b63140ee2687e0cf67a47ab6be77215", "ref": "main", "repository": "etblink/Foundational-Convergence-Program", "role": "current_scientific_and_routing_state", "source_id": "current-state"},
+      {"commit": "a41bc6101b63140ee2687e0cf67a47ab6be77215", "ref": "main", "repository": "etblink/Foundational-Convergence-Program", "role": "governance_authority", "source_id": "charter"}
+    ],
+    "profile_version": "0.1.0",
+    "project_id": "FCP",
+    "projection_id": "FCP:a41bc6101b63",
+    "transitions": [
+      {"consequence_class": "read_only_scientific_sequencing", "next_scientific_phase": "NONE__POST_RECURRENCE_SCIENTIFIC_SEQUENCING_ADJUDICATION_PENDING_SEPARATE_READ_ONLY_AUTHORIZATION", "state": "selected_not_authorized", "transition_id": "POST_RECURRENCE_SCIENTIFIC_SEQUENCING_ADJUDICATION"}
+    ],
+    "triggers": []
+  },
+  "HIVenues": {
+    "adapter_version": "cpi0-stage6a-source-contract-0.1.0",
+    "authority_map": [
+      {"authority_scope": "merged_main", "purpose": "canonical_merged_code", "source_id": "main"},
+      {"authority_scope": "candidate_only", "purpose": "stage5c_candidate_review", "source_id": "pr397"},
+      {"authority_scope": "owner_acceptance", "purpose": "stage5d_usability_acceptance", "source_id": "issue398"}
+    ],
+    "completeness": "COMPLETE",
+    "dependencies": [
+      {"basis": "Issue #398 owner acceptance rule", "class": "HARD", "counterfactual": "machine qualification alone cannot close gate", "dependency_id": "owner-usability-acceptance", "status": "UNSATISFIED"}
+    ],
+    "material_objects": [
+      {"object_id": "PR-397", "role": "candidate", "status": "open_not_merged"},
+      {"object_id": "ISSUE-398", "role": "active_work_charter", "status": "owner_acceptance_required"},
+      {"object_id": "authority-model", "role": "project_governance", "status": "doctrine_roadmap_issue_test_roles_distinct"}
+    ],
+    "negative_knowledge": [
+      {"basis": "owner acceptance governs usability gate", "kind": "forbidden", "reopen_if": null, "subject": "machine_pass_as_owner_acceptance"},
+      {"basis": "read-only shadow adapter has no consequence authority", "kind": "forbidden", "reopen_if": "separate_project_local_authorization", "subject": "shadow_reconstruction_authorizes_external_effect"}
+    ],
+    "observed_sources": [
+      {"commit": "4fed1b4bcd65606124579fe8a643e55828655093", "ref": "main", "repository": "etblink/HiVenues", "role": "canonical_merged_code", "source_id": "main"},
+      {"commit": "e469282b39d533f1803dcd47b61663dbf05043de", "ref": "PR-397", "repository": "etblink/HiVenues", "role": "candidate_pr_head", "source_id": "pr397"},
+      {"commit": "4fed1b4bcd65606124579fe8a643e55828655093", "ref": "issue-398", "repository": "etblink/HiVenues", "role": "active_bounded_work_charter", "source_id": "issue398"}
+    ],
+    "profile_version": "0.1.0",
+    "project_id": "HIVenues",
+    "projection_id": "HIVenues:4fed1b4bcd65:issue398",
+    "transitions": [{"consequence_class": "product_canonicalization", "state": "complete_pending_acceptance", "transition_id": "stage5d_acceptance"}],
+    "triggers": [{"consequence": "usability gate may close", "status": "unsatisfied", "trigger_id": "owner-acceptance", "trigger_type": "human_owner_acceptance"}]
+  },
+  "NFC": {
+    "adapter_version": "cpi0-stage6a-source-contract-0.1.0",
+    "authority_map": [
+      {"authority_scope": "publication_and_provenance", "purpose": "publication_routing", "source_id": "publication-main"},
+      {"authority_scope": "frozen_theorem_bearing_corpus", "purpose": "scientific_theorem_analysis", "source_id": "frozen-theorem-canon"}
+    ],
+    "completeness": "COMPLETE",
+    "dependencies": [],
+    "material_objects": [],
+    "negative_knowledge": [{"basis": "HUMAN_POLICY_INTENT = UNRESOLVED", "kind": "unresolved", "subject": "historical_remove_human_policy_intent"}],
+    "observed_sources": [
+      {"commit": "5072d563b0a3dd4a7643be427cd47108216d8793", "ref": "main", "repository": "etblink/Nested-Fibrational-Cosmology", "role": "publication_provenance_surface", "source_id": "publication-main"},
+      {"commit": "ed3047c2cbc0abc34d2549dd27754e4d3d05af78", "ref": "archive/nfc-canonical-ed3047c2", "repository": "etblink/Nested-Fibrational-Cosmology", "role": "scientific_theorem_canon", "source_id": "frozen-theorem-canon", "tree": "00ef55ff36d5e9663ca1ef2c9566e2bc1396f973"}
+    ],
+    "profile_version": "0.1.0",
+    "project_id": "NFC",
+    "projection_id": "NFC:5072d563b0a3",
+    "transitions": [],
+    "triggers": []
+  },
+  "OBSERVATORY_COMPARISON": {
+    "adapter_version": "cpi0-stage6a-source-contract-0.1.0",
+    "current_commit": "4fed1b4bcd65606124579fe8a643e55828655093",
+    "freshness": "stale",
+    "historical_validity": "VALID_AT_OBSERVATION_BOUNDARY",
+    "observed_commit": "bf9a0b4e61d57eed6bb5a81504d6e030f8b6ff7c",
+    "rewrite_authorized": false,
+    "snapshot_identity": "PROJECT_OBSERVATORY_SNAPSHOT_V0_2"
+  },
+  "PGH": {
+    "adapter_version": "cpi0-stage6a-source-contract-0.1.0",
+    "authority_map": [{"authority_scope": "canonical_markdown_plus_git_provenance", "purpose": "current_research_and_governance_state", "source_id": "current-state"}],
+    "completeness": "COMPLETE",
+    "dependencies": [{"basis": "actual apparatus is unbound", "class": "HARD", "counterfactual": "synthetic readiness cannot replace physical apparatus", "dependency_id": "real-apparatus", "status": "UNSATISFIED"}],
+    "material_objects": [{"object_id": "PGH-OBJ-0052", "role": "active_candidate_package", "status": "empirically_untested"}],
+    "negative_knowledge": [
+      {"basis": "current-state do_not_assume capsule", "items": ["PGH_IS_AN_FCP_FRAMEWORK","PGH_OBJ_0052_HAS_EMPIRICAL_SUPPORT","PGH_OBJ_0052_IS_REFUTED","D1_DESIGN_EXPECTATION_IS_EVIDENCE","TGT_047_IS_ASSIGNED","ACTUAL_APPARATUS_IS_BOUND","ANALYSIS_PREREGISTRATION_IS_COMPLETE","PHYSICAL_TRIALS_ARE_AUTHORIZED","TARGET_SEARCH_SHOULD_RESUME","R2B_HAS_PASSED","STRONG_PGH_IS_CONFIRMED"], "kind": "forbidden_assumptions", "subject": "PGH-OBJ-0052"},
+      {"basis": "new independent trigger required", "kind": "suspended", "reopen_if": "new_independent_trigger", "subject": "target_search"}
+    ],
+    "observed_sources": [{"commit": "2923875b40ea6901dfafda56a771c36876c4a220", "ref": "main", "repository": "etblink/Physical-Grammar-Hypothesis", "role": "current_research_and_governance_state", "source_id": "current-state"}],
+    "profile_version": "0.1.0",
+    "project_id": "PGH",
+    "projection_id": "PGH:2923875b40ea",
+    "transitions": [
+      {"consequence_class": "physical_experiment_preparation", "state": "blocked_external", "transition_id": "APPARATUS_REALIZATION_AND_TARGET_FREEZE"},
+      {"consequence_class": "physical_experiment", "state": "prohibited", "transition_id": "PHYSICAL_TRIAL_EXECUTION"}
+    ],
+    "triggers": [{"consequence": "APPARATUS_REALIZATION_AND_TARGET_FREEZE", "status": "unsatisfied", "trigger_id": "apparatus-realization", "trigger_type": "physical_prerequisite"}]
+  }
+}
