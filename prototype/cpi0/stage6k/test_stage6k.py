@@ -273,10 +273,7 @@ class GateScopeAndGrammarTests(unittest.TestCase):
         state = _base_state()
         state["issue374"]["state"] = "closed"
         state["issue374"]["state_reason"] = "completed"
-        state["issue374"]["body"] = (
-            (state["issue374"].get("body") or "")
-            + "\nOwner acceptance: PASS. #374 is satisfied."
-        )
+        state["issue374"]["body"] = "Owner acceptance: PASS. #374 is satisfied."
         state["issue374"]["updated_at"] = "2026-10-04T22:50:00Z"
         p = _project(state)
         self.assertEqual(p["transitions"][0]["state"], "accepted")
