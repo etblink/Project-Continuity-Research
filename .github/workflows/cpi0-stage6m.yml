@@ -1,0 +1,89 @@
+name: CPI-0 Stage 6M qualification
+
+on:
+  push:
+    branches:
+      - research/cpi0-stage6m-authority-architecture
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  authority-capsule:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact branch commit
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install pinned prototype dependency
+        run: |
+          python -m pip install --disable-pip-version-check -r prototype/cpi0/stage6m/requirements.txt
+
+      - name: Print exact qualification identity
+        run: |
+          git rev-parse HEAD
+          python - <<'PY'
+          import cryptography
+          print("CRYPTOGRAPHY_VERSION =", cryptography.__version__)
+          PY
+
+      - name: Compile research prototype
+        run: |
+          python -m py_compile             prototype/cpi0/stage6m/authority_capsule.py             prototype/cpi0/stage6m/test_authority_capsule.py
+
+      - name: Run adversarial Authority Capsule suite
+        working-directory: prototype/cpi0/stage6m
+        run: |
+          python -m unittest -v test_authority_capsule.py
+
+      - name: Exercise deterministic offline replay
+        working-directory: prototype/cpi0/stage6m
+        run: |
+          python - <<'PY'
+          import json
+          from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
+          from cryptography.hazmat.primitives.serialization import Encoding, PublicFormat
+          import authority_capsule as A
+
+          key = Ed25519PrivateKey.from_private_bytes(bytes(range(32)))
+          pub = key.public_key().public_bytes(Encoding.Raw, PublicFormat.Raw)
+          c1 = A.sign_capsule(
+              private_key=key,
+              project="example/project",
+              authority_domain="owner.acceptance",
+              subject="gate:1",
+              candidate="candidate:alpha",
+              candidate_revision="rev-001",
+              sequence=1,
+              predecessor=None,
+              decision="PASS",
+          )
+
+          preserved = json.loads(json.dumps([c1]))
+          result = A.verify_chain(
+              preserved,
+              pub,
+              expected_project="example/project",
+              expected_authority_domain="owner.acceptance",
+              expected_subject="gate:1",
+              expected_candidate="candidate:alpha",
+              expected_candidate_revision="rev-001",
+          )
+
+          assert result["capsule_chain_valid"] is True
+          assert result["observed_decision"] == "PASS"
+          assert result["execution_authorized_by_cpi"] is False
+          assert result["head_capsule_digest"] == "f8e9c77a95b206a58d553200a58405075357c80a21f5ea72bb3c8e7808f0105b"
+
+          print("STAGE6M_AUTHORITY_CAPSULE = PASS")
+          print("OFFLINE_REPLAY = PASS")
+          print("OBSERVED_DECISION =", result["observed_decision"])
+          print("EXECUTION_AUTHORIZED_BY_CPI =", result["execution_authorized_by_cpi"])
+          print("HEAD_CAPSULE_DIGEST =", result["head_capsule_digest"])
+          PY
