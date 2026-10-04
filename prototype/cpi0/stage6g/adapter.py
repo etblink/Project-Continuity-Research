@@ -90,13 +90,28 @@ def _fcp_native_current_block() -> Dict[str, str]:
     end = text.find(fence, idx)
     if start < 0 or newline < 0 or end < 0:
         raise AdapterIncomplete("FCP current block malformed")
+    targeted = {
+        "EVIDENCE_TRIGGER_PGH",
+        "ACTIVE_SCIENTIFIC_OPERATION",
+        "NEXT_EXECUTION_STEP",
+        "NEXT_RECOMMENDED_OPERATION",
+        "NEXT_OPERATION_CLASS",
+        "NEXT_OPERATION_AUTHORIZED",
+        "NEXT_OPERATION_AUTHORIZATION_BOUNDARY",
+        "FCP27_SELECTED",
+        "NEXT_SCIENTIFIC_PHASE",
+    }
     kv: Dict[str, str] = {}
     for line in text[newline + 1 : end].splitlines():
-        if " = " in line:
-            key, value = line.split(" = ", 1)
-            if key.strip() in kv:
-                raise AdapterIncomplete("FCP current block duplicate key")
-            kv[key.strip()] = value.strip()
+        if " = " not in line:
+            continue
+        key, value = line.split(" = ", 1)
+        key = key.strip()
+        if key not in targeted:
+            continue
+        if key in kv:
+            raise AdapterIncomplete(f"FCP current block duplicate targeted key: {key}")
+        kv[key] = value.strip()
     return kv
 
 
