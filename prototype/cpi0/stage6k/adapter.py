@@ -246,10 +246,26 @@ def _classify_owner_source(source: Mapping[str, Any]) -> str:
         if state == "CHANGES_REQUESTED":
             fail_signal = True
 
-    if any(pattern.search(body) for pattern in PASS_PATTERNS):
+    fail_signal = fail_signal or any(
+        pattern.search(body) for pattern in FAIL_PATTERNS
+    )
+
+    # Prevent a negative construction such as "NOT ACCEPTED" from also
+    # becoming PASS merely because it contains the lexical token "accepted".
+    pass_text = body
+    negative_pass_phrases = [
+        re.compile(r"\\bnot\\s+accepted\\b", re.I),
+        re.compile(r"\\bacceptance\\s+(?:is\\s+)?not\\s+granted\\b", re.I),
+        re.compile(r"\\bnot\\s+approved\\b", re.I),
+        re.compile(r"\\bdo\\s+not\\s+approve\\b", re.I),
+        re.compile(r"\\bnot\\s+passed\\b", re.I),
+        re.compile(r"\\bnot\\s+satisfied\\b", re.I),
+    ]
+    for pattern in negative_pass_phrases:
+        pass_text = pattern.sub(" ", pass_text)
+
+    if any(pattern.search(pass_text) for pattern in PASS_PATTERNS):
         pass_signal = True
-    if any(pattern.search(body) for pattern in FAIL_PATTERNS):
-        fail_signal = True
 
     if pass_signal and fail_signal:
         return "AMBIGUOUS_AUTHORITY"
