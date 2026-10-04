@@ -1,0 +1,1193 @@
+{
+  "schema": "cpi0-stage6e-hivenues-native-pr-aux-0.1.0",
+  "repository": "etblink/HiVenues",
+  "discovery": {
+    "pr397_reviews": {
+      "page2_count": 0,
+      "page2_empty": true
+    },
+    "pr399_reviews": {
+      "page2_count": 0,
+      "page2_empty": true
+    },
+    "pr397_inline_comments": {
+      "page1_count": 12,
+      "page2_count": 0,
+      "page2_empty": true,
+      "discovered_ids": [
+        4175767745,
+        4175771664,
+        4175784160,
+        4175813055,
+        4175825313,
+        4175828688,
+        4175850167,
+        4175850173,
+        4175853731,
+        4175853886,
+        4175863079,
+        4175864407
+      ]
+    },
+    "pr399_inline_comments": {
+      "page1_count": 0,
+      "page2_count": 0,
+      "page2_empty": true,
+      "discovered_ids": []
+    },
+    "pr397_review_threads": {
+      "count": 6
+    },
+    "pr399_review_threads": {
+      "count": 0
+    }
+  },
+  "objects": {
+    "pr397_inline_comments": [
+      {
+        "url": "https://api.github.com/repos/etblink/HiVenues/pulls/comments/4175767745",
+        "pull_request_review_id": 5403849596,
+        "id": 4175767745,
+        "node_id": "PRRC_kwDOUIrttc745SjB",
+        "diff_hunk": "@@ -80,52 +111,129 @@\n       <% } %>\n \n       <section style=\"margin-top:2rem\">\n-        <p class=\"cc-kicker\">Local targets</p>\n-        <h2>Deployment state</h2>\n+        <p class=\"cc-kicker\">Public website</p>\n+        <h2>Where this Website Release is online</h2>\n \n         <% if (!deployments.length) { %>\n-          <p data-deployment-empty>No deployment targets yet.</p>\n+          <p data-deployment-empty>No server is connected yet. Connect a server above when you are ready to put a Website Release online.</p>\n         <% } %>\n \n         <div class=\"cc-release-list\">\n           <% deployments.forEach((deployment) => { %>\n+            <%\n+              const activeWebsiteRelease = deployment.activeRelease\n+                ? releases.find((item) => item.id === deployment.activeRelease.id)\n+                : null;\n+              const selectedWebsiteRelease = deployment.selectedRelease\n+                ? releases.find((item) => item.id === deployment.selectedRelease.id)\n+                : null;\n+              const publicVerified = deployment.publicEndpoint?.publicReadBack?.state === 'verified';\n+              const selectedDiffersFromPublic = Boolean(\n+                deployment.selectedRelease\n+                && deployment.activeRelease\n+                && (\n+                  deployment.selectedRelease.id !== deployment.activeRelease.id\n+                  || deployment.selectedRelease.digest !== deployment.activeRelease.digest\n+                )\n+              );\n+              let humanTitle = deployment.providerKind === 'synthetic-offline'\n+                ? 'Offline qualification target'\n+                : 'Server connection is being prepared';\n+              let humanBody = deployment.providerKind === 'synthetic-offline'\n+                ? 'This target does not affect a public website.'\n+                : 'HiVenues has not yet confirmed a Website Release on this server.';\n+              let humanNext = deployment.providerKind === 'synthetic-offline'\n+                ? 'Use this only for qualification.'\n+                : 'Follow the server setup action shown below.';\n+\n+              if (deployment.providerKind === 'ssh-server') {\n+                if (deployment.state === 'disconnected') {\n+                  humanTitle = 'Public site preserved; Studio management is disconnected';\n+                  humanBody = 'The deployed site can keep running, but Studio cannot update or roll it back until management is reconnected.';\n+                  humanNext = 'Reconnect management when you need to manage this server again.';\n+                } else if (deployment.state === 'reauthorizing') {\n+                  humanTitle = 'Reconnecting Studio management';\n+                  humanBody = 'The public site stays in place while HiVenues restores only its bounded deployment authority.';\n+                  humanNext = 'Finish the reviewed management reconnection shown below.';\n+                } else if (deployment.state === 'degraded') {\n+                  humanTitle = 'Deployment needs attention';\n+                  humanBody = 'HiVenues stopped rather than guessing after a deployment or recovery proof failed.';\n+                  humanNext = 'Use the recovery action shown below before making another public change.';\n+                } else if (deployment.state === 'unreachable') {\n+                  humanTitle = 'Server could not be reached';\n+                  humanBody = 'The website state is preserved locally, but HiVenues could not complete its read-only server check.';\n+                  humanNext = 'Retry the read-only server verification shown below.';\n+                } else if (!deployment.activeRelease) {\n+                  if (deployment.state === 'bootstrap-ready') {\n+                    humanTitle = 'Server verified and ready';\n+                    humanBody = 'HiVenues has verified this server without changing it.';\n+                    humanNext = 'Choose a Website Release, prepare it, then review putting it online.';\n+                  } else if (['host-key-review', 'verifying'].includes(deployment.state)) {\n+                    humanTitle = 'Checking the server safely';\n+                    humanBody = 'HiVenues is still proving the server identity and read-only baseline.';\n+                    humanNext = 'Complete the trust or verification action shown below.';\n+                  }\n+                } else if (publicVerified) {",
+        "path": "views/hivenues/deployment.ejs",
+        "commit_id": "08d6a162d6db5a3f59546272f0f3bfb99591b040",
+        "original_commit_id": "08d6a162d6db5a3f59546272f0f3bfb99591b040",
+        "user": {
+          "login": "chatgpt-codex-connector[bot]",
+          "id": 199175422,
+          "node_id": "BOT_kgDOC98s_g",
+          "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D",
+          "html_url": "https://github.com/apps/chatgpt-codex-connector",
+          "followers_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/followers",
+          "following_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/following{/other_user}",
+          "gists_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/subscriptions",
+          "organizations_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/orgs",
+          "repos_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/repos",
+          "events_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/received_events",
+          "type": "Bot",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "body": "**<sub><sub>![P1 Badge](https://img.shields.io/badge/P1-orange?style=flat)</sub></sub>  Treat interrupted deployments as unverified**\n\nWhen an update is interrupted after `ExactReleaseDeploymentCoordinator` transitions the record to `deploying`, the previous `activeRelease` and verified public read-back remain persisted even though the server may already be partially mutated. This branch therefore labels that recovery state “Public site is online and verified” and says no action is required, contradicting the interrupted-deployment recovery action rendered below. Handle `deploying` before this branch, or restrict this verified status to stable `healthy`/`rollback-available` states.\n\nUseful? React with 👍 / 👎.",
+        "created_at": "2026-10-04T02:01:48Z",
+        "updated_at": "2026-10-04T02:01:48Z",
+        "html_url": "https://github.com/etblink/HiVenues/pull/397#discussion_r4175767745",
+        "pull_request_url": "https://api.github.com/repos/etblink/HiVenues/pulls/397",
+        "_links": {
+          "self": {
+            "href": "https://api.github.com/repos/etblink/HiVenues/pulls/comments/4175767745"
+          },
+          "html": {
+            "href": "https://github.com/etblink/HiVenues/pull/397#discussion_r4175767745"
+          },
+          "pull_request": {
+            "href": "https://api.github.com/repos/etblink/HiVenues/pulls/397"
+          }
+        },
+        "reactions": {
+          "url": "https://api.github.com/repos/etblink/HiVenues/pulls/comments/4175767745/reactions",
+          "total_count": 0,
+          "+1": 0,
+          "-1": 0,
+          "laugh": 0,
+          "hooray": 0,
+          "confused": 0,
+          "heart": 0,
+          "rocket": 0,
+          "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": null,
+        "original_line": 176,
+        "side": "RIGHT",
+        "author_association": "NONE",
+        "original_position": 180,
+        "position": 1,
+        "subject_type": "line"
+      },
+      {
+        "url": "https://api.github.com/repos/etblink/HiVenues/pulls/comments/4175771664",
+        "pull_request_review_id": 5403853779,
+        "id": 4175771664,
+        "node_id": "PRRC_kwDOUIrttc745TgQ",
+        "diff_hunk": "@@ -80,52 +111,129 @@\n       <% } %>\n \n       <section style=\"margin-top:2rem\">\n-        <p class=\"cc-kicker\">Local targets</p>\n-        <h2>Deployment state</h2>\n+        <p class=\"cc-kicker\">Public website</p>\n+        <h2>Where this Website Release is online</h2>\n \n         <% if (!deployments.length) { %>\n-          <p data-deployment-empty>No deployment targets yet.</p>\n+          <p data-deployment-empty>No server is connected yet. Connect a server above when you are ready to put a Website Release online.</p>\n         <% } %>\n \n         <div class=\"cc-release-list\">\n           <% deployments.forEach((deployment) => { %>\n+            <%\n+              const activeWebsiteRelease = deployment.activeRelease\n+                ? releases.find((item) => item.id === deployment.activeRelease.id)\n+                : null;\n+              const selectedWebsiteRelease = deployment.selectedRelease\n+                ? releases.find((item) => item.id === deployment.selectedRelease.id)\n+                : null;\n+              const publicVerified = deployment.publicEndpoint?.publicReadBack?.state === 'verified';\n+              const selectedDiffersFromPublic = Boolean(\n+                deployment.selectedRelease\n+                && deployment.activeRelease\n+                && (\n+                  deployment.selectedRelease.id !== deployment.activeRelease.id\n+                  || deployment.selectedRelease.digest !== deployment.activeRelease.digest\n+                )\n+              );\n+              let humanTitle = deployment.providerKind === 'synthetic-offline'\n+                ? 'Offline qualification target'\n+                : 'Server connection is being prepared';\n+              let humanBody = deployment.providerKind === 'synthetic-offline'\n+                ? 'This target does not affect a public website.'\n+                : 'HiVenues has not yet confirmed a Website Release on this server.';\n+              let humanNext = deployment.providerKind === 'synthetic-offline'\n+                ? 'Use this only for qualification.'\n+                : 'Follow the server setup action shown below.';\n+\n+              if (deployment.providerKind === 'ssh-server') {\n+                if (deployment.state === 'disconnected') {\n+                  humanTitle = 'Public site preserved; Studio management is disconnected';\n+                  humanBody = 'The deployed site can keep running, but Studio cannot update or roll it back until management is reconnected.';\n+                  humanNext = 'Reconnect management when you need to manage this server again.';\n+                } else if (deployment.state === 'reauthorizing') {\n+                  humanTitle = 'Reconnecting Studio management';\n+                  humanBody = 'The public site stays in place while HiVenues restores only its bounded deployment authority.';\n+                  humanNext = 'Finish the reviewed management reconnection shown below.';\n+                } else if (deployment.state === 'degraded') {\n+                  humanTitle = 'Deployment needs attention';\n+                  humanBody = 'HiVenues stopped rather than guessing after a deployment or recovery proof failed.';\n+                  humanNext = 'Use the recovery action shown below before making another public change.';\n+                } else if (deployment.state === 'unreachable') {\n+                  humanTitle = 'Server could not be reached';\n+                  humanBody = 'The website state is preserved locally, but HiVenues could not complete its read-only server check.';\n+                  humanNext = 'Retry the read-only server verification shown below.';\n+                } else if (!deployment.activeRelease) {\n+                  if (deployment.state === 'bootstrap-ready') {\n+                    humanTitle = 'Server verified and ready';\n+                    humanBody = 'HiVenues has verified this server without changing it.';\n+                    humanNext = 'Choose a Website Release, prepare it, then review putting it online.';\n+                  } else if (['host-key-review', 'verifying'].includes(deployment.state)) {\n+                    humanTitle = 'Checking the server safely';\n+                    humanBody = 'HiVenues is still proving the server identity and read-only baseline.';\n+                    humanNext = 'Complete the trust or verification action shown below.';\n+                  }\n+                } else if (publicVerified) {",
+        "path": "views/hivenues/deployment.ejs",
+        "commit_id": "08d6a162d6db5a3f59546272f0f3bfb99591b040",
+        "original_commit_id": "08d6a162d6db5a3f59546272f0f3bfb99591b040",
+        "user": {
+          "login": "etblink",
+          "id": 30190328,
+          "node_id": "MDQ6VXNlcjMwMTkwMzI4",
+          "avatar_url": "https://avatars.githubusercontent.com/u/30190328?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/etblink",
+          "html_url": "https://github.com/etblink",
+          "followers_url": "https://api.github.com/users/etblink/followers",
+          "following_url": "https://api.github.com/users/etblink/following{/other_user}",
+          "gists_url": "https://api.github.com/users/etblink/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/etblink/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/etblink/subscriptions",
+          "organizations_url": "https://api.github.com/users/etblink/orgs",
+          "repos_url": "https://api.github.com/users/etblink/repos",
+          "events_url": "https://api.github.com/users/etblink/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/etblink/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "body": "Fixed. `deploying` is now handled before any stable public-verification branch and presents an explicit incomplete/recovery status. The verified human status is additionally restricted to stable `healthy` / `rollback-available` states. This preserves the persisted technical proof as evidence while preventing an interrupted deployment from being presented as currently verified.",
+        "created_at": "2026-10-04T02:03:40Z",
+        "updated_at": "2026-10-04T02:03:40Z",
+        "html_url": "https://github.com/etblink/HiVenues/pull/397#discussion_r4175771664",
+        "pull_request_url": "https://api.github.com/repos/etblink/HiVenues/pulls/397",
+        "_links": {
+          "self": {
+            "href": "https://api.github.com/repos/etblink/HiVenues/pulls/comments/4175771664"
+          },
+          "html": {
+            "href": "https://github.com/etblink/HiVenues/pull/397#discussion_r4175771664"
+          },
+          "pull_request": {
+            "href": "https://api.github.com/repos/etblink/HiVenues/pulls/397"
+          }
+        },
+        "reactions": {
+          "url": "https://api.github.com/repos/etblink/HiVenues/pulls/comments/4175771664/reactions",
+          "total_count": 0,
+          "+1": 0,
+          "-1": 0,
+          "laugh": 0,
+          "hooray": 0,
+          "confused": 0,
+          "heart": 0,
+          "rocket": 0,
+          "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": null,
+        "original_line": 176,
+        "side": "RIGHT",
+        "in_reply_to_id": 4175767745,
+        "author_association": "OWNER",
+        "original_position": 180,
+        "position": 1,
+        "subject_type": "line"
+      },
+      {
+        "url": "https://api.github.com/repos/etblink/HiVenues/pulls/comments/4175784160",
+        "pull_request_review_id": 5403868400,
+        "id": 4175784160,
+        "node_id": "PRRC_kwDOUIrttc745Wjg",
+        "diff_hunk": "@@ -80,52 +111,136 @@\n       <% } %>\n \n       <section style=\"margin-top:2rem\">\n-        <p class=\"cc-kicker\">Local targets</p>\n-        <h2>Deployment state</h2>\n+        <p class=\"cc-kicker\">Public website</p>\n+        <h2>Where this Website Release is online</h2>\n \n         <% if (!deployments.length) { %>\n-          <p data-deployment-empty>No deployment targets yet.</p>\n+          <p data-deployment-empty>No server is connected yet. Connect a server above when you are ready to put a Website Release online.</p>\n         <% } %>\n \n         <div class=\"cc-release-list\">\n           <% deployments.forEach((deployment) => { %>\n+            <%\n+              const activeWebsiteRelease = deployment.activeRelease\n+                ? releases.find((item) => item.id === deployment.activeRelease.id)\n+                : null;\n+              const selectedWebsiteRelease = deployment.selectedRelease\n+                ? releases.find((item) => item.id === deployment.selectedRelease.id)\n+                : null;\n+              const publicVerified = deployment.publicEndpoint?.publicReadBack?.state === 'verified';\n+              const selectedDiffersFromPublic = Boolean(\n+                deployment.selectedRelease\n+                && deployment.activeRelease\n+                && (\n+                  deployment.selectedRelease.id !== deployment.activeRelease.id\n+                  || deployment.selectedRelease.digest !== deployment.activeRelease.digest\n+                )\n+              );\n+              let humanTitle = deployment.providerKind === 'synthetic-offline'\n+                ? 'Offline qualification target'\n+                : 'Server connection is being prepared';\n+              let humanBody = deployment.providerKind === 'synthetic-offline'\n+                ? 'This target does not affect a public website.'\n+                : 'HiVenues has not yet confirmed a Website Release on this server.';\n+              let humanNext = deployment.providerKind === 'synthetic-offline'\n+                ? 'Use this only for qualification.'\n+                : 'Follow the server setup action shown below.';\n+\n+              if (deployment.providerKind === 'ssh-server') {\n+                if (deployment.state === 'disconnected') {\n+                  humanTitle = 'Public site preserved; Studio management is disconnected';\n+                  humanBody = 'The deployed site can keep running, but Studio cannot update or roll it back until management is reconnected.';\n+                  humanNext = 'Reconnect management when you need to manage this server again.';\n+                } else if (deployment.state === 'reauthorizing') {\n+                  humanTitle = 'Reconnecting Studio management';\n+                  humanBody = 'The public site stays in place while HiVenues restores only its bounded deployment authority.';\n+                  humanNext = 'Finish the reviewed management reconnection shown below.';\n+                } else if (deployment.state === 'deploying') {\n+                  humanTitle = 'Public update is incomplete';\n+                  humanBody = 'HiVenues has not accepted the previous public proof for this in-progress deployment. The preserved Release history remains available while the exact deployment is recovered.';\n+                  humanNext = 'Review and resume the interrupted deployment shown below.';\n+                } else if (deployment.state === 'degraded') {\n+                  humanTitle = 'Deployment needs attention';\n+                  humanBody = 'HiVenues stopped rather than guessing after a deployment or recovery proof failed.';\n+                  humanNext = 'Use the recovery action shown below before making another public change.';\n+                } else if (deployment.state === 'unreachable') {\n+                  humanTitle = 'Server could not be reached';\n+                  humanBody = 'The website state is preserved locally, but HiVenues could not complete its read-only server check.';\n+                  humanNext = 'Retry the read-only server verification shown below.';\n+                } else if (!deployment.activeRelease) {\n+                  if (deployment.state === 'bootstrap-ready') {\n+                    humanTitle = 'Server verified and ready';\n+                    humanBody = 'HiVenues has verified this server without changing it.';\n+                    humanNext = 'Choose a Website Release, prepare it, then review putting it online.';\n+                  } else if (['host-key-review', 'verifying'].includes(deployment.state)) {\n+                    humanTitle = 'Checking the server safely';\n+                    humanBody = 'HiVenues is still proving the server identity and read-only baseline.';\n+                    humanNext = 'Complete the trust or verification action shown below.';\n+                  }\n+                } else if (\n+                  publicVerified\n+                  && ['healthy', 'rollback-available'].includes(deployment.state)\n+                ) {\n+                  humanTitle = 'Public site is online and verified';\n+                  humanBody = deployment.publicEndpoint?.hostname\n+                    ? 'HiVenues confirmed the exact deployed Website Release at https://' + deployment.publicEndpoint.hostname + '/.'\n+                    : 'HiVenues confirmed the exact Website Release served by this deployment.';\n+                  humanNext = selectedDiffersFromPublic\n+                    ? 'A different Website Release is selected. Review it before updating the public site.'\n+                    : 'No deployment action is required unless you select another Website Release.';\n+                } else if (deployment.publicEndpoint) {\n+                  humanTitle = 'Website is deployed; public verification is not complete';\n+                  humanBody = 'The server has an exact Website Release, but the domain/TLS/public read-back lifecycle still needs confirmation.';\n+                  humanNext = 'Complete the domain or public verification action shown below.';\n+                } else {\n+                  humanTitle = 'Website Release is on the server';\n+                  humanBody = 'HiVenues confirmed an exact Website Release on this server.';\n+                  humanNext = 'Connect a domain when you are ready for a public address.';\n+                }\n+              }\n+            %>\n             <article class=\"cc-review-card\" data-deployment-record=\"<%= deployment.id %>\">\n-              <div>\n-                <p class=\"cc-kicker\"><%= deployment.providerKind === 'synthetic-offline' ? 'Synthetic target' : 'Server target' %></p>\n-                <h3><%= deployment.id %></h3>\n+              <section data-deployment-human-status>\n+                <p class=\"cc-kicker\">Website status</p>\n+                <h3><%= humanTitle %></h3>\n+                <p><%= humanBody %></p>\n+                <% if (activeWebsiteRelease) { %>\n+                  <p>\n+                    Website Release online:\n+                    <strong>Version <%= activeWebsiteRelease.draftRevision %><%= activeWebsiteRelease.kind === 'urgent' ? ' + urgent update' : '' %></strong>",
+        "path": "views/hivenues/deployment.ejs",
+        "commit_id": "e469282b39d533f1803dcd47b61663dbf05043de",
+        "original_commit_id": "8382ef791f68738266d5538d6dfa644b10881be9",
+        "user": {
+          "login": "chatgpt-codex-connector[bot]",
+          "id": 199175422,
+          "node_id": "BOT_kgDOC98s_g",
+          "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D",
+          "html_url": "https://github.com/apps/chatgpt-codex-connector",
+          "followers_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/followers",
+          "following_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/following{/other_user}",
+          "gists_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/subscriptions",
+          "organizations_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/orgs",
+          "repos_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/repos",
+          "events_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/received_events",
+          "type": "Bot",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "body": "**<sub><sub>![P1 Badge](https://img.shields.io/badge/P1-orange?style=flat)</sub></sub>  Stop labeling stale active releases as online**\n\nWhen an update is interrupted after mutating the server but before successful read-back, `activeRelease` still contains the last confirmed release even though the server may now be serving partially updated or different content. The new `deploying` status branch fixes the headline, but this unconditional block still presents that stale release as “Website Release online,” contradicting the incomplete status and potentially misleading recovery decisions. Restrict this label to stable verified states, or describe it as the last confirmed release during `deploying`/`degraded` recovery.\n\nUseful? React with 👍 / 👎.",
+        "created_at": "2026-10-04T02:07:45Z",
+        "updated_at": "2026-10-04T02:07:45Z",
+        "html_url": "https://github.com/etblink/HiVenues/pull/397#discussion_r4175784160",
+        "pull_request_url": "https://api.github.com/repos/etblink/HiVenues/pulls/397",
+        "_links": {
+          "self": {
+            "href": "https://api.github.com/repos/etblink/HiVenues/pulls/comments/4175784160"
+          },
+          "html": {
+            "href": "https://github.com/etblink/HiVenues/pull/397#discussion_r4175784160"
+          },
+          "pull_request": {
+            "href": "https://api.github.com/repos/etblink/HiVenues/pulls/397"
+          }
+        },
+        "reactions": {
+          "url": "https://api.github.com/repos/etblink/HiVenues/pulls/comments/4175784160/reactions",
+          "total_count": 0,
+          "+1": 0,
+          "-1": 0,
+          "laugh": 0,
+          "hooray": 0,
+          "confused": 0,
+          "heart": 0,
+          "rocket": 0,
+          "eyes": 0
+        },
+        "start_line": 243,
+        "original_start_line": 207,
+        "start_side": "RIGHT",
+        "line": 255,
+        "original_line": 210,
+        "side": "RIGHT",
+        "author_association": "NONE",
+        "original_position": 217,
+        "position": 262,
+        "subject_type": "line"
+      },
+      {
+        "url": "https://api.github.com/repos/etblink/HiVenues/pulls/comments/4175813055",
+        "pull_request_review_id": 5403901396,
+        "id": 4175813055,
+        "node_id": "PRRC_kwDOUIrttc745dm_",
+        "diff_hunk": "@@ -80,52 +111,136 @@\n       <% } %>\n \n       <section style=\"margin-top:2rem\">\n-        <p class=\"cc-kicker\">Local targets</p>\n-        <h2>Deployment state</h2>\n+        <p class=\"cc-kicker\">Public website</p>\n+        <h2>Where this Website Release is online</h2>\n \n         <% if (!deployments.length) { %>\n-          <p data-deployment-empty>No deployment targets yet.</p>\n+          <p data-deployment-empty>No server is connected yet. Connect a server above when you are ready to put a Website Release online.</p>\n         <% } %>\n \n         <div class=\"cc-release-list\">\n           <% deployments.forEach((deployment) => { %>\n+            <%\n+              const activeWebsiteRelease = deployment.activeRelease\n+                ? releases.find((item) => item.id === deployment.activeRelease.id)\n+                : null;\n+              const selectedWebsiteRelease = deployment.selectedRelease\n+                ? releases.find((item) => item.id === deployment.selectedRelease.id)\n+                : null;\n+              const publicVerified = deployment.publicEndpoint?.publicReadBack?.state === 'verified';\n+              const selectedDiffersFromPublic = Boolean(\n+                deployment.selectedRelease\n+                && deployment.activeRelease\n+                && (\n+                  deployment.selectedRelease.id !== deployment.activeRelease.id\n+                  || deployment.selectedRelease.digest !== deployment.activeRelease.digest\n+                )\n+              );\n+              let humanTitle = deployment.providerKind === 'synthetic-offline'\n+                ? 'Offline qualification target'\n+                : 'Server connection is being prepared';\n+              let humanBody = deployment.providerKind === 'synthetic-offline'\n+                ? 'This target does not affect a public website.'\n+                : 'HiVenues has not yet confirmed a Website Release on this server.';\n+              let humanNext = deployment.providerKind === 'synthetic-offline'\n+                ? 'Use this only for qualification.'\n+                : 'Follow the server setup action shown below.';\n+\n+              if (deployment.providerKind === 'ssh-server') {\n+                if (deployment.state === 'disconnected') {\n+                  humanTitle = 'Public site preserved; Studio management is disconnected';\n+                  humanBody = 'The deployed site can keep running, but Studio cannot update or roll it back until management is reconnected.';\n+                  humanNext = 'Reconnect management when you need to manage this server again.';\n+                } else if (deployment.state === 'reauthorizing') {\n+                  humanTitle = 'Reconnecting Studio management';\n+                  humanBody = 'The public site stays in place while HiVenues restores only its bounded deployment authority.';\n+                  humanNext = 'Finish the reviewed management reconnection shown below.';\n+                } else if (deployment.state === 'deploying') {\n+                  humanTitle = 'Public update is incomplete';\n+                  humanBody = 'HiVenues has not accepted the previous public proof for this in-progress deployment. The preserved Release history remains available while the exact deployment is recovered.';\n+                  humanNext = 'Review and resume the interrupted deployment shown below.';\n+                } else if (deployment.state === 'degraded') {\n+                  humanTitle = 'Deployment needs attention';\n+                  humanBody = 'HiVenues stopped rather than guessing after a deployment or recovery proof failed.';\n+                  humanNext = 'Use the recovery action shown below before making another public change.';\n+                } else if (deployment.state === 'unreachable') {\n+                  humanTitle = 'Server could not be reached';\n+                  humanBody = 'The website state is preserved locally, but HiVenues could not complete its read-only server check.';\n+                  humanNext = 'Retry the read-only server verification shown below.';\n+                } else if (!deployment.activeRelease) {\n+                  if (deployment.state === 'bootstrap-ready') {\n+                    humanTitle = 'Server verified and ready';\n+                    humanBody = 'HiVenues has verified this server without changing it.';\n+                    humanNext = 'Choose a Website Release, prepare it, then review putting it online.';\n+                  } else if (['host-key-review', 'verifying'].includes(deployment.state)) {\n+                    humanTitle = 'Checking the server safely';\n+                    humanBody = 'HiVenues is still proving the server identity and read-only baseline.';\n+                    humanNext = 'Complete the trust or verification action shown below.';\n+                  }\n+                } else if (\n+                  publicVerified\n+                  && ['healthy', 'rollback-available'].includes(deployment.state)\n+                ) {\n+                  humanTitle = 'Public site is online and verified';\n+                  humanBody = deployment.publicEndpoint?.hostname\n+                    ? 'HiVenues confirmed the exact deployed Website Release at https://' + deployment.publicEndpoint.hostname + '/.'\n+                    : 'HiVenues confirmed the exact Website Release served by this deployment.';\n+                  humanNext = selectedDiffersFromPublic\n+                    ? 'A different Website Release is selected. Review it before updating the public site.'\n+                    : 'No deployment action is required unless you select another Website Release.';\n+                } else if (deployment.publicEndpoint) {\n+                  humanTitle = 'Website is deployed; public verification is not complete';\n+                  humanBody = 'The server has an exact Website Release, but the domain/TLS/public read-back lifecycle still needs confirmation.';\n+                  humanNext = 'Complete the domain or public verification action shown below.';\n+                } else {\n+                  humanTitle = 'Website Release is on the server';\n+                  humanBody = 'HiVenues confirmed an exact Website Release on this server.';\n+                  humanNext = 'Connect a domain when you are ready for a public address.';\n+                }\n+              }\n+            %>\n             <article class=\"cc-review-card\" data-deployment-record=\"<%= deployment.id %>\">\n-              <div>\n-                <p class=\"cc-kicker\"><%= deployment.providerKind === 'synthetic-offline' ? 'Synthetic target' : 'Server target' %></p>\n-                <h3><%= deployment.id %></h3>\n+              <section data-deployment-human-status>\n+                <p class=\"cc-kicker\">Website status</p>\n+                <h3><%= humanTitle %></h3>\n+                <p><%= humanBody %></p>\n+                <% if (activeWebsiteRelease) { %>\n+                  <p>\n+                    Website Release online:\n+                    <strong>Version <%= activeWebsiteRelease.draftRevision %><%= activeWebsiteRelease.kind === 'urgent' ? ' + urgent update' : '' %></strong>",
+        "path": "views/hivenues/deployment.ejs",
+        "commit_id": "e469282b39d533f1803dcd47b61663dbf05043de",
+        "original_commit_id": "8382ef791f68738266d5538d6dfa644b10881be9",
+        "user": {
+          "login": "etblink",
+          "id": 30190328,
+          "node_id": "MDQ6VXNlcjMwMTkwMzI4",
+          "avatar_url": "https://avatars.githubusercontent.com/u/30190328?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/etblink",
+          "html_url": "https://github.com/etblink",
+          "followers_url": "https://api.github.com/users/etblink/followers",
+          "following_url": "https://api.github.com/users/etblink/following{/other_user}",
+          "gists_url": "https://api.github.com/users/etblink/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/etblink/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/etblink/subscriptions",
+          "organizations_url": "https://api.github.com/users/etblink/orgs",
+          "repos_url": "https://api.github.com/users/etblink/repos",
+          "events_url": "https://api.github.com/users/etblink/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/etblink/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "body": "Fixed. The ordinary Release label is now state-aware. Only a stable `healthy` / `rollback-available` deployment with verified public read-back says **Public site is serving**. `deploying`, `degraded`, and `unreachable` states instead say **Last confirmed deployed Website Release**, so persisted `activeRelease` evidence cannot be mistaken for current public truth during recovery. Added a regression that requires the recovery label and forbids `Public site is serving` for an interrupted deployment.",
+        "created_at": "2026-10-04T02:20:26Z",
+        "updated_at": "2026-10-04T02:20:26Z",
+        "html_url": "https://github.com/etblink/HiVenues/pull/397#discussion_r4175813055",
+        "pull_request_url": "https://api.github.com/repos/etblink/HiVenues/pulls/397",
+        "_links": {
+          "self": {
+            "href": "https://api.github.com/repos/etblink/HiVenues/pulls/comments/4175813055"
+          },
+          "html": {
+            "href": "https://github.com/etblink/HiVenues/pull/397#discussion_r4175813055"
+          },
+          "pull_request": {
+            "href": "https://api.github.com/repos/etblink/HiVenues/pulls/397"
+          }
+        },
+        "reactions": {
+          "url": "https://api.github.com/repos/etblink/HiVenues/pulls/comments/4175813055/reactions",
+          "total_count": 0,
+          "+1": 0,
+          "-1": 0,
+          "laugh": 0,
+          "hooray": 0,
+          "confused": 0,
+          "heart": 0,
+          "rocket": 0,
+          "eyes": 0
+        },
+        "start_line": 243,
+        "original_start_line": 207,
+        "start_side": "RIGHT",
+        "line": 255,
+        "original_line": 210,
+        "side": "RIGHT",
+        "in_reply_to_id": 4175784160,
+        "author_association": "OWNER",
+        "original_position": 217,
+        "position": 262,
+        "subject_type": "line"
+      },
+      {
+        "url": "https://api.github.com/repos/etblink/HiVenues/pulls/comments/4175825313",
+        "pull_request_review_id": 5403916810,
+        "id": 4175825313,
+        "node_id": "PRRC_kwDOUIrttc745gmh",
+        "diff_hunk": "@@ -80,52 +111,186 @@\n       <% } %>\n \n       <section style=\"margin-top:2rem\">\n-        <p class=\"cc-kicker\">Local targets</p>\n-        <h2>Deployment state</h2>\n+        <p class=\"cc-kicker\">Public website</p>\n+        <h2>Where this Website Release is online</h2>\n \n         <% if (!deployments.length) { %>\n-          <p data-deployment-empty>No deployment targets yet.</p>\n+          <p data-deployment-empty>No server is connected yet. Connect a server above when you are ready to put a Website Release online.</p>\n         <% } %>\n \n         <div class=\"cc-release-list\">\n           <% deployments.forEach((deployment) => { %>\n+            <%\n+              const latestWebsiteRelease = (\n+                releases.find((item) => item.id === liveReleaseId)\n+                || releases.at(-1)\n+                || null\n+              );\n+              const activeWebsiteRelease = deployment.activeRelease\n+                ? releases.find((item) => item.id === deployment.activeRelease.id)\n+                : null;\n+              const selectedWebsiteRelease = deployment.selectedRelease\n+                ? releases.find((item) => item.id === deployment.selectedRelease.id)\n+                : null;\n+              const publicVerified = deployment.publicEndpoint?.publicReadBack?.state === 'verified';\n+              const latestDiffersFromPublic = Boolean(\n+                latestWebsiteRelease\n+                && deployment.activeRelease\n+                && (\n+                  latestWebsiteRelease.id !== deployment.activeRelease.id\n+                  || latestWebsiteRelease.digest !== deployment.activeRelease.digest\n+                )\n+              );\n+              const selectedDiffersFromPublic = Boolean(\n+                deployment.selectedRelease\n+                && deployment.activeRelease\n+                && (\n+                  deployment.selectedRelease.id !== deployment.activeRelease.id\n+                  || deployment.selectedRelease.digest !== deployment.activeRelease.digest\n+                )\n+              );\n+              let humanTitle = deployment.providerKind === 'synthetic-offline'\n+                ? 'Offline qualification target'\n+                : 'Server connection is being prepared';\n+              let humanBody = deployment.providerKind === 'synthetic-offline'\n+                ? 'This target does not affect a public website.'\n+                : 'HiVenues has not yet confirmed a Website Release on this server.';\n+              let humanNext = deployment.providerKind === 'synthetic-offline'\n+                ? 'Use this only for qualification.'\n+                : 'Follow the server setup action shown below.';\n+\n+              if (deployment.providerKind === 'ssh-server') {\n+                if (deployment.state === 'disconnected') {\n+                  humanTitle = 'Public site preserved; Studio management is disconnected';\n+                  humanBody = 'The deployed site can keep running, but Studio cannot update or roll it back until management is reconnected.';\n+                  humanNext = 'Reconnect management when you need to manage this server again.';\n+                } else if (deployment.state === 'reauthorizing') {\n+                  humanTitle = 'Reconnecting Studio management';\n+                  humanBody = 'The public site stays in place while HiVenues restores only its bounded deployment authority.';\n+                  humanNext = 'Finish the reviewed management reconnection shown below.';\n+                } else if (deployment.state === 'deploying') {\n+                  humanTitle = 'Public update is incomplete';\n+                  humanBody = 'HiVenues has not accepted the previous public proof for this in-progress deployment. The preserved Release history remains available while the exact deployment is recovered.';\n+                  humanNext = 'Review and resume the interrupted deployment shown below.';\n+                } else if (deployment.state === 'degraded') {\n+                  humanTitle = 'Deployment needs attention';\n+                  humanBody = 'HiVenues stopped rather than guessing after a deployment or recovery proof failed.';\n+                  humanNext = 'Use the recovery action shown below before making another public change.';\n+                } else if (deployment.state === 'unreachable') {\n+                  humanTitle = 'Server could not be reached';\n+                  humanBody = 'The website state is preserved locally, but HiVenues could not complete its read-only server check.';\n+                  humanNext = 'Retry the read-only server verification shown below.';\n+                } else if (!deployment.activeRelease) {\n+                  if (deployment.state === 'bootstrap-ready') {\n+                    humanTitle = 'Server verified and ready';\n+                    humanBody = 'HiVenues has verified this server without changing it.';\n+                    humanNext = 'Choose a Website Release, prepare it, then review putting it online.';\n+                  } else if (['host-key-review', 'verifying'].includes(deployment.state)) {\n+                    humanTitle = 'Checking the server safely';\n+                    humanBody = 'HiVenues is still proving the server identity and read-only baseline.';\n+                    humanNext = 'Complete the trust or verification action shown below.';\n+                  }\n+                } else if (\n+                  publicVerified\n+                  && ['healthy', 'rollback-available'].includes(deployment.state)\n+                ) {\n+                  humanTitle = latestDiffersFromPublic\n+                    ? 'Public site is verified; a newer Website Release is ready'\n+                    : 'Public site is online and verified';\n+                  humanBody = deployment.publicEndpoint?.hostname\n+                    ? 'HiVenues confirmed the exact deployed Website Release at https://' + deployment.publicEndpoint.hostname + '/.'\n+                    : 'HiVenues confirmed the exact Website Release served by this deployment.';\n+                  humanNext = latestDiffersFromPublic\n+                    ? (\n+                        selectedWebsiteRelease?.id === latestWebsiteRelease?.id\n+                          ? 'The newer Website Release is selected. Prepare and review it before updating the public site.'\n+                          : 'Choose the newer Website Release below when you are ready to update the public site.'\n+                      )\n+                    : (\n+                        selectedDiffersFromPublic\n+                          ? 'A different Website Release is selected. Review it before updating the public site.'\n+                          : 'No deployment action is required unless you create or select another Website Release.'\n+                      );\n+                } else if (deployment.publicEndpoint) {\n+                  humanTitle = 'Website is deployed; public verification is not complete';\n+                  humanBody = 'The server has an exact Website Release, but the domain/TLS/public read-back lifecycle still needs confirmation.';\n+                  humanNext = 'Complete the domain or public verification action shown below.';",
+        "path": "views/hivenues/deployment.ejs",
+        "commit_id": "e469282b39d533f1803dcd47b61663dbf05043de",
+        "original_commit_id": "653050f509e7e0dbbc8a9f8bab9befd8589c083d",
+        "user": {
+          "login": "chatgpt-codex-connector[bot]",
+          "id": 199175422,
+          "node_id": "BOT_kgDOC98s_g",
+          "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D",
+          "html_url": "https://github.com/apps/chatgpt-codex-connector",
+          "followers_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/followers",
+          "following_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/following{/other_user}",
+          "gists_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/subscriptions",
+          "organizations_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/orgs",
+          "repos_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/repos",
+          "events_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/received_events",
+          "type": "Bot",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "body": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Surface known public read-back mismatches**\n\nWhen `verifyPublicHttps` records `publicReadBack.state === 'mismatch'` while the deployment remains `healthy` or `rollback-available`, this generic branch describes verification as merely incomplete and tells the owner to complete it, even though HiVenues already knows the public endpoint is serving the wrong identity or Release. Add a mismatch-specific human status before this fallback so the leading lifecycle summary exposes the failure rather than leaving it to the lower diagnostic card.\n\nUseful? React with 👍 / 👎.",
+        "created_at": "2026-10-04T02:25:14Z",
+        "updated_at": "2026-10-04T02:25:14Z",
+        "html_url": "https://github.com/etblink/HiVenues/pull/397#discussion_r4175825313",
+        "pull_request_url": "https://api.github.com/repos/etblink/HiVenues/pulls/397",
+        "_links": {
+          "self": {
+            "href": "https://api.github.com/repos/etblink/HiVenues/pulls/comments/4175825313"
+          },
+          "html": {
+            "href": "https://github.com/etblink/HiVenues/pull/397#discussion_r4175825313"
+          },
+          "pull_request": {
+            "href": "https://api.github.com/repos/etblink/HiVenues/pulls/397"
+          }
+        },
+        "reactions": {
+          "url": "https://api.github.com/repos/etblink/HiVenues/pulls/comments/4175825313/reactions",
+          "total_count": 0,
+          "+1": 0,
+          "-1": 0,
+          "laugh": 0,
+          "hooray": 0,
+          "confused": 0,
+          "heart": 0,
+          "rocket": 0,
+          "eyes": 0
+        },
+        "start_line": 221,
+        "original_start_line": 214,
+        "start_side": "RIGHT",
+        "line": 224,
+        "original_line": 217,
+        "side": "RIGHT",
+        "author_association": "NONE",
+        "original_position": 221,
+        "position": 228,
+        "subject_type": "line"
+      },
+      {
+        "url": "https://api.github.com/repos/etblink/HiVenues/pulls/comments/4175828688",
+        "pull_request_review_id": 5403920072,
+        "id": 4175828688,
+        "node_id": "PRRC_kwDOUIrttc745hbQ",
+        "diff_hunk": "@@ -80,52 +111,186 @@\n       <% } %>\n \n       <section style=\"margin-top:2rem\">\n-        <p class=\"cc-kicker\">Local targets</p>\n-        <h2>Deployment state</h2>\n+        <p class=\"cc-kicker\">Public website</p>\n+        <h2>Where this Website Release is online</h2>\n \n         <% if (!deployments.length) { %>\n-          <p data-deployment-empty>No deployment targets yet.</p>\n+          <p data-deployment-empty>No server is connected yet. Connect a server above when you are ready to put a Website Release online.</p>\n         <% } %>\n \n         <div class=\"cc-release-list\">\n           <% deployments.forEach((deployment) => { %>\n+            <%\n+              const latestWebsiteRelease = (\n+                releases.find((item) => item.id === liveReleaseId)\n+                || releases.at(-1)\n+                || null\n+              );\n+              const activeWebsiteRelease = deployment.activeRelease\n+                ? releases.find((item) => item.id === deployment.activeRelease.id)\n+                : null;\n+              const selectedWebsiteRelease = deployment.selectedRelease\n+                ? releases.find((item) => item.id === deployment.selectedRelease.id)\n+                : null;\n+              const publicVerified = deployment.publicEndpoint?.publicReadBack?.state === 'verified';\n+              const latestDiffersFromPublic = Boolean(\n+                latestWebsiteRelease\n+                && deployment.activeRelease\n+                && (\n+                  latestWebsiteRelease.id !== deployment.activeRelease.id\n+                  || latestWebsiteRelease.digest !== deployment.activeRelease.digest\n+                )\n+              );\n+              const selectedDiffersFromPublic = Boolean(\n+                deployment.selectedRelease\n+                && deployment.activeRelease\n+                && (\n+                  deployment.selectedRelease.id !== deployment.activeRelease.id\n+                  || deployment.selectedRelease.digest !== deployment.activeRelease.digest\n+                )\n+              );\n+              let humanTitle = deployment.providerKind === 'synthetic-offline'\n+                ? 'Offline qualification target'\n+                : 'Server connection is being prepared';\n+              let humanBody = deployment.providerKind === 'synthetic-offline'\n+                ? 'This target does not affect a public website.'\n+                : 'HiVenues has not yet confirmed a Website Release on this server.';\n+              let humanNext = deployment.providerKind === 'synthetic-offline'\n+                ? 'Use this only for qualification.'\n+                : 'Follow the server setup action shown below.';\n+\n+              if (deployment.providerKind === 'ssh-server') {\n+                if (deployment.state === 'disconnected') {\n+                  humanTitle = 'Public site preserved; Studio management is disconnected';\n+                  humanBody = 'The deployed site can keep running, but Studio cannot update or roll it back until management is reconnected.';\n+                  humanNext = 'Reconnect management when you need to manage this server again.';\n+                } else if (deployment.state === 'reauthorizing') {\n+                  humanTitle = 'Reconnecting Studio management';\n+                  humanBody = 'The public site stays in place while HiVenues restores only its bounded deployment authority.';\n+                  humanNext = 'Finish the reviewed management reconnection shown below.';\n+                } else if (deployment.state === 'deploying') {\n+                  humanTitle = 'Public update is incomplete';\n+                  humanBody = 'HiVenues has not accepted the previous public proof for this in-progress deployment. The preserved Release history remains available while the exact deployment is recovered.';\n+                  humanNext = 'Review and resume the interrupted deployment shown below.';\n+                } else if (deployment.state === 'degraded') {\n+                  humanTitle = 'Deployment needs attention';\n+                  humanBody = 'HiVenues stopped rather than guessing after a deployment or recovery proof failed.';\n+                  humanNext = 'Use the recovery action shown below before making another public change.';\n+                } else if (deployment.state === 'unreachable') {\n+                  humanTitle = 'Server could not be reached';\n+                  humanBody = 'The website state is preserved locally, but HiVenues could not complete its read-only server check.';\n+                  humanNext = 'Retry the read-only server verification shown below.';\n+                } else if (!deployment.activeRelease) {\n+                  if (deployment.state === 'bootstrap-ready') {\n+                    humanTitle = 'Server verified and ready';\n+                    humanBody = 'HiVenues has verified this server without changing it.';\n+                    humanNext = 'Choose a Website Release, prepare it, then review putting it online.';\n+                  } else if (['host-key-review', 'verifying'].includes(deployment.state)) {\n+                    humanTitle = 'Checking the server safely';\n+                    humanBody = 'HiVenues is still proving the server identity and read-only baseline.';\n+                    humanNext = 'Complete the trust or verification action shown below.';\n+                  }\n+                } else if (\n+                  publicVerified\n+                  && ['healthy', 'rollback-available'].includes(deployment.state)\n+                ) {\n+                  humanTitle = latestDiffersFromPublic\n+                    ? 'Public site is verified; a newer Website Release is ready'\n+                    : 'Public site is online and verified';\n+                  humanBody = deployment.publicEndpoint?.hostname\n+                    ? 'HiVenues confirmed the exact deployed Website Release at https://' + deployment.publicEndpoint.hostname + '/.'\n+                    : 'HiVenues confirmed the exact Website Release served by this deployment.';\n+                  humanNext = latestDiffersFromPublic\n+                    ? (\n+                        selectedWebsiteRelease?.id === latestWebsiteRelease?.id\n+                          ? 'The newer Website Release is selected. Prepare and review it before updating the public site.'\n+                          : 'Choose the newer Website Release below when you are ready to update the public site.'\n+                      )\n+                    : (\n+                        selectedDiffersFromPublic\n+                          ? 'A different Website Release is selected. Review it before updating the public site.'\n+                          : 'No deployment action is required unless you create or select another Website Release.'\n+                      );\n+                } else if (deployment.publicEndpoint) {\n+                  humanTitle = 'Website is deployed; public verification is not complete';\n+                  humanBody = 'The server has an exact Website Release, but the domain/TLS/public read-back lifecycle still needs confirmation.';\n+                  humanNext = 'Complete the domain or public verification action shown below.';",
+        "path": "views/hivenues/deployment.ejs",
+        "commit_id": "e469282b39d533f1803dcd47b61663dbf05043de",
+        "original_commit_id": "653050f509e7e0dbbc8a9f8bab9befd8589c083d",
+        "user": {
+          "login": "etblink",
+          "id": 30190328,
+          "node_id": "MDQ6VXNlcjMwMTkwMzI4",
+          "avatar_url": "https://avatars.githubusercontent.com/u/30190328?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/etblink",
+          "html_url": "https://github.com/etblink",
+          "followers_url": "https://api.github.com/users/etblink/followers",
+          "following_url": "https://api.github.com/users/etblink/following{/other_user}",
+          "gists_url": "https://api.github.com/users/etblink/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/etblink/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/etblink/subscriptions",
+          "organizations_url": "https://api.github.com/users/etblink/orgs",
+          "repos_url": "https://api.github.com/users/etblink/repos",
+          "events_url": "https://api.github.com/users/etblink/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/etblink/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "body": "Fixed. A known `publicReadBack.state === 'mismatch'` on a stable `healthy` / `rollback-available` deployment now gets an explicit leading status: **Public site does not match this deployment**. The summary explains that the exact runtime or Website Release identity did not match and directs the owner to the mismatch diagnostics before another public change. A regression now requires that failure summary and forbids verified/serving language and the public-site shortcut for this state.",
+        "created_at": "2026-10-04T02:26:48Z",
+        "updated_at": "2026-10-04T02:26:48Z",
+        "html_url": "https://github.com/etblink/HiVenues/pull/397#discussion_r4175828688",
+        "pull_request_url": "https://api.github.com/repos/etblink/HiVenues/pulls/397",
+        "_links": {
+          "self": {
+            "href": "https://api.github.com/repos/etblink/HiVenues/pulls/comments/4175828688"
+          },
+          "html": {
+            "href": "https://github.com/etblink/HiVenues/pull/397#discussion_r4175828688"
+          },
+          "pull_request": {
+            "href": "https://api.github.com/repos/etblink/HiVenues/pulls/397"
+          }
+        },
+        "reactions": {
+          "url": "https://api.github.com/repos/etblink/HiVenues/pulls/comments/4175828688/reactions",
+          "total_count": 0,
+          "+1": 0,
+          "-1": 0,
+          "laugh": 0,
+          "hooray": 0,
+          "confused": 0,
+          "heart": 0,
+          "rocket": 0,
+          "eyes": 0
+        },
+        "start_line": 221,
+        "original_start_line": 214,
+        "start_side": "RIGHT",
+        "line": 224,
+        "original_line": 217,
+        "side": "RIGHT",
+        "in_reply_to_id": 4175825313,
+        "author_association": "OWNER",
+        "original_position": 221,
+        "position": 228,
+        "subject_type": "line"
+      },
+      {
+        "url": "https://api.github.com/repos/etblink/HiVenues/pulls/comments/4175850167",
+        "pull_request_review_id": 5403940895,
+        "id": 4175850167,
+        "node_id": "PRRC_kwDOUIrttc745mq3",
+        "diff_hunk": "@@ -0,0 +1,509 @@\n+'use strict';\n+\n+const assert = require('node:assert/strict');\n+const path = require('node:path');\n+const test = require('node:test');\n+const ejs = require('ejs');\n+const request = require('supertest');\n+\n+const { createHiVenuesApp } = require('../src/product/app');\n+const { buildViewModel } = require('../src/product/present');\n+const { HiVenuesStore } = require('../src/product/store');\n+\n+const VIEWS = path.join(__dirname, '..', 'views', 'hivenues');\n+\n+async function renderView(name, data) {\n+  return ejs.renderFile(path.join(VIEWS, name + '.ejs'), data);\n+}\n+\n+function model() {\n+  const store = new HiVenuesStore();\n+  const snapshot = store.snapshot('harbor-and-hearth');\n+  return { store, snapshot, view: buildViewModel(snapshot) };\n+}\n+\n+test('Era 7 Stage 5C: Website Release review explicitly separates Release creation from external deployment', async () => {\n+  const { store } = model();\n+  const app = createHiVenuesApp({\n+    store,\n+    identityServices: false,\n+    participationServices: false,\n+  });\n+\n+  const response = await request(app)\n+    .get('/hivenues/studio/harbor-and-hearth/release')\n+    .expect(200);\n+\n+  assert.match(response.text, /Latest website Release/);\n+  assert.match(response.text, /does <strong>not<\\/strong> update[\\s\\S]*external server/i);\n+  assert.match(response.text, /Create website Release/);\n+  assert.match(response.text, /Putting a Release online is separate/);\n+  assert.match(response.text, /Deployment is the separate action/);\n+  assert.doesNotMatch(response.text, /<p class=\"cc-kicker\">Currently live<\\/p>/);\n+  assert.doesNotMatch(response.text, />Publish website release<\\/button>/);\n+});\n+\n+test('Era 7 Stage 5C: deployment page leads with the human lifecycle and moves raw state behind technical disclosure', async () => {\n+  const { view } = model();\n+  const release = view.releases.find((item) => item.id === view.liveReleaseId) || view.releases[0];\n+  const deployment = {\n+    version: 1,\n+    id: 'deployment-stage5c',\n+    hostSlug: 'harbor-and-hearth',\n+    providerKind: 'ssh-server',\n+    providerProfile: 'privex-reference',\n+    capabilities: [],\n+    state: 'rollback-available',\n+    stateReason: 'exact-release-readback-match',\n+    providerState: 'ready',\n+    paymentState: 'not-requested',\n+    targetPublicFacts: {\n+      host: '203.0.113.10',\n+      port: 22,\n+      username: 'hivenues-deploy',\n+      bootstrapUsername: 'debian',\n+    },\n+    authorityRef: 'authority-stage5c',\n+    authorityPublic: null,\n+    selectedRelease: { id: release.id, digest: release.digest },\n+    package: {\n+      schemaVersion: 1,\n+      releaseId: release.id,\n+      releaseDigest: release.digest,\n+      packageDigest: 'a'.repeat(64),\n+    },\n+    activeRelease: {\n+      id: release.id,\n+      digest: release.digest,\n+      packageDigest: 'a'.repeat(64),\n+      deployedAt: '2026-10-04T01:00:00.000Z',\n+    },\n+    previousRelease: null,\n+    runtimeProfile: {\n+      kind: 'hivenues-public-runtime',\n+      sourceSha: '1'.repeat(40),\n+      sourceTree: '2'.repeat(40),\n+      packageVersion: '1.0.0',\n+      nodeVersion: 'v24.19.0',\n+      bundleDigest: '3'.repeat(64),\n+    },\n+    pendingRuntimeProfile: null,\n+    publicEndpoint: {\n+      hostname: 'dev.example.test',\n+      domainState: 'dns-confirmed',\n+      dns: {\n+        requirements: [{ type: 'A', name: 'dev.example.test', values: ['203.0.113.10'] }],\n+        observation: null,\n+      },\n+      tls: { state: 'verified' },\n+      publicReadBack: { state: 'verified' },\n+    },\n+    healthState: 'healthy',\n+    rollbackState: 'available',\n+    history: [],\n+  };\n+\n+  const html = await renderView('deployment', {\n+    pageTitle: 'Deployment — Harbor & Hearth',\n+    ...view,\n+    deploymentAvailable: true,\n+    deploymentProfile: {\n+      capabilities: ['DEPLOY_RELEASE'],\n+      externalEffects: false,\n+    },\n+    deploymentAuthorityAvailable: false,\n+    deploymentVerificationAvailable: false,\n+    deploymentMutationAvailable: false,\n+    deploymentPublicationInspectionAvailable: false,\n+    deploymentPublicationExecutionAvailable: false,\n+    deploymentLifecycleAvailable: false,\n+    deploymentReauthorizationAvailable: false,\n+    deployments: [deployment],\n+    error: '',\n+  });\n+\n+  assert.match(html, /Working changes → Website Release → Put online → Connect domain → Verify public site/);\n+  assert.match(html, /data-deployment-human-status/);\n+  assert.match(html, /Public site is online and verified/);\n+  assert.match(html, /Public site is serving:/);\n+  assert.match(html, /data-open-public-site/);\n+  assert.match(html, /data-deployment-technical-details/);\n+  assert.match(html, /<summary>Technical deployment details<\\/summary>/);\n+  assert.match(html, /Internal state:[\\s\\S]*rollback-available/);\n+  assert.match(html, /Advanced and qualification targets/);\n+  assert.match(html, /Website Release to put online/);\n+  assert.match(html, /Prepare this Website Release/);\n+  assert.match(html, /Public site is serving the expected Website Release/);\n+  assert.match(html, /<summary>Exact verification<\\/summary>/);\n+});\n+\n+test('Era 7 Stage 5C: verified public site still surfaces a newer Website Release that has not been deployed', async () => {\n+  const { view } = model();\n+  const releaseA = view.releases.find((item) => item.id === view.liveReleaseId) || view.releases[0];\n+  const releaseB = {\n+    ...structuredClone(releaseA),\n+    id: 'release-stage5c-newer',\n+    digest: '9'.repeat(64),\n+    draftRevision: releaseA.draftRevision + 1,\n+  };\n+  const releases = [...view.releases, releaseB];\n+  const deployment = {\n+    version: 1,\n+    id: 'deployment-stage5c-newer-release',\n+    hostSlug: 'harbor-and-hearth',\n+    providerKind: 'ssh-server',\n+    providerProfile: 'privex-reference',\n+    capabilities: [],\n+    state: 'rollback-available',\n+    stateReason: 'exact-release-readback-match',\n+    providerState: 'ready',\n+    paymentState: 'not-requested',\n+    targetPublicFacts: {\n+      host: '203.0.113.12',\n+      port: 22,\n+      username: 'hivenues-deploy',\n+      bootstrapUsername: 'debian',\n+    },\n+    authorityRef: 'authority-stage5c-newer-release',\n+    authorityPublic: null,\n+    selectedRelease: { id: releaseA.id, digest: releaseA.digest },\n+    package: {\n+      schemaVersion: 1,\n+      releaseId: releaseA.id,\n+      releaseDigest: releaseA.digest,\n+      packageDigest: 'a'.repeat(64),\n+    },\n+    activeRelease: {\n+      id: releaseA.id,\n+      digest: releaseA.digest,\n+      packageDigest: 'a'.repeat(64),\n+      deployedAt: '2026-10-04T01:00:00.000Z',\n+    },\n+    previousRelease: null,\n+    runtimeProfile: {\n+      kind: 'hivenues-public-runtime',\n+      sourceSha: '1'.repeat(40),\n+      sourceTree: '2'.repeat(40),\n+      packageVersion: '1.0.0',\n+      nodeVersion: 'v24.19.0',\n+      bundleDigest: '3'.repeat(64),\n+    },\n+    pendingRuntimeProfile: null,\n+    publicEndpoint: {\n+      hostname: 'dev.example.test',\n+      domainState: 'dns-confirmed',\n+      dns: {\n+        requirements: [{ type: 'A', name: 'dev.example.test', values: ['203.0.113.12'] }],\n+        observation: null,\n+      },\n+      tls: { state: 'verified' },\n+      publicReadBack: { state: 'verified' },\n+    },\n+    healthState: 'healthy',\n+    rollbackState: 'available',\n+    history: [],\n+  };\n+\n+  const html = await renderView('deployment', {\n+    pageTitle: 'Deployment — Harbor & Hearth',\n+    ...view,\n+    releases,\n+    liveReleaseId: releaseB.id,\n+    deploymentAvailable: true,\n+    deploymentProfile: { capabilities: ['DEPLOY_RELEASE'], externalEffects: false },\n+    deploymentAuthorityAvailable: false,\n+    deploymentVerificationAvailable: false,\n+    deploymentMutationAvailable: false,\n+    deploymentPublicationInspectionAvailable: false,\n+    deploymentPublicationExecutionAvailable: false,\n+    deploymentLifecycleAvailable: false,\n+    deploymentReauthorizationAvailable: false,\n+    deployments: [deployment],\n+    error: '',\n+  });\n+\n+  assert.match(html, /Public site is verified; a newer Website Release is ready/);\n+  assert.match(html, new RegExp('data-latest-website-release[\\\\s\\\\S]*Version ' + releaseB.draftRevision));\n+  assert.match(html, new RegExp('data-public-website-release[\\\\s\\\\S]*Version ' + releaseA.draftRevision));\n+  assert.match(html, /Choose the newer Website Release below/);\n+  assert.doesNotMatch(html, /No deployment action is required/);\n+});\n+\n+test('Era 7 Stage 5C P1: interrupted deployment is never presented as publicly verified from stale proof', async () => {\n+  const { view } = model();\n+  const release = view.releases.find((item) => item.id === view.liveReleaseId) || view.releases[0];\n+  const deployment = {\n+    version: 1,\n+    id: 'deployment-stage5c-interrupted',\n+    hostSlug: 'harbor-and-hearth',\n+    providerKind: 'ssh-server',\n+    providerProfile: 'privex-reference',\n+    capabilities: [],\n+    state: 'deploying',\n+    stateReason: 'exact-release-deployment-started',\n+    providerState: 'ready',\n+    paymentState: 'not-requested',\n+    targetPublicFacts: {\n+      host: '203.0.113.11',\n+      port: 22,\n+      username: 'hivenues-deploy',\n+      bootstrapUsername: 'debian',\n+    },\n+    authorityRef: 'authority-stage5c-interrupted',\n+    authorityPublic: null,\n+    selectedRelease: { id: release.id, digest: release.digest },\n+    package: {\n+      schemaVersion: 1,\n+      releaseId: release.id,\n+      releaseDigest: release.digest,\n+      packageDigest: 'b'.repeat(64),\n+    },\n+    activeRelease: {\n+      id: release.id,\n+      digest: release.digest,\n+      packageDigest: 'a'.repeat(64),\n+      deployedAt: '2026-10-04T01:00:00.000Z',\n+    },\n+    previousRelease: null,\n+    runtimeProfile: {\n+      kind: 'hivenues-public-runtime',\n+      sourceSha: '1'.repeat(40),\n+      sourceTree: '2'.repeat(40),\n+      packageVersion: '1.0.0',\n+      nodeVersion: 'v24.19.0',\n+      bundleDigest: '3'.repeat(64),\n+    },\n+    pendingRuntimeProfile: {\n+      kind: 'hivenues-public-runtime',\n+      sourceSha: '4'.repeat(40),\n+      sourceTree: '5'.repeat(40),\n+      packageVersion: '1.0.0',\n+      nodeVersion: 'v24.19.0',\n+      bundleDigest: '6'.repeat(64),\n+    },\n+    publicEndpoint: {\n+      hostname: 'dev.example.test',\n+      domainState: 'dns-confirmed',\n+      dns: {\n+        requirements: [{ type: 'A', name: 'dev.example.test', values: ['203.0.113.11'] }],\n+        observation: null,\n+      },\n+      tls: { state: 'verified' },\n+      publicReadBack: { state: 'verified' },\n+    },\n+    healthState: 'checking',\n+    rollbackState: 'unavailable',\n+    history: [],\n+  };\n+\n+  const html = await renderView('deployment', {\n+    pageTitle: 'Deployment — Harbor & Hearth',\n+    ...view,\n+    deploymentAvailable: true,\n+    deploymentProfile: { capabilities: ['DEPLOY_RELEASE'], externalEffects: false },\n+    deploymentAuthorityAvailable: false,\n+    deploymentVerificationAvailable: false,\n+    deploymentMutationAvailable: true,\n+    deploymentPublicationInspectionAvailable: false,\n+    deploymentPublicationExecutionAvailable: false,\n+    deploymentLifecycleAvailable: false,\n+    deploymentReauthorizationAvailable: false,\n+    deployments: [deployment],\n+    error: '',\n+  });\n+\n+  assert.match(html, /Public update is incomplete/);\n+  assert.match(html, /Review and resume the interrupted deployment/);\n+  assert.match(html, /Last confirmed deployed Website Release:/);\n+  assert.doesNotMatch(html, /Public site is serving:/);\n+  assert.doesNotMatch(html, /Public site is online and verified/);\n+  assert.doesNotMatch(html, /No deployment action is required/);\n+});\n+\n+test('Era 7 Stage 5C P2: known public read-back mismatch is surfaced as a failure', async () => {\n+  const { view } = model();\n+  const release = view.releases.find((item) => item.id === view.liveReleaseId) || view.releases[0];\n+  const deployment = {\n+    version: 1,\n+    id: 'deployment-stage5c-public-mismatch',\n+    hostSlug: 'harbor-and-hearth',\n+    providerKind: 'ssh-server',\n+    providerProfile: 'privex-reference',\n+    capabilities: [],\n+    state: 'rollback-available',\n+    stateReason: 'exact-release-readback-match',\n+    providerState: 'ready',\n+    paymentState: 'not-requested',\n+    targetPublicFacts: {\n+      host: '203.0.113.13',\n+      port: 22,\n+      username: 'hivenues-deploy',\n+      bootstrapUsername: 'debian',\n+    },\n+    authorityRef: 'authority-stage5c-public-mismatch',\n+    authorityPublic: null,\n+    selectedRelease: { id: release.id, digest: release.digest },\n+    package: {\n+      schemaVersion: 1,\n+      releaseId: release.id,\n+      releaseDigest: release.digest,\n+      packageDigest: 'a'.repeat(64),\n+    },\n+    activeRelease: {\n+      id: release.id,\n+      digest: release.digest,\n+      packageDigest: 'a'.repeat(64),\n+      deployedAt: '2026-10-04T01:00:00.000Z',\n+    },\n+    previousRelease: null,\n+    runtimeProfile: {\n+      kind: 'hivenues-public-runtime',\n+      sourceSha: '1'.repeat(40),\n+      sourceTree: '2'.repeat(40),\n+      packageVersion: '1.0.0',\n+      nodeVersion: 'v24.19.0',\n+      bundleDigest: '3'.repeat(64),\n+    },\n+    pendingRuntimeProfile: null,\n+    publicEndpoint: {\n+      hostname: 'dev.example.test',\n+      domainState: 'dns-confirmed',\n+      dns: {\n+        requirements: [{ type: 'A', name: 'dev.example.test', values: ['203.0.113.13'] }],\n+        observation: null,\n+      },\n+      tls: { state: 'verified' },\n+      publicReadBack: { state: 'mismatch' },",
+        "path": "test/era7-stage5c-lifecycle-clarity.test.js",
+        "commit_id": "535ba7975c269b7b521c52ca127e2f70b9be5c27",
+        "original_commit_id": "535ba7975c269b7b521c52ca127e2f70b9be5c27",
+        "user": {
+          "login": "chatgpt-codex-connector[bot]",
+          "id": 199175422,
+          "node_id": "BOT_kgDOC98s_g",
+          "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D",
+          "html_url": "https://github.com/apps/chatgpt-codex-connector",
+          "followers_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/followers",
+          "following_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/following{/other_user}",
+          "gists_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/subscriptions",
+          "organizations_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/orgs",
+          "repos_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/repos",
+          "events_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/received_events",
+          "type": "Bot",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "body": "**<sub><sub>![P1 Badge](https://img.shields.io/badge/P1-orange?style=flat)</sub></sub>  Populate mismatch fields in the new fixture**\n\nThis fixture reaches the existing mismatch diagnostic, which unconditionally evaluates `deployment.publicEndpoint.publicReadBack.mismatchFields.join(', ')`; because `mismatchFields` is absent here, the new test throws a `TypeError` during EJS rendering before any of its assertions run, failing the test suite whenever dependencies are installed. Add a representative `mismatchFields` array to the fixture.\n\nUseful? React with 👍 / 👎.",
+        "created_at": "2026-10-04T02:32:29Z",
+        "updated_at": "2026-10-04T02:32:29Z",
+        "html_url": "https://github.com/etblink/HiVenues/pull/397#discussion_r4175850167",
+        "pull_request_url": "https://api.github.com/repos/etblink/HiVenues/pulls/397",
+        "_links": {
+          "self": {
+            "href": "https://api.github.com/repos/etblink/HiVenues/pulls/comments/4175850167"
+          },
+          "html": {
+            "href": "https://github.com/etblink/HiVenues/pull/397#discussion_r4175850167"
+          },
+          "pull_request": {
+            "href": "https://api.github.com/repos/etblink/HiVenues/pulls/397"
+          }
+        },
+        "reactions": {
+          "url": "https://api.github.com/repos/etblink/HiVenues/pulls/comments/4175850167/reactions",
+          "total_count": 0,
+          "+1": 0,
+          "-1": 0,
+          "laugh": 0,
+          "hooray": 0,
+          "confused": 0,
+          "heart": 0,
+          "rocket": 0,
+          "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": null,
+        "original_line": 376,
+        "side": "RIGHT",
+        "author_association": "NONE",
+        "original_position": 376,
+        "position": 1,
+        "subject_type": "line"
+      },
+      {
+        "url": "https://api.github.com/repos/etblink/HiVenues/pulls/comments/4175850173",
+        "pull_request_review_id": 5403940895,
+        "id": 4175850173,
+        "node_id": "PRRC_kwDOUIrttc745mq9",
+        "diff_hunk": "@@ -5,68 +5,113 @@\n </head>\n <body class=\"cc-task-body\">\n   <main class=\"cc-task\" data-deployment-exact-review>\n+    <%\n+      const isInitialServerSetup = (\n+        review.target.currentUsername === review.target.bootstrapUsername\n+        && !deployment.activeRelease\n+      );\n+      const sameWebsiteRelease = Boolean(\n+        deployment.activeRelease\n+        && deployment.activeRelease.id === review.release.id\n+        && deployment.activeRelease.digest === review.release.digest\n+      );\n+      const actionHeading = deployment.state === 'deploying'\n+        ? 'Resume this interrupted deployment safely.'\n+        : (isInitialServerSetup\n+          ? 'Set up this server and put the Website Release online.'\n+          : (sameWebsiteRelease\n+            ? 'Update the public-site runtime without changing the Website Release.'\n+            : 'Put this Website Release online.'));\n+      const actionLead = isInitialServerSetup\n+        ? 'HiVenues will set up its bounded server runtime, install the exact Website Release, move ongoing management to the restricted deployment account, and verify the result.'\n+        : (sameWebsiteRelease\n+          ? 'The Website Release is already the public content. This action updates the qualified HiVenues runtime on the established restricted deployment account and then re-verifies the exact Release.'",
+        "path": "views/hivenues/deployment-review.ejs",
+        "commit_id": "535ba7975c269b7b521c52ca127e2f70b9be5c27",
+        "original_commit_id": "535ba7975c269b7b521c52ca127e2f70b9be5c27",
+        "user": {
+          "login": "chatgpt-codex-connector[bot]",
+          "id": 199175422,
+          "node_id": "BOT_kgDOC98s_g",
+          "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D",
+          "html_url": "https://github.com/apps/chatgpt-codex-connector",
+          "followers_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/followers",
+          "following_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/following{/other_user}",
+          "gists_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/subscriptions",
+          "organizations_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/orgs",
+          "repos_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/repos",
+          "events_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/received_events",
+          "type": "Bot",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "body": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Don't call an unverified server release public**\n\nWhen the selected Release matches `activeRelease` but the deployment has no verified public read-back—for example, an established server before a domain is connected—`sameWebsiteRelease` is still true and this review says the Release is already “public content.” An active Release only proves what is installed on the server, so this reintroduces the exact server-versus-public-site ambiguity the lifecycle UI is intended to remove; describe it as already deployed content or gate the public wording on verified public proof.\n\nUseful? React with 👍 / 👎.",
+        "created_at": "2026-10-04T02:32:29Z",
+        "updated_at": "2026-10-04T02:32:29Z",
+        "html_url": "https://github.com/etblink/HiVenues/pull/397#discussion_r4175850173",
+        "pull_request_url": "https://api.github.com/repos/etblink/HiVenues/pulls/397",
+        "_links": {
+          "self": {
+            "href": "https://api.github.com/repos/etblink/HiVenues/pulls/comments/4175850173"
+          },
+          "html": {
+            "href": "https://github.com/etblink/HiVenues/pull/397#discussion_r4175850173"
+          },
+          "pull_request": {
+            "href": "https://api.github.com/repos/etblink/HiVenues/pulls/397"
+          }
+        },
+        "reactions": {
+          "url": "https://api.github.com/repos/etblink/HiVenues/pulls/comments/4175850173/reactions",
+          "total_count": 0,
+          "+1": 0,
+          "-1": 0,
+          "laugh": 0,
+          "hooray": 0,
+          "confused": 0,
+          "heart": 0,
+          "rocket": 0,
+          "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": 27,
+        "start_side": "RIGHT",
+        "line": null,
+        "original_line": 28,
+        "side": "RIGHT",
+        "author_association": "NONE",
+        "original_position": 24,
+        "position": 1,
+        "subject_type": "line"
+      },
+      {
+        "url": "https://api.github.com/repos/etblink/HiVenues/pulls/comments/4175853731",
+        "pull_request_review_id": 5403944723,
+        "id": 4175853731,
+        "node_id": "PRRC_kwDOUIrttc745nij",
+        "diff_hunk": "@@ -0,0 +1,509 @@\n+'use strict';\n+\n+const assert = require('node:assert/strict');\n+const path = require('node:path');\n+const test = require('node:test');\n+const ejs = require('ejs');\n+const request = require('supertest');\n+\n+const { createHiVenuesApp } = require('../src/product/app');\n+const { buildViewModel } = require('../src/product/present');\n+const { HiVenuesStore } = require('../src/product/store');\n+\n+const VIEWS = path.join(__dirname, '..', 'views', 'hivenues');\n+\n+async function renderView(name, data) {\n+  return ejs.renderFile(path.join(VIEWS, name + '.ejs'), data);\n+}\n+\n+function model() {\n+  const store = new HiVenuesStore();\n+  const snapshot = store.snapshot('harbor-and-hearth');\n+  return { store, snapshot, view: buildViewModel(snapshot) };\n+}\n+\n+test('Era 7 Stage 5C: Website Release review explicitly separates Release creation from external deployment', async () => {\n+  const { store } = model();\n+  const app = createHiVenuesApp({\n+    store,\n+    identityServices: false,\n+    participationServices: false,\n+  });\n+\n+  const response = await request(app)\n+    .get('/hivenues/studio/harbor-and-hearth/release')\n+    .expect(200);\n+\n+  assert.match(response.text, /Latest website Release/);\n+  assert.match(response.text, /does <strong>not<\\/strong> update[\\s\\S]*external server/i);\n+  assert.match(response.text, /Create website Release/);\n+  assert.match(response.text, /Putting a Release online is separate/);\n+  assert.match(response.text, /Deployment is the separate action/);\n+  assert.doesNotMatch(response.text, /<p class=\"cc-kicker\">Currently live<\\/p>/);\n+  assert.doesNotMatch(response.text, />Publish website release<\\/button>/);\n+});\n+\n+test('Era 7 Stage 5C: deployment page leads with the human lifecycle and moves raw state behind technical disclosure', async () => {\n+  const { view } = model();\n+  const release = view.releases.find((item) => item.id === view.liveReleaseId) || view.releases[0];\n+  const deployment = {\n+    version: 1,\n+    id: 'deployment-stage5c',\n+    hostSlug: 'harbor-and-hearth',\n+    providerKind: 'ssh-server',\n+    providerProfile: 'privex-reference',\n+    capabilities: [],\n+    state: 'rollback-available',\n+    stateReason: 'exact-release-readback-match',\n+    providerState: 'ready',\n+    paymentState: 'not-requested',\n+    targetPublicFacts: {\n+      host: '203.0.113.10',\n+      port: 22,\n+      username: 'hivenues-deploy',\n+      bootstrapUsername: 'debian',\n+    },\n+    authorityRef: 'authority-stage5c',\n+    authorityPublic: null,\n+    selectedRelease: { id: release.id, digest: release.digest },\n+    package: {\n+      schemaVersion: 1,\n+      releaseId: release.id,\n+      releaseDigest: release.digest,\n+      packageDigest: 'a'.repeat(64),\n+    },\n+    activeRelease: {\n+      id: release.id,\n+      digest: release.digest,\n+      packageDigest: 'a'.repeat(64),\n+      deployedAt: '2026-10-04T01:00:00.000Z',\n+    },\n+    previousRelease: null,\n+    runtimeProfile: {\n+      kind: 'hivenues-public-runtime',\n+      sourceSha: '1'.repeat(40),\n+      sourceTree: '2'.repeat(40),\n+      packageVersion: '1.0.0',\n+      nodeVersion: 'v24.19.0',\n+      bundleDigest: '3'.repeat(64),\n+    },\n+    pendingRuntimeProfile: null,\n+    publicEndpoint: {\n+      hostname: 'dev.example.test',\n+      domainState: 'dns-confirmed',\n+      dns: {\n+        requirements: [{ type: 'A', name: 'dev.example.test', values: ['203.0.113.10'] }],\n+        observation: null,\n+      },\n+      tls: { state: 'verified' },\n+      publicReadBack: { state: 'verified' },\n+    },\n+    healthState: 'healthy',\n+    rollbackState: 'available',\n+    history: [],\n+  };\n+\n+  const html = await renderView('deployment', {\n+    pageTitle: 'Deployment — Harbor & Hearth',\n+    ...view,\n+    deploymentAvailable: true,\n+    deploymentProfile: {\n+      capabilities: ['DEPLOY_RELEASE'],\n+      externalEffects: false,\n+    },\n+    deploymentAuthorityAvailable: false,\n+    deploymentVerificationAvailable: false,\n+    deploymentMutationAvailable: false,\n+    deploymentPublicationInspectionAvailable: false,\n+    deploymentPublicationExecutionAvailable: false,\n+    deploymentLifecycleAvailable: false,\n+    deploymentReauthorizationAvailable: false,\n+    deployments: [deployment],\n+    error: '',\n+  });\n+\n+  assert.match(html, /Working changes → Website Release → Put online → Connect domain → Verify public site/);\n+  assert.match(html, /data-deployment-human-status/);\n+  assert.match(html, /Public site is online and verified/);\n+  assert.match(html, /Public site is serving:/);\n+  assert.match(html, /data-open-public-site/);\n+  assert.match(html, /data-deployment-technical-details/);\n+  assert.match(html, /<summary>Technical deployment details<\\/summary>/);\n+  assert.match(html, /Internal state:[\\s\\S]*rollback-available/);\n+  assert.match(html, /Advanced and qualification targets/);\n+  assert.match(html, /Website Release to put online/);\n+  assert.match(html, /Prepare this Website Release/);\n+  assert.match(html, /Public site is serving the expected Website Release/);\n+  assert.match(html, /<summary>Exact verification<\\/summary>/);\n+});\n+\n+test('Era 7 Stage 5C: verified public site still surfaces a newer Website Release that has not been deployed', async () => {\n+  const { view } = model();\n+  const releaseA = view.releases.find((item) => item.id === view.liveReleaseId) || view.releases[0];\n+  const releaseB = {\n+    ...structuredClone(releaseA),\n+    id: 'release-stage5c-newer',\n+    digest: '9'.repeat(64),\n+    draftRevision: releaseA.draftRevision + 1,\n+  };\n+  const releases = [...view.releases, releaseB];\n+  const deployment = {\n+    version: 1,\n+    id: 'deployment-stage5c-newer-release',\n+    hostSlug: 'harbor-and-hearth',\n+    providerKind: 'ssh-server',\n+    providerProfile: 'privex-reference',\n+    capabilities: [],\n+    state: 'rollback-available',\n+    stateReason: 'exact-release-readback-match',\n+    providerState: 'ready',\n+    paymentState: 'not-requested',\n+    targetPublicFacts: {\n+      host: '203.0.113.12',\n+      port: 22,\n+      username: 'hivenues-deploy',\n+      bootstrapUsername: 'debian',\n+    },\n+    authorityRef: 'authority-stage5c-newer-release',\n+    authorityPublic: null,\n+    selectedRelease: { id: releaseA.id, digest: releaseA.digest },\n+    package: {\n+      schemaVersion: 1,\n+      releaseId: releaseA.id,\n+      releaseDigest: releaseA.digest,\n+      packageDigest: 'a'.repeat(64),\n+    },\n+    activeRelease: {\n+      id: releaseA.id,\n+      digest: releaseA.digest,\n+      packageDigest: 'a'.repeat(64),\n+      deployedAt: '2026-10-04T01:00:00.000Z',\n+    },\n+    previousRelease: null,\n+    runtimeProfile: {\n+      kind: 'hivenues-public-runtime',\n+      sourceSha: '1'.repeat(40),\n+      sourceTree: '2'.repeat(40),\n+      packageVersion: '1.0.0',\n+      nodeVersion: 'v24.19.0',\n+      bundleDigest: '3'.repeat(64),\n+    },\n+    pendingRuntimeProfile: null,\n+    publicEndpoint: {\n+      hostname: 'dev.example.test',\n+      domainState: 'dns-confirmed',\n+      dns: {\n+        requirements: [{ type: 'A', name: 'dev.example.test', values: ['203.0.113.12'] }],\n+        observation: null,\n+      },\n+      tls: { state: 'verified' },\n+      publicReadBack: { state: 'verified' },\n+    },\n+    healthState: 'healthy',\n+    rollbackState: 'available',\n+    history: [],\n+  };\n+\n+  const html = await renderView('deployment', {\n+    pageTitle: 'Deployment — Harbor & Hearth',\n+    ...view,\n+    releases,\n+    liveReleaseId: releaseB.id,\n+    deploymentAvailable: true,\n+    deploymentProfile: { capabilities: ['DEPLOY_RELEASE'], externalEffects: false },\n+    deploymentAuthorityAvailable: false,\n+    deploymentVerificationAvailable: false,\n+    deploymentMutationAvailable: false,\n+    deploymentPublicationInspectionAvailable: false,\n+    deploymentPublicationExecutionAvailable: false,\n+    deploymentLifecycleAvailable: false,\n+    deploymentReauthorizationAvailable: false,\n+    deployments: [deployment],\n+    error: '',\n+  });\n+\n+  assert.match(html, /Public site is verified; a newer Website Release is ready/);\n+  assert.match(html, new RegExp('data-latest-website-release[\\\\s\\\\S]*Version ' + releaseB.draftRevision));\n+  assert.match(html, new RegExp('data-public-website-release[\\\\s\\\\S]*Version ' + releaseA.draftRevision));\n+  assert.match(html, /Choose the newer Website Release below/);\n+  assert.doesNotMatch(html, /No deployment action is required/);\n+});\n+\n+test('Era 7 Stage 5C P1: interrupted deployment is never presented as publicly verified from stale proof', async () => {\n+  const { view } = model();\n+  const release = view.releases.find((item) => item.id === view.liveReleaseId) || view.releases[0];\n+  const deployment = {\n+    version: 1,\n+    id: 'deployment-stage5c-interrupted',\n+    hostSlug: 'harbor-and-hearth',\n+    providerKind: 'ssh-server',\n+    providerProfile: 'privex-reference',\n+    capabilities: [],\n+    state: 'deploying',\n+    stateReason: 'exact-release-deployment-started',\n+    providerState: 'ready',\n+    paymentState: 'not-requested',\n+    targetPublicFacts: {\n+      host: '203.0.113.11',\n+      port: 22,\n+      username: 'hivenues-deploy',\n+      bootstrapUsername: 'debian',\n+    },\n+    authorityRef: 'authority-stage5c-interrupted',\n+    authorityPublic: null,\n+    selectedRelease: { id: release.id, digest: release.digest },\n+    package: {\n+      schemaVersion: 1,\n+      releaseId: release.id,\n+      releaseDigest: release.digest,\n+      packageDigest: 'b'.repeat(64),\n+    },\n+    activeRelease: {\n+      id: release.id,\n+      digest: release.digest,\n+      packageDigest: 'a'.repeat(64),\n+      deployedAt: '2026-10-04T01:00:00.000Z',\n+    },\n+    previousRelease: null,\n+    runtimeProfile: {\n+      kind: 'hivenues-public-runtime',\n+      sourceSha: '1'.repeat(40),\n+      sourceTree: '2'.repeat(40),\n+      packageVersion: '1.0.0',\n+      nodeVersion: 'v24.19.0',\n+      bundleDigest: '3'.repeat(64),\n+    },\n+    pendingRuntimeProfile: {\n+      kind: 'hivenues-public-runtime',\n+      sourceSha: '4'.repeat(40),\n+      sourceTree: '5'.repeat(40),\n+      packageVersion: '1.0.0',\n+      nodeVersion: 'v24.19.0',\n+      bundleDigest: '6'.repeat(64),\n+    },\n+    publicEndpoint: {\n+      hostname: 'dev.example.test',\n+      domainState: 'dns-confirmed',\n+      dns: {\n+        requirements: [{ type: 'A', name: 'dev.example.test', values: ['203.0.113.11'] }],\n+        observation: null,\n+      },\n+      tls: { state: 'verified' },\n+      publicReadBack: { state: 'verified' },\n+    },\n+    healthState: 'checking',\n+    rollbackState: 'unavailable',\n+    history: [],\n+  };\n+\n+  const html = await renderView('deployment', {\n+    pageTitle: 'Deployment — Harbor & Hearth',\n+    ...view,\n+    deploymentAvailable: true,\n+    deploymentProfile: { capabilities: ['DEPLOY_RELEASE'], externalEffects: false },\n+    deploymentAuthorityAvailable: false,\n+    deploymentVerificationAvailable: false,\n+    deploymentMutationAvailable: true,\n+    deploymentPublicationInspectionAvailable: false,\n+    deploymentPublicationExecutionAvailable: false,\n+    deploymentLifecycleAvailable: false,\n+    deploymentReauthorizationAvailable: false,\n+    deployments: [deployment],\n+    error: '',\n+  });\n+\n+  assert.match(html, /Public update is incomplete/);\n+  assert.match(html, /Review and resume the interrupted deployment/);\n+  assert.match(html, /Last confirmed deployed Website Release:/);\n+  assert.doesNotMatch(html, /Public site is serving:/);\n+  assert.doesNotMatch(html, /Public site is online and verified/);\n+  assert.doesNotMatch(html, /No deployment action is required/);\n+});\n+\n+test('Era 7 Stage 5C P2: known public read-back mismatch is surfaced as a failure', async () => {\n+  const { view } = model();\n+  const release = view.releases.find((item) => item.id === view.liveReleaseId) || view.releases[0];\n+  const deployment = {\n+    version: 1,\n+    id: 'deployment-stage5c-public-mismatch',\n+    hostSlug: 'harbor-and-hearth',\n+    providerKind: 'ssh-server',\n+    providerProfile: 'privex-reference',\n+    capabilities: [],\n+    state: 'rollback-available',\n+    stateReason: 'exact-release-readback-match',\n+    providerState: 'ready',\n+    paymentState: 'not-requested',\n+    targetPublicFacts: {\n+      host: '203.0.113.13',\n+      port: 22,\n+      username: 'hivenues-deploy',\n+      bootstrapUsername: 'debian',\n+    },\n+    authorityRef: 'authority-stage5c-public-mismatch',\n+    authorityPublic: null,\n+    selectedRelease: { id: release.id, digest: release.digest },\n+    package: {\n+      schemaVersion: 1,\n+      releaseId: release.id,\n+      releaseDigest: release.digest,\n+      packageDigest: 'a'.repeat(64),\n+    },\n+    activeRelease: {\n+      id: release.id,\n+      digest: release.digest,\n+      packageDigest: 'a'.repeat(64),\n+      deployedAt: '2026-10-04T01:00:00.000Z',\n+    },\n+    previousRelease: null,\n+    runtimeProfile: {\n+      kind: 'hivenues-public-runtime',\n+      sourceSha: '1'.repeat(40),\n+      sourceTree: '2'.repeat(40),\n+      packageVersion: '1.0.0',\n+      nodeVersion: 'v24.19.0',\n+      bundleDigest: '3'.repeat(64),\n+    },\n+    pendingRuntimeProfile: null,\n+    publicEndpoint: {\n+      hostname: 'dev.example.test',\n+      domainState: 'dns-confirmed',\n+      dns: {\n+        requirements: [{ type: 'A', name: 'dev.example.test', values: ['203.0.113.13'] }],\n+        observation: null,\n+      },\n+      tls: { state: 'verified' },\n+      publicReadBack: { state: 'mismatch' },",
+        "path": "test/era7-stage5c-lifecycle-clarity.test.js",
+        "commit_id": "535ba7975c269b7b521c52ca127e2f70b9be5c27",
+        "original_commit_id": "535ba7975c269b7b521c52ca127e2f70b9be5c27",
+        "user": {
+          "login": "etblink",
+          "id": 30190328,
+          "node_id": "MDQ6VXNlcjMwMTkwMzI4",
+          "avatar_url": "https://avatars.githubusercontent.com/u/30190328?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/etblink",
+          "html_url": "https://github.com/etblink",
+          "followers_url": "https://api.github.com/users/etblink/followers",
+          "following_url": "https://api.github.com/users/etblink/following{/other_user}",
+          "gists_url": "https://api.github.com/users/etblink/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/etblink/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/etblink/subscriptions",
+          "organizations_url": "https://api.github.com/users/etblink/orgs",
+          "repos_url": "https://api.github.com/users/etblink/repos",
+          "events_url": "https://api.github.com/users/etblink/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/etblink/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "body": "Fixed. The presentation fixture now supplies representative canonical mismatch evidence with `mismatchFields: ['deployment.releaseId']`. I did not weaken the existing diagnostic to tolerate structurally invalid persisted state.",
+        "created_at": "2026-10-04T02:33:22Z",
+        "updated_at": "2026-10-04T02:33:22Z",
+        "html_url": "https://github.com/etblink/HiVenues/pull/397#discussion_r4175853731",
+        "pull_request_url": "https://api.github.com/repos/etblink/HiVenues/pulls/397",
+        "_links": {
+          "self": {
+            "href": "https://api.github.com/repos/etblink/HiVenues/pulls/comments/4175853731"
+          },
+          "html": {
+            "href": "https://github.com/etblink/HiVenues/pull/397#discussion_r4175853731"
+          },
+          "pull_request": {
+            "href": "https://api.github.com/repos/etblink/HiVenues/pulls/397"
+          }
+        },
+        "reactions": {
+          "url": "https://api.github.com/repos/etblink/HiVenues/pulls/comments/4175853731/reactions",
+          "total_count": 0,
+          "+1": 0,
+          "-1": 0,
+          "laugh": 0,
+          "hooray": 0,
+          "confused": 0,
+          "heart": 0,
+          "rocket": 0,
+          "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": null,
+        "original_line": 376,
+        "side": "RIGHT",
+        "in_reply_to_id": 4175850167,
+        "author_association": "OWNER",
+        "original_position": 376,
+        "position": 1,
+        "subject_type": "line"
+      },
+      {
+        "url": "https://api.github.com/repos/etblink/HiVenues/pulls/comments/4175853886",
+        "pull_request_review_id": 5403944864,
+        "id": 4175853886,
+        "node_id": "PRRC_kwDOUIrttc745nk-",
+        "diff_hunk": "@@ -5,68 +5,113 @@\n </head>\n <body class=\"cc-task-body\">\n   <main class=\"cc-task\" data-deployment-exact-review>\n+    <%\n+      const isInitialServerSetup = (\n+        review.target.currentUsername === review.target.bootstrapUsername\n+        && !deployment.activeRelease\n+      );\n+      const sameWebsiteRelease = Boolean(\n+        deployment.activeRelease\n+        && deployment.activeRelease.id === review.release.id\n+        && deployment.activeRelease.digest === review.release.digest\n+      );\n+      const actionHeading = deployment.state === 'deploying'\n+        ? 'Resume this interrupted deployment safely.'\n+        : (isInitialServerSetup\n+          ? 'Set up this server and put the Website Release online.'\n+          : (sameWebsiteRelease\n+            ? 'Update the public-site runtime without changing the Website Release.'\n+            : 'Put this Website Release online.'));\n+      const actionLead = isInitialServerSetup\n+        ? 'HiVenues will set up its bounded server runtime, install the exact Website Release, move ongoing management to the restricted deployment account, and verify the result.'\n+        : (sameWebsiteRelease\n+          ? 'The Website Release is already the public content. This action updates the qualified HiVenues runtime on the established restricted deployment account and then re-verifies the exact Release.'",
+        "path": "views/hivenues/deployment-review.ejs",
+        "commit_id": "535ba7975c269b7b521c52ca127e2f70b9be5c27",
+        "original_commit_id": "535ba7975c269b7b521c52ca127e2f70b9be5c27",
+        "user": {
+          "login": "etblink",
+          "id": 30190328,
+          "node_id": "MDQ6VXNlcjMwMTkwMzI4",
+          "avatar_url": "https://avatars.githubusercontent.com/u/30190328?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/etblink",
+          "html_url": "https://github.com/etblink",
+          "followers_url": "https://api.github.com/users/etblink/followers",
+          "following_url": "https://api.github.com/users/etblink/following{/other_user}",
+          "gists_url": "https://api.github.com/users/etblink/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/etblink/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/etblink/subscriptions",
+          "organizations_url": "https://api.github.com/users/etblink/orgs",
+          "repos_url": "https://api.github.com/users/etblink/repos",
+          "events_url": "https://api.github.com/users/etblink/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/etblink/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "body": "Fixed. `sameWebsiteRelease` now describes only what the deployment record actually proves: the Release is already installed on this server. The runtime-maintenance heading/button now say **deployed-site runtime**, not public-site runtime. The existing established-deployment regression has been tightened to require the server-installed wording and forbid `already the public content`.",
+        "created_at": "2026-10-04T02:33:24Z",
+        "updated_at": "2026-10-04T02:33:24Z",
+        "html_url": "https://github.com/etblink/HiVenues/pull/397#discussion_r4175853886",
+        "pull_request_url": "https://api.github.com/repos/etblink/HiVenues/pulls/397",
+        "_links": {
+          "self": {
+            "href": "https://api.github.com/repos/etblink/HiVenues/pulls/comments/4175853886"
+          },
+          "html": {
+            "href": "https://github.com/etblink/HiVenues/pull/397#discussion_r4175853886"
+          },
+          "pull_request": {
+            "href": "https://api.github.com/repos/etblink/HiVenues/pulls/397"
+          }
+        },
+        "reactions": {
+          "url": "https://api.github.com/repos/etblink/HiVenues/pulls/comments/4175853886/reactions",
+          "total_count": 0,
+          "+1": 0,
+          "-1": 0,
+          "laugh": 0,
+          "hooray": 0,
+          "confused": 0,
+          "heart": 0,
+          "rocket": 0,
+          "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": 27,
+        "start_side": "RIGHT",
+        "line": null,
+        "original_line": 28,
+        "side": "RIGHT",
+        "in_reply_to_id": 4175850173,
+        "author_association": "OWNER",
+        "original_position": 24,
+        "position": 1,
+        "subject_type": "line"
+      },
+      {
+        "url": "https://api.github.com/repos/etblink/HiVenues/pulls/comments/4175863079",
+        "pull_request_review_id": 5403954501,
+        "id": 4175863079,
+        "node_id": "PRRC_kwDOUIrttc745p0n",
+        "diff_hunk": "@@ -0,0 +1,514 @@\n+'use strict';\n+\n+const assert = require('node:assert/strict');\n+const path = require('node:path');\n+const test = require('node:test');\n+const ejs = require('ejs');\n+const request = require('supertest');\n+\n+const { createHiVenuesApp } = require('../src/product/app');\n+const { buildViewModel } = require('../src/product/present');\n+const { HiVenuesStore } = require('../src/product/store');\n+\n+const VIEWS = path.join(__dirname, '..', 'views', 'hivenues');\n+\n+async function renderView(name, data) {\n+  return ejs.renderFile(path.join(VIEWS, name + '.ejs'), data);\n+}\n+\n+function model() {\n+  const store = new HiVenuesStore();\n+  const snapshot = store.snapshot('harbor-and-hearth');\n+  return { store, snapshot, view: buildViewModel(snapshot) };\n+}\n+\n+test('Era 7 Stage 5C: Website Release review explicitly separates Release creation from external deployment', async () => {\n+  const { store } = model();\n+  const app = createHiVenuesApp({\n+    store,\n+    identityServices: false,\n+    participationServices: false,\n+  });\n+\n+  const response = await request(app)\n+    .get('/hivenues/studio/harbor-and-hearth/release')\n+    .expect(200);\n+\n+  assert.match(response.text, /Latest website Release/);\n+  assert.match(response.text, /does <strong>not<\\/strong> update[\\s\\S]*external server/i);\n+  assert.match(response.text, /Create website Release/);\n+  assert.match(response.text, /Putting a Release online is separate/);\n+  assert.match(response.text, /Deployment is the separate action/);\n+  assert.doesNotMatch(response.text, /<p class=\"cc-kicker\">Currently live<\\/p>/);\n+  assert.doesNotMatch(response.text, />Publish website release<\\/button>/);\n+});\n+\n+test('Era 7 Stage 5C: deployment page leads with the human lifecycle and moves raw state behind technical disclosure', async () => {\n+  const { view } = model();\n+  const release = view.releases.find((item) => item.id === view.liveReleaseId) || view.releases[0];\n+  const deployment = {\n+    version: 1,\n+    id: 'deployment-stage5c',\n+    hostSlug: 'harbor-and-hearth',\n+    providerKind: 'ssh-server',\n+    providerProfile: 'privex-reference',\n+    capabilities: [],\n+    state: 'rollback-available',\n+    stateReason: 'exact-release-readback-match',\n+    providerState: 'ready',\n+    paymentState: 'not-requested',\n+    targetPublicFacts: {\n+      host: '203.0.113.10',\n+      port: 22,\n+      username: 'hivenues-deploy',\n+      bootstrapUsername: 'debian',\n+    },\n+    authorityRef: 'authority-stage5c',\n+    authorityPublic: null,\n+    selectedRelease: { id: release.id, digest: release.digest },\n+    package: {\n+      schemaVersion: 1,\n+      releaseId: release.id,\n+      releaseDigest: release.digest,\n+      packageDigest: 'a'.repeat(64),\n+    },\n+    activeRelease: {\n+      id: release.id,\n+      digest: release.digest,\n+      packageDigest: 'a'.repeat(64),\n+      deployedAt: '2026-10-04T01:00:00.000Z',\n+    },\n+    previousRelease: null,\n+    runtimeProfile: {\n+      kind: 'hivenues-public-runtime',\n+      sourceSha: '1'.repeat(40),\n+      sourceTree: '2'.repeat(40),\n+      packageVersion: '1.0.0',\n+      nodeVersion: 'v24.19.0',\n+      bundleDigest: '3'.repeat(64),\n+    },\n+    pendingRuntimeProfile: null,\n+    publicEndpoint: {\n+      hostname: 'dev.example.test',\n+      domainState: 'dns-confirmed',\n+      dns: {\n+        requirements: [{ type: 'A', name: 'dev.example.test', values: ['203.0.113.10'] }],\n+        observation: null,\n+      },\n+      tls: { state: 'verified' },\n+      publicReadBack: { state: 'verified' },\n+    },\n+    healthState: 'healthy',\n+    rollbackState: 'available',\n+    history: [],\n+  };\n+\n+  const html = await renderView('deployment', {\n+    pageTitle: 'Deployment — Harbor & Hearth',\n+    ...view,\n+    deploymentAvailable: true,\n+    deploymentProfile: {\n+      capabilities: ['DEPLOY_RELEASE'],\n+      externalEffects: false,\n+    },\n+    deploymentAuthorityAvailable: false,\n+    deploymentVerificationAvailable: false,\n+    deploymentMutationAvailable: false,\n+    deploymentPublicationInspectionAvailable: false,\n+    deploymentPublicationExecutionAvailable: false,\n+    deploymentLifecycleAvailable: false,\n+    deploymentReauthorizationAvailable: false,\n+    deployments: [deployment],\n+    error: '',\n+  });\n+\n+  assert.match(html, /Working changes → Website Release → Put online → Connect domain → Verify public site/);\n+  assert.match(html, /data-deployment-human-status/);\n+  assert.match(html, /Public site is online and verified/);\n+  assert.match(html, /Public site is serving:/);\n+  assert.match(html, /data-open-public-site/);\n+  assert.match(html, /data-deployment-technical-details/);\n+  assert.match(html, /<summary>Technical deployment details<\\/summary>/);\n+  assert.match(html, /Internal state:[\\s\\S]*rollback-available/);\n+  assert.match(html, /Advanced and qualification targets/);\n+  assert.match(html, /Website Release to put online/);\n+  assert.match(html, /Prepare this Website Release/);\n+  assert.match(html, /Public site is serving the expected Website Release/);\n+  assert.match(html, /<summary>Exact verification<\\/summary>/);\n+});\n+\n+test('Era 7 Stage 5C: verified public site still surfaces a newer Website Release that has not been deployed', async () => {\n+  const { view } = model();\n+  const releaseA = view.releases.find((item) => item.id === view.liveReleaseId) || view.releases[0];\n+  const releaseB = {\n+    ...structuredClone(releaseA),\n+    id: 'release-stage5c-newer',\n+    digest: '9'.repeat(64),\n+    draftRevision: releaseA.draftRevision + 1,\n+  };\n+  const releases = [...view.releases, releaseB];\n+  const deployment = {\n+    version: 1,\n+    id: 'deployment-stage5c-newer-release',\n+    hostSlug: 'harbor-and-hearth',\n+    providerKind: 'ssh-server',\n+    providerProfile: 'privex-reference',\n+    capabilities: [],\n+    state: 'rollback-available',\n+    stateReason: 'exact-release-readback-match',\n+    providerState: 'ready',\n+    paymentState: 'not-requested',\n+    targetPublicFacts: {\n+      host: '203.0.113.12',\n+      port: 22,\n+      username: 'hivenues-deploy',\n+      bootstrapUsername: 'debian',\n+    },\n+    authorityRef: 'authority-stage5c-newer-release',\n+    authorityPublic: null,\n+    selectedRelease: { id: releaseA.id, digest: releaseA.digest },\n+    package: {\n+      schemaVersion: 1,\n+      releaseId: releaseA.id,\n+      releaseDigest: releaseA.digest,\n+      packageDigest: 'a'.repeat(64),\n+    },\n+    activeRelease: {\n+      id: releaseA.id,\n+      digest: releaseA.digest,\n+      packageDigest: 'a'.repeat(64),\n+      deployedAt: '2026-10-04T01:00:00.000Z',\n+    },\n+    previousRelease: null,\n+    runtimeProfile: {\n+      kind: 'hivenues-public-runtime',\n+      sourceSha: '1'.repeat(40),\n+      sourceTree: '2'.repeat(40),\n+      packageVersion: '1.0.0',\n+      nodeVersion: 'v24.19.0',\n+      bundleDigest: '3'.repeat(64),\n+    },\n+    pendingRuntimeProfile: null,\n+    publicEndpoint: {\n+      hostname: 'dev.example.test',\n+      domainState: 'dns-confirmed',\n+      dns: {\n+        requirements: [{ type: 'A', name: 'dev.example.test', values: ['203.0.113.12'] }],\n+        observation: null,\n+      },\n+      tls: { state: 'verified' },\n+      publicReadBack: { state: 'verified' },\n+    },\n+    healthState: 'healthy',\n+    rollbackState: 'available',\n+    history: [],\n+  };\n+\n+  const html = await renderView('deployment', {\n+    pageTitle: 'Deployment — Harbor & Hearth',\n+    ...view,\n+    releases,\n+    liveReleaseId: releaseB.id,\n+    deploymentAvailable: true,\n+    deploymentProfile: { capabilities: ['DEPLOY_RELEASE'], externalEffects: false },\n+    deploymentAuthorityAvailable: false,\n+    deploymentVerificationAvailable: false,\n+    deploymentMutationAvailable: false,\n+    deploymentPublicationInspectionAvailable: false,\n+    deploymentPublicationExecutionAvailable: false,\n+    deploymentLifecycleAvailable: false,\n+    deploymentReauthorizationAvailable: false,\n+    deployments: [deployment],\n+    error: '',\n+  });\n+\n+  assert.match(html, /Public site is verified; a newer Website Release is ready/);\n+  assert.match(html, new RegExp('data-latest-website-release[\\\\s\\\\S]*Version ' + releaseB.draftRevision));\n+  assert.match(html, new RegExp('data-public-website-release[\\\\s\\\\S]*Version ' + releaseA.draftRevision));\n+  assert.match(html, /Choose the newer Website Release below/);\n+  assert.doesNotMatch(html, /No deployment action is required/);\n+});\n+\n+test('Era 7 Stage 5C P1: interrupted deployment is never presented as publicly verified from stale proof', async () => {\n+  const { view } = model();\n+  const release = view.releases.find((item) => item.id === view.liveReleaseId) || view.releases[0];\n+  const deployment = {\n+    version: 1,\n+    id: 'deployment-stage5c-interrupted',\n+    hostSlug: 'harbor-and-hearth',\n+    providerKind: 'ssh-server',\n+    providerProfile: 'privex-reference',\n+    capabilities: [],\n+    state: 'deploying',\n+    stateReason: 'exact-release-deployment-started',\n+    providerState: 'ready',\n+    paymentState: 'not-requested',\n+    targetPublicFacts: {\n+      host: '203.0.113.11',\n+      port: 22,\n+      username: 'hivenues-deploy',\n+      bootstrapUsername: 'debian',\n+    },\n+    authorityRef: 'authority-stage5c-interrupted',\n+    authorityPublic: null,\n+    selectedRelease: { id: release.id, digest: release.digest },\n+    package: {\n+      schemaVersion: 1,\n+      releaseId: release.id,\n+      releaseDigest: release.digest,\n+      packageDigest: 'b'.repeat(64),\n+    },\n+    activeRelease: {\n+      id: release.id,\n+      digest: release.digest,\n+      packageDigest: 'a'.repeat(64),\n+      deployedAt: '2026-10-04T01:00:00.000Z',\n+    },\n+    previousRelease: null,\n+    runtimeProfile: {\n+      kind: 'hivenues-public-runtime',\n+      sourceSha: '1'.repeat(40),\n+      sourceTree: '2'.repeat(40),\n+      packageVersion: '1.0.0',\n+      nodeVersion: 'v24.19.0',\n+      bundleDigest: '3'.repeat(64),\n+    },\n+    pendingRuntimeProfile: {\n+      kind: 'hivenues-public-runtime',\n+      sourceSha: '4'.repeat(40),\n+      sourceTree: '5'.repeat(40),\n+      packageVersion: '1.0.0',\n+      nodeVersion: 'v24.19.0',\n+      bundleDigest: '6'.repeat(64),\n+    },\n+    publicEndpoint: {\n+      hostname: 'dev.example.test',\n+      domainState: 'dns-confirmed',\n+      dns: {\n+        requirements: [{ type: 'A', name: 'dev.example.test', values: ['203.0.113.11'] }],\n+        observation: null,\n+      },\n+      tls: { state: 'verified' },\n+      publicReadBack: { state: 'verified' },\n+    },\n+    healthState: 'checking',\n+    rollbackState: 'unavailable',\n+    history: [],\n+  };\n+\n+  const html = await renderView('deployment', {\n+    pageTitle: 'Deployment — Harbor & Hearth',\n+    ...view,\n+    deploymentAvailable: true,\n+    deploymentProfile: { capabilities: ['DEPLOY_RELEASE'], externalEffects: false },\n+    deploymentAuthorityAvailable: false,\n+    deploymentVerificationAvailable: false,\n+    deploymentMutationAvailable: true,\n+    deploymentPublicationInspectionAvailable: false,\n+    deploymentPublicationExecutionAvailable: false,\n+    deploymentLifecycleAvailable: false,\n+    deploymentReauthorizationAvailable: false,\n+    deployments: [deployment],\n+    error: '',\n+  });\n+\n+  assert.match(html, /Public update is incomplete/);\n+  assert.match(html, /Review and resume the interrupted deployment/);\n+  assert.match(html, /Last confirmed deployed Website Release:/);\n+  assert.doesNotMatch(html, /Public site is serving:/);\n+  assert.doesNotMatch(html, /Public site is online and verified/);\n+  assert.doesNotMatch(html, /No deployment action is required/);\n+});\n+\n+test('Era 7 Stage 5C P2: known public read-back mismatch is surfaced as a failure', async () => {\n+  const { view } = model();\n+  const release = view.releases.find((item) => item.id === view.liveReleaseId) || view.releases[0];\n+  const deployment = {\n+    version: 1,\n+    id: 'deployment-stage5c-public-mismatch',\n+    hostSlug: 'harbor-and-hearth',\n+    providerKind: 'ssh-server',\n+    providerProfile: 'privex-reference',\n+    capabilities: [],\n+    state: 'rollback-available',\n+    stateReason: 'exact-release-readback-match',\n+    providerState: 'ready',\n+    paymentState: 'not-requested',\n+    targetPublicFacts: {\n+      host: '203.0.113.13',\n+      port: 22,\n+      username: 'hivenues-deploy',\n+      bootstrapUsername: 'debian',\n+    },\n+    authorityRef: 'authority-stage5c-public-mismatch',\n+    authorityPublic: null,\n+    selectedRelease: { id: release.id, digest: release.digest },\n+    package: {\n+      schemaVersion: 1,\n+      releaseId: release.id,\n+      releaseDigest: release.digest,\n+      packageDigest: 'a'.repeat(64),\n+    },\n+    activeRelease: {\n+      id: release.id,\n+      digest: release.digest,\n+      packageDigest: 'a'.repeat(64),\n+      deployedAt: '2026-10-04T01:00:00.000Z',\n+    },\n+    previousRelease: null,\n+    runtimeProfile: {\n+      kind: 'hivenues-public-runtime',\n+      sourceSha: '1'.repeat(40),\n+      sourceTree: '2'.repeat(40),\n+      packageVersion: '1.0.0',\n+      nodeVersion: 'v24.19.0',\n+      bundleDigest: '3'.repeat(64),\n+    },\n+    pendingRuntimeProfile: null,\n+    publicEndpoint: {\n+      hostname: 'dev.example.test',\n+      domainState: 'dns-confirmed',\n+      dns: {\n+        requirements: [{ type: 'A', name: 'dev.example.test', values: ['203.0.113.13'] }],\n+        observation: null,\n+      },\n+      tls: { state: 'verified' },\n+      publicReadBack: {\n+        state: 'mismatch',\n+        mismatchFields: ['deployment.releaseId'],\n+      },\n+    },\n+    healthState: 'healthy',\n+    rollbackState: 'available',\n+    history: [],\n+  };\n+\n+  const html = await renderView('deployment', {\n+    pageTitle: 'Deployment — Harbor & Hearth',\n+    ...view,\n+    deploymentAvailable: true,\n+    deploymentProfile: { capabilities: ['DEPLOY_RELEASE'], externalEffects: false },\n+    deploymentAuthorityAvailable: false,\n+    deploymentVerificationAvailable: false,\n+    deploymentMutationAvailable: false,\n+    deploymentPublicationInspectionAvailable: false,\n+    deploymentPublicationExecutionAvailable: false,\n+    deploymentLifecycleAvailable: false,\n+    deploymentReauthorizationAvailable: false,\n+    deployments: [deployment],\n+    error: '',\n+  });\n+\n+  assert.match(html, /Public site does not match this deployment/);\n+  assert.match(html, /exact runtime or Website Release identity did not match/);\n+  assert.match(html, /Review the public verification mismatch shown below/);\n+  assert.match(html, /Website Release confirmed on server:/);\n+  assert.doesNotMatch(html, /Public site is online and verified/);\n+  assert.doesNotMatch(html, /Public site is serving:/);\n+  assert.doesNotMatch(html, /data-open-public-site/);\n+});\n+\n+test('Era 7 Stage 5C: established deployment review uses update language instead of first-bootstrap language', async () => {\n+  const { view } = model();\n+  const release = view.releases.find((item) => item.id === view.liveReleaseId) || view.releases[0];\n+  const deployment = {\n+    id: 'deployment-stage5c-review',\n+    state: 'rollback-available',\n+    activeRelease: {\n+      id: release.id,\n+      digest: release.digest,\n+      packageDigest: 'a'.repeat(64),\n+    },\n+  };\n+  const review = {\n+    target: {\n+      currentUsername: 'hivenues-deploy',\n+      bootstrapUsername: 'debian',\n+      host: '203.0.113.10',\n+      port: 22,\n+      trustedHostKeyFingerprint: 'SHA256:' + 'Z'.repeat(43),\n+      verifiedOs: 'Debian GNU/Linux 13 (trixie)',\n+      verifiedArchitecture: 'x86_64',\n+    },\n+    release: {\n+      id: release.id,\n+      digest: release.digest,\n+      packageDigest: 'a'.repeat(64),\n+    },\n+    runtime: {\n+      sourceSha: '1'.repeat(40),\n+      sourceTree: '2'.repeat(40),\n+      bundleDigest: '3'.repeat(64),\n+      nodeVersion: 'v24.19.0',\n+      packageVersion: '1.0.0',\n+    },\n+    consequences: [\n+      'upload-qualified-public-runtime',\n+      'configure-named-systemd-caddy-firewall-services',\n+      'remove-exact-bootstrap-authorized-key',\n+    ],\n+    held: ['provider-payment', 'dns-mutation'],\n+    reviewDigest: '4'.repeat(64),\n+  };\n+\n+  const html = await renderView('deployment-review', {\n+    pageTitle: 'Public website review — Harbor & Hearth',\n+    ...view,\n+    deployment,\n+    review,\n+  });\n+\n+  assert.match(html, /Update the deployed-site runtime without changing the Website Release/);\n+  assert.match(html, /Use the existing restricted HiVenues deployment account/);\n+  assert.match(html, /Website Release is already installed on this server/);\n+  assert.doesNotMatch(html, /already the public content/);\n+  assert.match(html, />\\s*Update public-site runtime\\s*<\\/button>/);",
+        "path": "test/era7-stage5c-lifecycle-clarity.test.js",
+        "commit_id": "ae1af74b481984aa5c165918c87fac44371f64e0",
+        "original_commit_id": "ae1af74b481984aa5c165918c87fac44371f64e0",
+        "user": {
+          "login": "chatgpt-codex-connector[bot]",
+          "id": 199175422,
+          "node_id": "BOT_kgDOC98s_g",
+          "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D",
+          "html_url": "https://github.com/apps/chatgpt-codex-connector",
+          "followers_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/followers",
+          "following_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/following{/other_user}",
+          "gists_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/subscriptions",
+          "organizations_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/orgs",
+          "repos_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/repos",
+          "events_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/received_events",
+          "type": "Bot",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "body": "**<sub><sub>![P1 Badge](https://img.shields.io/badge/P1-orange?style=flat)</sub></sub>  Expect the deployed-site runtime button label**\n\nWhen dependencies are installed and this test runs, the rendered button contains `Update deployed-site runtime`, as defined by `actionButton` in `deployment-review.ejs`, but this assertion still expects `Update public-site runtime`. The deterministic test suite therefore fails on every run; update the assertion to match the new deployed-versus-public wording.\n\nUseful? React with 👍 / 👎.",
+        "created_at": "2026-10-04T02:37:24Z",
+        "updated_at": "2026-10-04T02:37:24Z",
+        "html_url": "https://github.com/etblink/HiVenues/pull/397#discussion_r4175863079",
+        "pull_request_url": "https://api.github.com/repos/etblink/HiVenues/pulls/397",
+        "_links": {
+          "self": {
+            "href": "https://api.github.com/repos/etblink/HiVenues/pulls/comments/4175863079"
+          },
+          "html": {
+            "href": "https://github.com/etblink/HiVenues/pull/397#discussion_r4175863079"
+          },
+          "pull_request": {
+            "href": "https://api.github.com/repos/etblink/HiVenues/pulls/397"
+          }
+        },
+        "reactions": {
+          "url": "https://api.github.com/repos/etblink/HiVenues/pulls/comments/4175863079/reactions",
+          "total_count": 0,
+          "+1": 0,
+          "-1": 0,
+          "laugh": 0,
+          "hooray": 0,
+          "confused": 0,
+          "heart": 0,
+          "rocket": 0,
+          "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": null,
+        "original_line": 465,
+        "side": "RIGHT",
+        "author_association": "NONE",
+        "original_position": 465,
+        "position": 1,
+        "subject_type": "line"
+      },
+      {
+        "url": "https://api.github.com/repos/etblink/HiVenues/pulls/comments/4175864407",
+        "pull_request_review_id": 5403955853,
+        "id": 4175864407,
+        "node_id": "PRRC_kwDOUIrttc745qJX",
+        "diff_hunk": "@@ -0,0 +1,514 @@\n+'use strict';\n+\n+const assert = require('node:assert/strict');\n+const path = require('node:path');\n+const test = require('node:test');\n+const ejs = require('ejs');\n+const request = require('supertest');\n+\n+const { createHiVenuesApp } = require('../src/product/app');\n+const { buildViewModel } = require('../src/product/present');\n+const { HiVenuesStore } = require('../src/product/store');\n+\n+const VIEWS = path.join(__dirname, '..', 'views', 'hivenues');\n+\n+async function renderView(name, data) {\n+  return ejs.renderFile(path.join(VIEWS, name + '.ejs'), data);\n+}\n+\n+function model() {\n+  const store = new HiVenuesStore();\n+  const snapshot = store.snapshot('harbor-and-hearth');\n+  return { store, snapshot, view: buildViewModel(snapshot) };\n+}\n+\n+test('Era 7 Stage 5C: Website Release review explicitly separates Release creation from external deployment', async () => {\n+  const { store } = model();\n+  const app = createHiVenuesApp({\n+    store,\n+    identityServices: false,\n+    participationServices: false,\n+  });\n+\n+  const response = await request(app)\n+    .get('/hivenues/studio/harbor-and-hearth/release')\n+    .expect(200);\n+\n+  assert.match(response.text, /Latest website Release/);\n+  assert.match(response.text, /does <strong>not<\\/strong> update[\\s\\S]*external server/i);\n+  assert.match(response.text, /Create website Release/);\n+  assert.match(response.text, /Putting a Release online is separate/);\n+  assert.match(response.text, /Deployment is the separate action/);\n+  assert.doesNotMatch(response.text, /<p class=\"cc-kicker\">Currently live<\\/p>/);\n+  assert.doesNotMatch(response.text, />Publish website release<\\/button>/);\n+});\n+\n+test('Era 7 Stage 5C: deployment page leads with the human lifecycle and moves raw state behind technical disclosure', async () => {\n+  const { view } = model();\n+  const release = view.releases.find((item) => item.id === view.liveReleaseId) || view.releases[0];\n+  const deployment = {\n+    version: 1,\n+    id: 'deployment-stage5c',\n+    hostSlug: 'harbor-and-hearth',\n+    providerKind: 'ssh-server',\n+    providerProfile: 'privex-reference',\n+    capabilities: [],\n+    state: 'rollback-available',\n+    stateReason: 'exact-release-readback-match',\n+    providerState: 'ready',\n+    paymentState: 'not-requested',\n+    targetPublicFacts: {\n+      host: '203.0.113.10',\n+      port: 22,\n+      username: 'hivenues-deploy',\n+      bootstrapUsername: 'debian',\n+    },\n+    authorityRef: 'authority-stage5c',\n+    authorityPublic: null,\n+    selectedRelease: { id: release.id, digest: release.digest },\n+    package: {\n+      schemaVersion: 1,\n+      releaseId: release.id,\n+      releaseDigest: release.digest,\n+      packageDigest: 'a'.repeat(64),\n+    },\n+    activeRelease: {\n+      id: release.id,\n+      digest: release.digest,\n+      packageDigest: 'a'.repeat(64),\n+      deployedAt: '2026-10-04T01:00:00.000Z',\n+    },\n+    previousRelease: null,\n+    runtimeProfile: {\n+      kind: 'hivenues-public-runtime',\n+      sourceSha: '1'.repeat(40),\n+      sourceTree: '2'.repeat(40),\n+      packageVersion: '1.0.0',\n+      nodeVersion: 'v24.19.0',\n+      bundleDigest: '3'.repeat(64),\n+    },\n+    pendingRuntimeProfile: null,\n+    publicEndpoint: {\n+      hostname: 'dev.example.test',\n+      domainState: 'dns-confirmed',\n+      dns: {\n+        requirements: [{ type: 'A', name: 'dev.example.test', values: ['203.0.113.10'] }],\n+        observation: null,\n+      },\n+      tls: { state: 'verified' },\n+      publicReadBack: { state: 'verified' },\n+    },\n+    healthState: 'healthy',\n+    rollbackState: 'available',\n+    history: [],\n+  };\n+\n+  const html = await renderView('deployment', {\n+    pageTitle: 'Deployment — Harbor & Hearth',\n+    ...view,\n+    deploymentAvailable: true,\n+    deploymentProfile: {\n+      capabilities: ['DEPLOY_RELEASE'],\n+      externalEffects: false,\n+    },\n+    deploymentAuthorityAvailable: false,\n+    deploymentVerificationAvailable: false,\n+    deploymentMutationAvailable: false,\n+    deploymentPublicationInspectionAvailable: false,\n+    deploymentPublicationExecutionAvailable: false,\n+    deploymentLifecycleAvailable: false,\n+    deploymentReauthorizationAvailable: false,\n+    deployments: [deployment],\n+    error: '',\n+  });\n+\n+  assert.match(html, /Working changes → Website Release → Put online → Connect domain → Verify public site/);\n+  assert.match(html, /data-deployment-human-status/);\n+  assert.match(html, /Public site is online and verified/);\n+  assert.match(html, /Public site is serving:/);\n+  assert.match(html, /data-open-public-site/);\n+  assert.match(html, /data-deployment-technical-details/);\n+  assert.match(html, /<summary>Technical deployment details<\\/summary>/);\n+  assert.match(html, /Internal state:[\\s\\S]*rollback-available/);\n+  assert.match(html, /Advanced and qualification targets/);\n+  assert.match(html, /Website Release to put online/);\n+  assert.match(html, /Prepare this Website Release/);\n+  assert.match(html, /Public site is serving the expected Website Release/);\n+  assert.match(html, /<summary>Exact verification<\\/summary>/);\n+});\n+\n+test('Era 7 Stage 5C: verified public site still surfaces a newer Website Release that has not been deployed', async () => {\n+  const { view } = model();\n+  const releaseA = view.releases.find((item) => item.id === view.liveReleaseId) || view.releases[0];\n+  const releaseB = {\n+    ...structuredClone(releaseA),\n+    id: 'release-stage5c-newer',\n+    digest: '9'.repeat(64),\n+    draftRevision: releaseA.draftRevision + 1,\n+  };\n+  const releases = [...view.releases, releaseB];\n+  const deployment = {\n+    version: 1,\n+    id: 'deployment-stage5c-newer-release',\n+    hostSlug: 'harbor-and-hearth',\n+    providerKind: 'ssh-server',\n+    providerProfile: 'privex-reference',\n+    capabilities: [],\n+    state: 'rollback-available',\n+    stateReason: 'exact-release-readback-match',\n+    providerState: 'ready',\n+    paymentState: 'not-requested',\n+    targetPublicFacts: {\n+      host: '203.0.113.12',\n+      port: 22,\n+      username: 'hivenues-deploy',\n+      bootstrapUsername: 'debian',\n+    },\n+    authorityRef: 'authority-stage5c-newer-release',\n+    authorityPublic: null,\n+    selectedRelease: { id: releaseA.id, digest: releaseA.digest },\n+    package: {\n+      schemaVersion: 1,\n+      releaseId: releaseA.id,\n+      releaseDigest: releaseA.digest,\n+      packageDigest: 'a'.repeat(64),\n+    },\n+    activeRelease: {\n+      id: releaseA.id,\n+      digest: releaseA.digest,\n+      packageDigest: 'a'.repeat(64),\n+      deployedAt: '2026-10-04T01:00:00.000Z',\n+    },\n+    previousRelease: null,\n+    runtimeProfile: {\n+      kind: 'hivenues-public-runtime',\n+      sourceSha: '1'.repeat(40),\n+      sourceTree: '2'.repeat(40),\n+      packageVersion: '1.0.0',\n+      nodeVersion: 'v24.19.0',\n+      bundleDigest: '3'.repeat(64),\n+    },\n+    pendingRuntimeProfile: null,\n+    publicEndpoint: {\n+      hostname: 'dev.example.test',\n+      domainState: 'dns-confirmed',\n+      dns: {\n+        requirements: [{ type: 'A', name: 'dev.example.test', values: ['203.0.113.12'] }],\n+        observation: null,\n+      },\n+      tls: { state: 'verified' },\n+      publicReadBack: { state: 'verified' },\n+    },\n+    healthState: 'healthy',\n+    rollbackState: 'available',\n+    history: [],\n+  };\n+\n+  const html = await renderView('deployment', {\n+    pageTitle: 'Deployment — Harbor & Hearth',\n+    ...view,\n+    releases,\n+    liveReleaseId: releaseB.id,\n+    deploymentAvailable: true,\n+    deploymentProfile: { capabilities: ['DEPLOY_RELEASE'], externalEffects: false },\n+    deploymentAuthorityAvailable: false,\n+    deploymentVerificationAvailable: false,\n+    deploymentMutationAvailable: false,\n+    deploymentPublicationInspectionAvailable: false,\n+    deploymentPublicationExecutionAvailable: false,\n+    deploymentLifecycleAvailable: false,\n+    deploymentReauthorizationAvailable: false,\n+    deployments: [deployment],\n+    error: '',\n+  });\n+\n+  assert.match(html, /Public site is verified; a newer Website Release is ready/);\n+  assert.match(html, new RegExp('data-latest-website-release[\\\\s\\\\S]*Version ' + releaseB.draftRevision));\n+  assert.match(html, new RegExp('data-public-website-release[\\\\s\\\\S]*Version ' + releaseA.draftRevision));\n+  assert.match(html, /Choose the newer Website Release below/);\n+  assert.doesNotMatch(html, /No deployment action is required/);\n+});\n+\n+test('Era 7 Stage 5C P1: interrupted deployment is never presented as publicly verified from stale proof', async () => {\n+  const { view } = model();\n+  const release = view.releases.find((item) => item.id === view.liveReleaseId) || view.releases[0];\n+  const deployment = {\n+    version: 1,\n+    id: 'deployment-stage5c-interrupted',\n+    hostSlug: 'harbor-and-hearth',\n+    providerKind: 'ssh-server',\n+    providerProfile: 'privex-reference',\n+    capabilities: [],\n+    state: 'deploying',\n+    stateReason: 'exact-release-deployment-started',\n+    providerState: 'ready',\n+    paymentState: 'not-requested',\n+    targetPublicFacts: {\n+      host: '203.0.113.11',\n+      port: 22,\n+      username: 'hivenues-deploy',\n+      bootstrapUsername: 'debian',\n+    },\n+    authorityRef: 'authority-stage5c-interrupted',\n+    authorityPublic: null,\n+    selectedRelease: { id: release.id, digest: release.digest },\n+    package: {\n+      schemaVersion: 1,\n+      releaseId: release.id,\n+      releaseDigest: release.digest,\n+      packageDigest: 'b'.repeat(64),\n+    },\n+    activeRelease: {\n+      id: release.id,\n+      digest: release.digest,\n+      packageDigest: 'a'.repeat(64),\n+      deployedAt: '2026-10-04T01:00:00.000Z',\n+    },\n+    previousRelease: null,\n+    runtimeProfile: {\n+      kind: 'hivenues-public-runtime',\n+      sourceSha: '1'.repeat(40),\n+      sourceTree: '2'.repeat(40),\n+      packageVersion: '1.0.0',\n+      nodeVersion: 'v24.19.0',\n+      bundleDigest: '3'.repeat(64),\n+    },\n+    pendingRuntimeProfile: {\n+      kind: 'hivenues-public-runtime',\n+      sourceSha: '4'.repeat(40),\n+      sourceTree: '5'.repeat(40),\n+      packageVersion: '1.0.0',\n+      nodeVersion: 'v24.19.0',\n+      bundleDigest: '6'.repeat(64),\n+    },\n+    publicEndpoint: {\n+      hostname: 'dev.example.test',\n+      domainState: 'dns-confirmed',\n+      dns: {\n+        requirements: [{ type: 'A', name: 'dev.example.test', values: ['203.0.113.11'] }],\n+        observation: null,\n+      },\n+      tls: { state: 'verified' },\n+      publicReadBack: { state: 'verified' },\n+    },\n+    healthState: 'checking',\n+    rollbackState: 'unavailable',\n+    history: [],\n+  };\n+\n+  const html = await renderView('deployment', {\n+    pageTitle: 'Deployment — Harbor & Hearth',\n+    ...view,\n+    deploymentAvailable: true,\n+    deploymentProfile: { capabilities: ['DEPLOY_RELEASE'], externalEffects: false },\n+    deploymentAuthorityAvailable: false,\n+    deploymentVerificationAvailable: false,\n+    deploymentMutationAvailable: true,\n+    deploymentPublicationInspectionAvailable: false,\n+    deploymentPublicationExecutionAvailable: false,\n+    deploymentLifecycleAvailable: false,\n+    deploymentReauthorizationAvailable: false,\n+    deployments: [deployment],\n+    error: '',\n+  });\n+\n+  assert.match(html, /Public update is incomplete/);\n+  assert.match(html, /Review and resume the interrupted deployment/);\n+  assert.match(html, /Last confirmed deployed Website Release:/);\n+  assert.doesNotMatch(html, /Public site is serving:/);\n+  assert.doesNotMatch(html, /Public site is online and verified/);\n+  assert.doesNotMatch(html, /No deployment action is required/);\n+});\n+\n+test('Era 7 Stage 5C P2: known public read-back mismatch is surfaced as a failure', async () => {\n+  const { view } = model();\n+  const release = view.releases.find((item) => item.id === view.liveReleaseId) || view.releases[0];\n+  const deployment = {\n+    version: 1,\n+    id: 'deployment-stage5c-public-mismatch',\n+    hostSlug: 'harbor-and-hearth',\n+    providerKind: 'ssh-server',\n+    providerProfile: 'privex-reference',\n+    capabilities: [],\n+    state: 'rollback-available',\n+    stateReason: 'exact-release-readback-match',\n+    providerState: 'ready',\n+    paymentState: 'not-requested',\n+    targetPublicFacts: {\n+      host: '203.0.113.13',\n+      port: 22,\n+      username: 'hivenues-deploy',\n+      bootstrapUsername: 'debian',\n+    },\n+    authorityRef: 'authority-stage5c-public-mismatch',\n+    authorityPublic: null,\n+    selectedRelease: { id: release.id, digest: release.digest },\n+    package: {\n+      schemaVersion: 1,\n+      releaseId: release.id,\n+      releaseDigest: release.digest,\n+      packageDigest: 'a'.repeat(64),\n+    },\n+    activeRelease: {\n+      id: release.id,\n+      digest: release.digest,\n+      packageDigest: 'a'.repeat(64),\n+      deployedAt: '2026-10-04T01:00:00.000Z',\n+    },\n+    previousRelease: null,\n+    runtimeProfile: {\n+      kind: 'hivenues-public-runtime',\n+      sourceSha: '1'.repeat(40),\n+      sourceTree: '2'.repeat(40),\n+      packageVersion: '1.0.0',\n+      nodeVersion: 'v24.19.0',\n+      bundleDigest: '3'.repeat(64),\n+    },\n+    pendingRuntimeProfile: null,\n+    publicEndpoint: {\n+      hostname: 'dev.example.test',\n+      domainState: 'dns-confirmed',\n+      dns: {\n+        requirements: [{ type: 'A', name: 'dev.example.test', values: ['203.0.113.13'] }],\n+        observation: null,\n+      },\n+      tls: { state: 'verified' },\n+      publicReadBack: {\n+        state: 'mismatch',\n+        mismatchFields: ['deployment.releaseId'],\n+      },\n+    },\n+    healthState: 'healthy',\n+    rollbackState: 'available',\n+    history: [],\n+  };\n+\n+  const html = await renderView('deployment', {\n+    pageTitle: 'Deployment — Harbor & Hearth',\n+    ...view,\n+    deploymentAvailable: true,\n+    deploymentProfile: { capabilities: ['DEPLOY_RELEASE'], externalEffects: false },\n+    deploymentAuthorityAvailable: false,\n+    deploymentVerificationAvailable: false,\n+    deploymentMutationAvailable: false,\n+    deploymentPublicationInspectionAvailable: false,\n+    deploymentPublicationExecutionAvailable: false,\n+    deploymentLifecycleAvailable: false,\n+    deploymentReauthorizationAvailable: false,\n+    deployments: [deployment],\n+    error: '',\n+  });\n+\n+  assert.match(html, /Public site does not match this deployment/);\n+  assert.match(html, /exact runtime or Website Release identity did not match/);\n+  assert.match(html, /Review the public verification mismatch shown below/);\n+  assert.match(html, /Website Release confirmed on server:/);\n+  assert.doesNotMatch(html, /Public site is online and verified/);\n+  assert.doesNotMatch(html, /Public site is serving:/);\n+  assert.doesNotMatch(html, /data-open-public-site/);\n+});\n+\n+test('Era 7 Stage 5C: established deployment review uses update language instead of first-bootstrap language', async () => {\n+  const { view } = model();\n+  const release = view.releases.find((item) => item.id === view.liveReleaseId) || view.releases[0];\n+  const deployment = {\n+    id: 'deployment-stage5c-review',\n+    state: 'rollback-available',\n+    activeRelease: {\n+      id: release.id,\n+      digest: release.digest,\n+      packageDigest: 'a'.repeat(64),\n+    },\n+  };\n+  const review = {\n+    target: {\n+      currentUsername: 'hivenues-deploy',\n+      bootstrapUsername: 'debian',\n+      host: '203.0.113.10',\n+      port: 22,\n+      trustedHostKeyFingerprint: 'SHA256:' + 'Z'.repeat(43),\n+      verifiedOs: 'Debian GNU/Linux 13 (trixie)',\n+      verifiedArchitecture: 'x86_64',\n+    },\n+    release: {\n+      id: release.id,\n+      digest: release.digest,\n+      packageDigest: 'a'.repeat(64),\n+    },\n+    runtime: {\n+      sourceSha: '1'.repeat(40),\n+      sourceTree: '2'.repeat(40),\n+      bundleDigest: '3'.repeat(64),\n+      nodeVersion: 'v24.19.0',\n+      packageVersion: '1.0.0',\n+    },\n+    consequences: [\n+      'upload-qualified-public-runtime',\n+      'configure-named-systemd-caddy-firewall-services',\n+      'remove-exact-bootstrap-authorized-key',\n+    ],\n+    held: ['provider-payment', 'dns-mutation'],\n+    reviewDigest: '4'.repeat(64),\n+  };\n+\n+  const html = await renderView('deployment-review', {\n+    pageTitle: 'Public website review — Harbor & Hearth',\n+    ...view,\n+    deployment,\n+    review,\n+  });\n+\n+  assert.match(html, /Update the deployed-site runtime without changing the Website Release/);\n+  assert.match(html, /Use the existing restricted HiVenues deployment account/);\n+  assert.match(html, /Website Release is already installed on this server/);\n+  assert.doesNotMatch(html, /already the public content/);\n+  assert.match(html, />\\s*Update public-site runtime\\s*<\\/button>/);",
+        "path": "test/era7-stage5c-lifecycle-clarity.test.js",
+        "commit_id": "ae1af74b481984aa5c165918c87fac44371f64e0",
+        "original_commit_id": "ae1af74b481984aa5c165918c87fac44371f64e0",
+        "user": {
+          "login": "etblink",
+          "id": 30190328,
+          "node_id": "MDQ6VXNlcjMwMTkwMzI4",
+          "avatar_url": "https://avatars.githubusercontent.com/u/30190328?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/etblink",
+          "html_url": "https://github.com/etblink",
+          "followers_url": "https://api.github.com/users/etblink/followers",
+          "following_url": "https://api.github.com/users/etblink/following{/other_user}",
+          "gists_url": "https://api.github.com/users/etblink/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/etblink/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/etblink/subscriptions",
+          "organizations_url": "https://api.github.com/users/etblink/orgs",
+          "repos_url": "https://api.github.com/users/etblink/repos",
+          "events_url": "https://api.github.com/users/etblink/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/etblink/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "body": "Fixed. The established-deployment regression now expects the new **Update deployed-site runtime** button label, matching the corrected deployed-versus-public wording.",
+        "created_at": "2026-10-04T02:38:01Z",
+        "updated_at": "2026-10-04T02:38:01Z",
+        "html_url": "https://github.com/etblink/HiVenues/pull/397#discussion_r4175864407",
+        "pull_request_url": "https://api.github.com/repos/etblink/HiVenues/pulls/397",
+        "_links": {
+          "self": {
+            "href": "https://api.github.com/repos/etblink/HiVenues/pulls/comments/4175864407"
+          },
+          "html": {
+            "href": "https://github.com/etblink/HiVenues/pull/397#discussion_r4175864407"
+          },
+          "pull_request": {
+            "href": "https://api.github.com/repos/etblink/HiVenues/pulls/397"
+          }
+        },
+        "reactions": {
+          "url": "https://api.github.com/repos/etblink/HiVenues/pulls/comments/4175864407/reactions",
+          "total_count": 0,
+          "+1": 0,
+          "-1": 0,
+          "laugh": 0,
+          "hooray": 0,
+          "confused": 0,
+          "heart": 0,
+          "rocket": 0,
+          "eyes": 0
+        },
+        "start_line": null,
+        "original_start_line": null,
+        "start_side": null,
+        "line": null,
+        "original_line": 465,
+        "side": "RIGHT",
+        "in_reply_to_id": 4175863079,
+        "author_association": "OWNER",
+        "original_position": 465,
+        "position": 1,
+        "subject_type": "line"
+      }
+    ],
+    "pr399_inline_comments": [],
+    "pr397_review_threads": [
+      {
+        "id": "PRRT_kwDOUIrttc6ot7LG",
+        "is_resolved": true,
+        "is_outdated": true,
+        "path": "views/hivenues/deployment.ejs",
+        "line": null,
+        "diff_side": "RIGHT",
+        "start_line": null,
+        "start_diff_side": null,
+        "original_line": 176,
+        "original_start_line": null,
+        "resolved_by": {
+          "login": "etblink",
+          "name": "etblink",
+          "email": null,
+          "avatar_url": "https://avatars.githubusercontent.com/u/30190328?v=4",
+          "id": null
+        },
+        "comments": [
+          {
+            "id": "PRRC_kwDOUIrttc745SjB",
+            "database_id": 4175767745,
+            "body": "**<sub><sub>![P1 Badge](https://img.shields.io/badge/P1-orange?style=flat)</sub></sub>  Treat interrupted deployments as unverified**\n\nWhen an update is interrupted after `ExactReleaseDeploymentCoordinator` transitions the record to `deploying`, the previous `activeRelease` and verified public read-back remain persisted even though the server may already be partially mutated. This branch therefore labels that recovery state “Public site is online and verified” and says no action is required, contradicting the interrupted-deployment recovery action rendered below. Handle `deploying` before this branch, or restrict this verified status to stable `healthy`/`rollback-available` states.\n\nUseful? React with 👍 / 👎.",
+            "created_at": "2026-10-04T02:01:48Z",
+            "updated_at": "2026-10-04T02:01:48Z",
+            "author": {
+              "login": "chatgpt-codex-connector",
+              "name": "chatgpt-codex-connector",
+              "email": null,
+              "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+              "id": null
+            },
+            "viewer_did_author": false
+          },
+          {
+            "id": "PRRC_kwDOUIrttc745TgQ",
+            "database_id": 4175771664,
+            "body": "Fixed. `deploying` is now handled before any stable public-verification branch and presents an explicit incomplete/recovery status. The verified human status is additionally restricted to stable `healthy` / `rollback-available` states. This preserves the persisted technical proof as evidence while preventing an interrupted deployment from being presented as currently verified.",
+            "created_at": "2026-10-04T02:03:40Z",
+            "updated_at": "2026-10-04T02:03:40Z",
+            "author": {
+              "login": "etblink",
+              "name": "etblink",
+              "email": null,
+              "avatar_url": "https://avatars.githubusercontent.com/u/30190328?v=4",
+              "id": null
+            },
+            "viewer_did_author": true
+          }
+        ]
+      },
+      {
+        "id": "PRRT_kwDOUIrttc6ot935",
+        "is_resolved": true,
+        "is_outdated": false,
+        "path": "views/hivenues/deployment.ejs",
+        "line": 255,
+        "diff_side": "RIGHT",
+        "start_line": 207,
+        "start_diff_side": "RIGHT",
+        "original_line": 210,
+        "original_start_line": 207,
+        "resolved_by": {
+          "login": "etblink",
+          "name": "etblink",
+          "email": null,
+          "avatar_url": "https://avatars.githubusercontent.com/u/30190328?v=4",
+          "id": null
+        },
+        "comments": [
+          {
+            "id": "PRRC_kwDOUIrttc745Wjg",
+            "database_id": 4175784160,
+            "body": "**<sub><sub>![P1 Badge](https://img.shields.io/badge/P1-orange?style=flat)</sub></sub>  Stop labeling stale active releases as online**\n\nWhen an update is interrupted after mutating the server but before successful read-back, `activeRelease` still contains the last confirmed release even though the server may now be serving partially updated or different content. The new `deploying` status branch fixes the headline, but this unconditional block still presents that stale release as “Website Release online,” contradicting the incomplete status and potentially misleading recovery decisions. Restrict this label to stable verified states, or describe it as the last confirmed release during `deploying`/`degraded` recovery.\n\nUseful? React with 👍 / 👎.",
+            "created_at": "2026-10-04T02:07:45Z",
+            "updated_at": "2026-10-04T02:07:45Z",
+            "author": {
+              "login": "chatgpt-codex-connector",
+              "name": "chatgpt-codex-connector",
+              "email": null,
+              "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+              "id": null
+            },
+            "viewer_did_author": false
+          },
+          {
+            "id": "PRRC_kwDOUIrttc745dm_",
+            "database_id": 4175813055,
+            "body": "Fixed. The ordinary Release label is now state-aware. Only a stable `healthy` / `rollback-available` deployment with verified public read-back says **Public site is serving**. `deploying`, `degraded`, and `unreachable` states instead say **Last confirmed deployed Website Release**, so persisted `activeRelease` evidence cannot be mistaken for current public truth during recovery. Added a regression that requires the recovery label and forbids `Public site is serving` for an interrupted deployment.",
+            "created_at": "2026-10-04T02:20:26Z",
+            "updated_at": "2026-10-04T02:20:26Z",
+            "author": {
+              "login": "etblink",
+              "name": "etblink",
+              "email": null,
+              "avatar_url": "https://avatars.githubusercontent.com/u/30190328?v=4",
+              "id": null
+            },
+            "viewer_did_author": true
+          }
+        ]
+      },
+      {
+        "id": "PRRT_kwDOUIrttc6ouEU9",
+        "is_resolved": true,
+        "is_outdated": false,
+        "path": "views/hivenues/deployment.ejs",
+        "line": 224,
+        "diff_side": "RIGHT",
+        "start_line": 221,
+        "start_diff_side": "RIGHT",
+        "original_line": 217,
+        "original_start_line": 214,
+        "resolved_by": {
+          "login": "etblink",
+          "name": "etblink",
+          "email": null,
+          "avatar_url": "https://avatars.githubusercontent.com/u/30190328?v=4",
+          "id": null
+        },
+        "comments": [
+          {
+            "id": "PRRC_kwDOUIrttc745gmh",
+            "database_id": 4175825313,
+            "body": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Surface known public read-back mismatches**\n\nWhen `verifyPublicHttps` records `publicReadBack.state === 'mismatch'` while the deployment remains `healthy` or `rollback-available`, this generic branch describes verification as merely incomplete and tells the owner to complete it, even though HiVenues already knows the public endpoint is serving the wrong identity or Release. Add a mismatch-specific human status before this fallback so the leading lifecycle summary exposes the failure rather than leaving it to the lower diagnostic card.\n\nUseful? React with 👍 / 👎.",
+            "created_at": "2026-10-04T02:25:14Z",
+            "updated_at": "2026-10-04T02:25:14Z",
+            "author": {
+              "login": "chatgpt-codex-connector",
+              "name": "chatgpt-codex-connector",
+              "email": null,
+              "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+              "id": null
+            },
+            "viewer_did_author": false
+          },
+          {
+            "id": "PRRC_kwDOUIrttc745hbQ",
+            "database_id": 4175828688,
+            "body": "Fixed. A known `publicReadBack.state === 'mismatch'` on a stable `healthy` / `rollback-available` deployment now gets an explicit leading status: **Public site does not match this deployment**. The summary explains that the exact runtime or Website Release identity did not match and directs the owner to the mismatch diagnostics before another public change. A regression now requires that failure summary and forbids verified/serving language and the public-site shortcut for this state.",
+            "created_at": "2026-10-04T02:26:48Z",
+            "updated_at": "2026-10-04T02:26:48Z",
+            "author": {
+              "login": "etblink",
+              "name": "etblink",
+              "email": null,
+              "avatar_url": "https://avatars.githubusercontent.com/u/30190328?v=4",
+              "id": null
+            },
+            "viewer_did_author": true
+          }
+        ]
+      },
+      {
+        "id": "PRRT_kwDOUIrttc6ouIcP",
+        "is_resolved": true,
+        "is_outdated": true,
+        "path": "test/era7-stage5c-lifecycle-clarity.test.js",
+        "line": null,
+        "diff_side": "RIGHT",
+        "start_line": null,
+        "start_diff_side": null,
+        "original_line": 376,
+        "original_start_line": null,
+        "resolved_by": {
+          "login": "etblink",
+          "name": "etblink",
+          "email": null,
+          "avatar_url": "https://avatars.githubusercontent.com/u/30190328?v=4",
+          "id": null
+        },
+        "comments": [
+          {
+            "id": "PRRC_kwDOUIrttc745mq3",
+            "database_id": 4175850167,
+            "body": "**<sub><sub>![P1 Badge](https://img.shields.io/badge/P1-orange?style=flat)</sub></sub>  Populate mismatch fields in the new fixture**\n\nThis fixture reaches the existing mismatch diagnostic, which unconditionally evaluates `deployment.publicEndpoint.publicReadBack.mismatchFields.join(', ')`; because `mismatchFields` is absent here, the new test throws a `TypeError` during EJS rendering before any of its assertions run, failing the test suite whenever dependencies are installed. Add a representative `mismatchFields` array to the fixture.\n\nUseful? React with 👍 / 👎.",
+            "created_at": "2026-10-04T02:32:29Z",
+            "updated_at": "2026-10-04T02:32:29Z",
+            "author": {
+              "login": "chatgpt-codex-connector",
+              "name": "chatgpt-codex-connector",
+              "email": null,
+              "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+              "id": null
+            },
+            "viewer_did_author": false
+          },
+          {
+            "id": "PRRC_kwDOUIrttc745nij",
+            "database_id": 4175853731,
+            "body": "Fixed. The presentation fixture now supplies representative canonical mismatch evidence with `mismatchFields: ['deployment.releaseId']`. I did not weaken the existing diagnostic to tolerate structurally invalid persisted state.",
+            "created_at": "2026-10-04T02:33:22Z",
+            "updated_at": "2026-10-04T02:33:22Z",
+            "author": {
+              "login": "etblink",
+              "name": "etblink",
+              "email": null,
+              "avatar_url": "https://avatars.githubusercontent.com/u/30190328?v=4",
+              "id": null
+            },
+            "viewer_did_author": true
+          }
+        ]
+      },
+      {
+        "id": "PRRT_kwDOUIrttc6ouIcS",
+        "is_resolved": true,
+        "is_outdated": true,
+        "path": "views/hivenues/deployment-review.ejs",
+        "line": null,
+        "diff_side": "RIGHT",
+        "start_line": null,
+        "start_diff_side": "RIGHT",
+        "original_line": 28,
+        "original_start_line": 27,
+        "resolved_by": {
+          "login": "etblink",
+          "name": "etblink",
+          "email": null,
+          "avatar_url": "https://avatars.githubusercontent.com/u/30190328?v=4",
+          "id": null
+        },
+        "comments": [
+          {
+            "id": "PRRC_kwDOUIrttc745mq9",
+            "database_id": 4175850173,
+            "body": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Don't call an unverified server release public**\n\nWhen the selected Release matches `activeRelease` but the deployment has no verified public read-back—for example, an established server before a domain is connected—`sameWebsiteRelease` is still true and this review says the Release is already “public content.” An active Release only proves what is installed on the server, so this reintroduces the exact server-versus-public-site ambiguity the lifecycle UI is intended to remove; describe it as already deployed content or gate the public wording on verified public proof.\n\nUseful? React with 👍 / 👎.",
+            "created_at": "2026-10-04T02:32:29Z",
+            "updated_at": "2026-10-04T02:32:29Z",
+            "author": {
+              "login": "chatgpt-codex-connector",
+              "name": "chatgpt-codex-connector",
+              "email": null,
+              "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+              "id": null
+            },
+            "viewer_did_author": false
+          },
+          {
+            "id": "PRRC_kwDOUIrttc745nk-",
+            "database_id": 4175853886,
+            "body": "Fixed. `sameWebsiteRelease` now describes only what the deployment record actually proves: the Release is already installed on this server. The runtime-maintenance heading/button now say **deployed-site runtime**, not public-site runtime. The existing established-deployment regression has been tightened to require the server-installed wording and forbid `already the public content`.",
+            "created_at": "2026-10-04T02:33:24Z",
+            "updated_at": "2026-10-04T02:33:24Z",
+            "author": {
+              "login": "etblink",
+              "name": "etblink",
+              "email": null,
+              "avatar_url": "https://avatars.githubusercontent.com/u/30190328?v=4",
+              "id": null
+            },
+            "viewer_did_author": true
+          }
+        ]
+      },
+      {
+        "id": "PRRT_kwDOUIrttc6ouKbV",
+        "is_resolved": true,
+        "is_outdated": true,
+        "path": "test/era7-stage5c-lifecycle-clarity.test.js",
+        "line": null,
+        "diff_side": "RIGHT",
+        "start_line": null,
+        "start_diff_side": null,
+        "original_line": 465,
+        "original_start_line": null,
+        "resolved_by": {
+          "login": "etblink",
+          "name": "etblink",
+          "email": null,
+          "avatar_url": "https://avatars.githubusercontent.com/u/30190328?v=4",
+          "id": null
+        },
+        "comments": [
+          {
+            "id": "PRRC_kwDOUIrttc745p0n",
+            "database_id": 4175863079,
+            "body": "**<sub><sub>![P1 Badge](https://img.shields.io/badge/P1-orange?style=flat)</sub></sub>  Expect the deployed-site runtime button label**\n\nWhen dependencies are installed and this test runs, the rendered button contains `Update deployed-site runtime`, as defined by `actionButton` in `deployment-review.ejs`, but this assertion still expects `Update public-site runtime`. The deterministic test suite therefore fails on every run; update the assertion to match the new deployed-versus-public wording.\n\nUseful? React with 👍 / 👎.",
+            "created_at": "2026-10-04T02:37:24Z",
+            "updated_at": "2026-10-04T02:37:24Z",
+            "author": {
+              "login": "chatgpt-codex-connector",
+              "name": "chatgpt-codex-connector",
+              "email": null,
+              "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+              "id": null
+            },
+            "viewer_did_author": false
+          },
+          {
+            "id": "PRRC_kwDOUIrttc745qJX",
+            "database_id": 4175864407,
+            "body": "Fixed. The established-deployment regression now expects the new **Update deployed-site runtime** button label, matching the corrected deployed-versus-public wording.",
+            "created_at": "2026-10-04T02:38:01Z",
+            "updated_at": "2026-10-04T02:38:01Z",
+            "author": {
+              "login": "etblink",
+              "name": "etblink",
+              "email": null,
+              "avatar_url": "https://avatars.githubusercontent.com/u/30190328?v=4",
+              "id": null
+            },
+            "viewer_did_author": true
+          }
+        ]
+      }
+    ],
+    "pr399_review_threads": []
+  }
+}
