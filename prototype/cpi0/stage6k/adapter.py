@@ -207,13 +207,19 @@ def _event_time(source: Mapping[str, Any]) -> str:
 
 
 PASS_PATTERNS = [
-    re.compile(r"\bpass(?:ed)?\b", re.I),
+    re.compile(
+        r"\b(?:owner\s+)?acceptance(?:\s+result)?\s*[:=—-]\s*\**"
+        r"(?:pass(?:ed)?|accepted|approved)\b",
+        re.I,
+    ),
     re.compile(r"\baccepted\b", re.I),
     re.compile(r"\bacceptance\s+(?:is\s+)?granted\b", re.I),
     re.compile(r"\bapprov(?:e|ed)\b", re.I),
     re.compile(r"\blgtm\b", re.I),
     re.compile(r"\bship\s+it\b", re.I),
     re.compile(r"\bgood\s+to\s+go\b", re.I),
+    re.compile(r"\b(?:usability\s+)?gate\s+(?:has\s+)?passed\b", re.I),
+    re.compile(r"\b(?:result|status)\s*[:=]\s*pass\b", re.I),
     re.compile(r"\b(?:gate|#374)\b.{0,50}\bsatisfied\b", re.I | re.S),
     re.compile(r"\bwould\s+continue\s+using\b", re.I),
 ]
@@ -265,6 +271,10 @@ def _classify_owner_source(source: Mapping[str, Any]) -> str:
         pass_text = pattern.sub(" ", pass_text)
 
     if any(pattern.search(pass_text) for pattern in PASS_PATTERNS):
+        pass_signal = True
+
+    standalone = re.sub(r"[\\s*_`.!]+", "", pass_text).lower()
+    if standalone in {"pass", "passed"}:
         pass_signal = True
 
     if pass_signal and fail_signal:
