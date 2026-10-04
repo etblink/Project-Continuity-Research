@@ -217,8 +217,16 @@ def collect_hivenues() -> Dict[str, Any]:
         )
 
     issue398_ids = core["discovery"]["issue398_comments"]["discovered_ids"]
+    actual_issue398_ids = [x["id"] for x in core["objects"]["issue398_comments"]]
+    if issue398_ids != actual_issue398_ids:
+        raise CollectorError("HiVenues: Issue #398 discovery/object mismatch")
     if issue398_ids != contract["expected_frozen_issue398_comment_ids"]:
         raise CollectorError("HiVenues: Issue #398 comment set mismatch")
+
+    issue374_ids = core["discovery"]["issue374_comments"]["discovered_ids"]
+    actual_issue374_ids = [x["id"] for x in core["objects"]["issue374_comments"]]
+    if issue374_ids != actual_issue374_ids:
+        raise CollectorError("HiVenues: Issue #374 discovery/object mismatch")
 
     detail_map = {
         397: prs["objects"]["pr397"],
@@ -241,16 +249,32 @@ def collect_hivenues() -> Dict[str, Any]:
         disc = prs["discovery"][name]
         if not disc["page2_empty"]:
             raise CollectorError(f"HiVenues: PR #{number} conversation comments incomplete")
+        raw_issue_comments = prs["objects"][f"pr{number}_issue_comments"]
+        if disc["page1_count"] != len(raw_issue_comments):
+            raise CollectorError(f"HiVenues: PR #{number} conversation comment count mismatch")
+        if disc["discovered_ids"] != [x["id"] for x in raw_issue_comments]:
+            raise CollectorError(f"HiVenues: PR #{number} conversation comment ID mismatch")
 
         reviews = prs["discovery"][f"pr{number}_reviews"]
         if not aux["discovery"][f"pr{number}_reviews"]["page2_empty"]:
             raise CollectorError(f"HiVenues: PR #{number} reviews incomplete")
         if reviews["page1_count"] != len(prs["objects"][f"pr{number}_reviews"]):
             raise CollectorError(f"HiVenues: PR #{number} review count mismatch")
+        if reviews["discovered_ids"] != [x["id"] for x in prs["objects"][f"pr{number}_reviews"]]:
+            raise CollectorError(f"HiVenues: PR #{number} review ID mismatch")
 
         inline = aux["discovery"][f"pr{number}_inline_comments"]
         if not inline["page2_empty"]:
             raise CollectorError(f"HiVenues: PR #{number} inline comments incomplete")
+        raw_inline = aux["objects"][f"pr{number}_inline_comments"]
+        if inline["page1_count"] != len(raw_inline):
+            raise CollectorError(f"HiVenues: PR #{number} inline comment count mismatch")
+        if inline["discovered_ids"] != [x["id"] for x in raw_inline]:
+            raise CollectorError(f"HiVenues: PR #{number} inline comment ID mismatch")
+
+        threads = aux["objects"][f"pr{number}_review_threads"]
+        if aux["discovery"][f"pr{number}_review_threads"]["count"] != len(threads):
+            raise CollectorError(f"HiVenues: PR #{number} review-thread count mismatch")
 
     pr399_comment_ids = prs["discovery"]["pr399_issue_comments"]["discovered_ids"]
     if pr399_comment_ids != contract["expected_frozen_pr399_conversation_comment_ids"]:
