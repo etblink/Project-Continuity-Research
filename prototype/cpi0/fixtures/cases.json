@@ -1,0 +1,288 @@
+{
+  "cases": {
+    "A_NFC_SOURCE_ROUTING": {
+      "projection": {
+        "profile_version": "0.1.0",
+        "project_id": "NFC",
+        "projection_id": "nfc-survey-2026-10-04",
+        "producer": "cpi0-read-only-adapter",
+        "observed_at": "2026-10-04T00:00:00Z",
+        "observed_sources": [
+          {
+            "source_id": "publication-main",
+            "repository": "etblink/Nested-Fibrational-Cosmology",
+            "ref": "main",
+            "commit": "5072d563b0a3dd4a7643be427cd47108216d8793",
+            "tree": "decaab0e7e8012e37e7cc553a391c4e89cc7796c",
+            "role": "publication_provenance_surface"
+          },
+          {
+            "source_id": "frozen-theorem-canon",
+            "repository": "etblink/Nested-Fibrational-Cosmology",
+            "ref": "archive/nfc-canonical-ed3047c2",
+            "commit": "ed3047c2cbc0abc34d2549dd27754e4d3d05af78",
+            "tree": "00ef55ff36d5e9663ca1ef2c9566e2bc1396f973",
+            "role": "scientific_theorem_canon"
+          }
+        ],
+        "authority_map": [
+          {"purpose": "publication_routing", "source_id": "publication-main", "authority_scope": "publication_and_provenance"},
+          {"purpose": "scientific_theorem_analysis", "source_id": "frozen-theorem-canon", "authority_scope": "frozen_theorem_bearing_corpus"}
+        ],
+        "material_objects": [],
+        "negative_knowledge": [
+          {"kind": "unresolved", "subject": "historical_remove_human_policy_intent", "basis": "repository mechanics do not establish human motive"}
+        ],
+        "dependencies": [],
+        "triggers": [],
+        "transitions": []
+      },
+      "current_revisions": {
+        "publication-main": "5072d563b0a3dd4a7643be427cd47108216d8793",
+        "frozen-theorem-canon": "ed3047c2cbc0abc34d2549dd27754e4d3d05af78"
+      }
+    },
+    "B_OBSERVATORY_STALE_SNAPSHOT": {
+      "projection": {
+        "profile_version": "0.1.0",
+        "project_id": "HIVenues",
+        "projection_id": "observatory-v0.2-hivenues",
+        "producer": "Project-Observatory-v0.2",
+        "observed_at": "2026-09-14T21:04:00Z",
+        "observed_sources": [
+          {"source_id": "hivenues-main", "repository": "etblink/HiVenues", "ref": "main", "commit": "bf9a0b4e61d57eed6bb5a81504d6e030f8b6ff7c", "role": "observed_project_main"}
+        ],
+        "authority_map": [
+          {"purpose": "observatory_snapshot_reconstruction", "source_id": "hivenues-main", "authority_scope": "observed_at_boundary_only"}
+        ],
+        "material_objects": [{"object_id": "snapshot-state", "role": "historical_snapshot", "status": "valid_at_observation_boundary"}],
+        "negative_knowledge": [],
+        "dependencies": [],
+        "triggers": [],
+        "transitions": []
+      },
+      "current_revisions": {"hivenues-main": "4fed1b4bcd65606124579fe8a643e55828655093"}
+    },
+    "C_EBMM_HOLD": {
+      "projection": {
+        "profile_version": "0.1.0",
+        "project_id": "EBMM",
+        "projection_id": "ebmm-main-0531f445",
+        "producer": "cpi0-read-only-adapter",
+        "observed_at": "2026-10-04T00:00:00Z",
+        "observed_sources": [
+          {"source_id": "canonical-state", "repository": "etblink/Evidence-Based-Market-Methods", "ref": "main", "commit": "0531f4451fe64cb0b292ee4cad975c541e11b97a", "role": "sole_mutable_canonical_state"}
+        ],
+        "authority_map": [
+          {"purpose": "current_mutable_project_state", "source_id": "canonical-state", "authority_scope": "STATE.yaml"}
+        ],
+        "material_objects": [{"object_id": "PRICE_TIME_SERIES_TREND", "role": "leading_candidate", "status": "retained_no_capital_authority"}],
+        "negative_knowledge": [
+          {
+            "kind": "held",
+            "subject": "HOLD-001",
+            "basis": "historical reconnaissance complete; scarce research time should return to other work",
+            "reopen_if": [
+              "explicit_owner_choice_to_begin_prospective_trend_validation",
+              "explicit_owner_request_for_separate_capital_allocation_analysis",
+              "materially_new_evidence_changes_a_deferred_method_ranking",
+              "substantially_cheaper_clean_test_becomes_available_for_a_deferred_candidate"
+            ],
+            "prohibited": ["additional_retrospective_parameter_search", "paid_data_purchase", "direct_futures_system_build", "live_capital_deployment"]
+          }
+        ],
+        "dependencies": [],
+        "triggers": [
+          {"trigger_id": "owner-reopen", "trigger_type": "human_owner_choice", "status": "unsatisfied", "consequence": "bounded research may be separately reopened"}
+        ],
+        "transitions": [
+          {"transition_id": "HOLD-001", "state": "held", "consequence_class": "research_routing"}
+        ]
+      }
+    },
+    "D_PGH_EXTERNAL_PREREQUISITE": {
+      "projection": {
+        "profile_version": "0.1.0",
+        "project_id": "PGH",
+        "projection_id": "pgh-main-2923875b",
+        "producer": "cpi0-read-only-adapter",
+        "observed_at": "2026-10-04T00:00:00Z",
+        "observed_sources": [
+          {"source_id": "pgh-main", "repository": "etblink/Physical-Grammar-Hypothesis", "ref": "main", "commit": "2923875b40ea6901dfafda56a771c36876c4a220", "role": "current_project_state"}
+        ],
+        "authority_map": [
+          {"purpose": "current_research_and_governance_state", "source_id": "pgh-main", "authority_scope": "canonical_markdown_plus_git_provenance"}
+        ],
+        "material_objects": [
+          {"object_id": "PGH-OBJ-0052", "role": "active_candidate_package", "status": "empirically_untested"},
+          {"object_id": "PGH-EXP-DESIGN-0001", "role": "qualified_interface_design", "status": "expectation_is_not_evidence"}
+        ],
+        "negative_knowledge": [
+          {"kind": "suspended", "subject": "public_target_search", "basis": "zero-target result and failed trigger reassessment", "reopen_if": "new_independent_trigger"},
+          {"kind": "forbidden", "subject": "physical_trials", "basis": "apparatus and analysis preregistration incomplete", "reopen_if": "prospective sequence satisfied", "do_not_assume": ["PGH_OBJ_0052_HAS_EMPIRICAL_SUPPORT", "ACTUAL_APPARATUS_IS_BOUND", "PHYSICAL_TRIALS_ARE_AUTHORIZED"]}
+        ],
+        "dependencies": [
+          {"dependency_id": "real-apparatus", "class": "HARD", "status": "UNSATISFIED", "basis": "real D1 apparatus identity and channels must be prospectively bound", "basis_kind": "project_governance", "counterfactual": "synthetic readiness fixtures cannot substitute for physical apparatus"}
+        ],
+        "triggers": [
+          {"trigger_id": "apparatus-realization", "trigger_type": "physical_prerequisite", "status": "unsatisfied", "consequence": "apparatus realization and target freeze may begin"}
+        ],
+        "transitions": [
+          {"transition_id": "APPARATUS_REALIZATION_AND_TARGET_FREEZE", "state": "blocked_external", "consequence_class": "physical_experiment_preparation"},
+          {"transition_id": "PHYSICAL_TRIAL_EXECUTION", "state": "prohibited", "consequence_class": "physical_experiment"}
+        ]
+      }
+    },
+    "E_FCP_LAYER_SEPARATION": {
+      "projection": {
+        "profile_version": "0.1.0",
+        "project_id": "FCP",
+        "projection_id": "fcp-main-a41bc610",
+        "producer": "cpi0-read-only-adapter",
+        "observed_at": "2026-10-04T00:00:00Z",
+        "observed_sources": [
+          {"source_id": "fcp-main", "repository": "etblink/Foundational-Convergence-Program", "ref": "main", "commit": "a41bc6101b63140ee2687e0cf67a47ab6be77215", "role": "current_program_state"}
+        ],
+        "authority_map": [
+          {"purpose": "current_scientific_and_routing_state", "source_id": "fcp-main", "authority_scope": "CURRENT_STATE plus live registers and scoped handoffs"}
+        ],
+        "material_objects": [
+          {"object_id": "historical-result", "role": "historical_result", "status": "immutable_scoped_provenance"},
+          {"object_id": "prospective-result", "role": "current_prospective_result", "status": "method_0_2_1"},
+          {"object_id": "routing-state", "role": "current_routing_state", "status": "separate_authorization_required"}
+        ],
+        "negative_knowledge": [
+          {"kind": "held", "subject": "new_scientific_operation", "basis": "sequencing remains evidence/authorization gated", "reopen_if": "qualifying_evidence_or_separately_authorized_operation"}
+        ],
+        "dependencies": [],
+        "triggers": [
+          {"trigger_id": "material-evidence", "trigger_type": "evidence_event", "status": "open_ended", "consequence": "new scientific operation may become eligible for selection"}
+        ],
+        "transitions": [
+          {"transition_id": "next_scientific_operation", "state": "waiting_for_trigger", "consequence_class": "scientific_research"}
+        ]
+      }
+    },
+    "F_HIVENUES_CANDIDATE_AND_OWNER_ACCEPTANCE": {
+      "projection": {
+        "profile_version": "0.1.0",
+        "project_id": "HIVenues",
+        "projection_id": "hivenues-2026-10-04-stage5d",
+        "producer": "cpi0-read-only-adapter",
+        "observed_at": "2026-10-04T15:30:48Z",
+        "observed_sources": [
+          {"source_id": "hivenues-main", "repository": "etblink/HiVenues", "ref": "main", "commit": "4fed1b4bcd65606124579fe8a643e55828655093", "role": "canonical_main"},
+          {"source_id": "pr397-head", "repository": "etblink/HiVenues", "ref": "feature/era7-stage5c-lifecycle-clarity", "commit": "e469282b39d533f1803dcd47b61663dbf05043de", "role": "candidate_pr_head"}
+        ],
+        "authority_map": [
+          {"purpose": "canonical_merged_code", "source_id": "hivenues-main", "authority_scope": "merged_main"},
+          {"purpose": "stage5c_candidate_review", "source_id": "pr397-head", "authority_scope": "candidate_only"}
+        ],
+        "material_objects": [
+          {"object_id": "PR-397", "role": "candidate", "status": "open_not_merged"},
+          {"object_id": "ISSUE-398", "role": "active_work_charter", "status": "owner_acceptance_required"},
+          {"object_id": "automated-qualification", "role": "machine_qualification", "status": "not_equivalent_to_owner_acceptance"}
+        ],
+        "negative_knowledge": [
+          {"kind": "forbidden", "subject": "treat_machine_pass_as_owner_acceptance", "basis": "Issue 398 explicitly delegates usability acceptance to owner", "reopen_if": null}
+        ],
+        "dependencies": [
+          {"dependency_id": "owner-usability-acceptance", "class": "HARD", "status": "UNSATISFIED", "basis": "Issue 398 owner acceptance rule", "basis_kind": "project_governance", "counterfactual": "CI or browser pass alone cannot close the owner usability gate"}
+        ],
+        "triggers": [
+          {"trigger_id": "owner-acceptance", "trigger_type": "human_owner_acceptance", "status": "unsatisfied", "consequence": "usability gate may close"}
+        ],
+        "transitions": [
+          {"transition_id": "merge_or_accept_redesign", "state": "complete_pending_acceptance", "consequence_class": "product_canonicalization"}
+        ]
+      }
+    },
+    "G_PCR_PARALLEL_WORKSTREAMS": {
+      "projection": {
+        "profile_version": "0.1.0",
+        "project_id": "PCR",
+        "projection_id": "pcr-parallel-tracks-2026-10-04",
+        "producer": "cpi0-read-only-adapter",
+        "observed_at": "2026-10-04T00:00:00Z",
+        "observed_sources": [
+          {"source_id": "pcr-main", "repository": "etblink/Project-Continuity-Research", "ref": "main", "commit": "80c4516f3d9d5d0bdfb18d1d1ff393817743e7cd", "role": "program_baseline"},
+          {"source_id": "cpi-research", "repository": "etblink/Project-Continuity-Research", "ref": "research/cross-project-interoperability", "commit": "3886a89089b63fb2b2cf4e50adc431678c0d1a9a", "role": "bounded_research_branch"}
+        ],
+        "authority_map": [
+          {"purpose": "program_baseline", "source_id": "pcr-main", "authority_scope": "main_research_program"},
+          {"purpose": "cpi0_bounded_research", "source_id": "cpi-research", "authority_scope": "Issue_19_branch_only"}
+        ],
+        "material_objects": [
+          {"object_id": "ISSUE-1", "role": "authorized_workstream", "status": "CCP1_read_only_shadow"},
+          {"object_id": "ISSUE-19", "role": "authorized_workstream", "status": "CPI0_read_only_research"},
+          {"object_id": "BIG_PICTURE_ROADMAP", "role": "orientation_projection", "status": "noncanonical"}
+        ],
+        "negative_knowledge": [
+          {"kind": "forbidden", "subject": "live_project_control_plane_integration", "basis": "CCP1 and CPI0 authorization boundaries", "reopen_if": "later_separately_qualified_gate"}
+        ],
+        "dependencies": [],
+        "triggers": [],
+        "transitions": [
+          {"transition_id": "CCP1", "state": "selected_authorized", "consequence_class": "read_only_research"},
+          {"transition_id": "CPI0", "state": "selected_authorized", "consequence_class": "read_only_research"}
+        ]
+      }
+    },
+    "H_FALSE_CROSS_DOMAIN_BRIDGE": {
+      "projection": {
+        "profile_version": "0.1.0",
+        "project_id": "OBSERVATORY",
+        "projection_id": "false-bridge-negative-control",
+        "producer": "cpi0-read-only-adapter",
+        "observed_at": "2026-10-04T00:00:00Z",
+        "observed_sources": [
+          {"source_id": "notebooklm-source", "repository": "etblink/Project-Continuity-Research", "ref": "research/cross-project-interoperability", "commit": "33ad436931f839978893f75251915665fd9c5ba4", "role": "secondary_synthesis_source"}
+        ],
+        "authority_map": [
+          {"purpose": "hypothesis_generation_only", "source_id": "notebooklm-source", "authority_scope": "secondary_synthesis_not_scientific_authority"}
+        ],
+        "material_objects": [
+          {"object_id": "HIVE_TO_NFC_PGH_SENSOR_BRIDGE", "role": "speculative_hypothesis", "status": "held_unestablished"}
+        ],
+        "negative_knowledge": [
+          {"kind": "held", "subject": "HIVE_TO_NFC_PGH_SENSOR_BRIDGE", "basis": "shared finite-relational form does not establish theory-specific physical relevance", "reopen_if": "principled_theory_specific_mapping_plus_null_model_plus_falsification_rule"}
+        ],
+        "dependencies": [
+          {"dependency_id": "hive-physics-bridge", "class": "NONE", "status": "CHECKED_NOT_ESTABLISHED", "basis": "no principled physical bridge currently established", "basis_kind": "adversarial_null_control", "counterfactual": "a theory-specific mapping with risky prediction could justify re-evaluation"}
+        ],
+        "triggers": [],
+        "transitions": []
+      }
+    }
+  },
+  "malformed": {
+    "thematic_hard_dependency": {
+      "dependency_id": "bad-dep",
+      "class": "HARD",
+      "status": "ASSERTED",
+      "basis": "both projects use finite graphs",
+      "basis_kind": "thematic_similarity",
+      "counterfactual": "none"
+    },
+    "remote_event_direct_effect": {
+      "specversion": "1.0",
+      "id": "remote-1",
+      "source": "project-A",
+      "type": "project.claim.accepted",
+      "time": "2026-10-04T00:00:00Z",
+      "subject": {"project_id": "A", "source_identity": "abc123"},
+      "predicate_type": "cpi.project-event/0.1",
+      "data": {"direct_local_canonical_effect": true}
+    },
+    "bad_import": {
+      "import_id": "imp-1",
+      "remote_object_id": "remote-1",
+      "receiving_project": "B",
+      "disposition": "evidence_only",
+      "local_scope": "all",
+      "local_authority": "owner-B",
+      "reason": "looks relevant",
+      "canonical_mutation_authorized": true
+    }
+  }
+}
