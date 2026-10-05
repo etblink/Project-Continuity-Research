@@ -1,0 +1,111 @@
+name: CPI-0 Stage 9A synthetic C-VF qualification
+
+on:
+  push:
+    branches:
+      - research/cpi0-stage9a-hive-authority-state-provenance
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  stage9a:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact branch commit
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install pinned Stage 8 dependency
+        run: |
+          python -m pip install --disable-pip-version-check -r prototype/cpi0/stage8a/requirements.txt
+
+      - name: Print qualification identity
+        run: |
+          git rev-parse HEAD
+          python - <<'PY'
+          import cryptography
+          print("CRYPTOGRAPHY_VERSION =", cryptography.__version__)
+          PY
+
+      - name: Compile Stage 9A
+        run: |
+          python -m py_compile \
+            prototype/cpi0/stage9a/hive_authority_state_provenance.py \
+            prototype/cpi0/stage9a/test_hive_authority_state_provenance.py
+
+      - name: Run Stage 9A adversarial suite
+        working-directory: prototype/cpi0/stage9a
+        run: |
+          python -m unittest -v test_hive_authority_state_provenance.py
+
+      - name: Run Stage 8A regression suite
+        working-directory: prototype/cpi0/stage8a
+        run: |
+          python -m unittest -v test_hive_active_bootstrap_adapter.py
+
+      - name: Emit deterministic Stage 9A vector
+        working-directory: prototype/cpi0/stage9a
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          import hive_authority_state_provenance as P
+
+          KEY = "STM8gAFEMLo7L2EoHRizg2AAUiRvTi24UYxQXNbCWjuwAJe8ViDJL"
+          def active(threshold=1, key_auths=None, account_auths=None):
+              return {
+                  "weight_threshold": threshold,
+                  "key_auths": sorted(key_auths or [], key=lambda x: x[0]),
+                  "account_auths": sorted(account_auths or [], key=lambda x: x[0]),
+              }
+
+          witnesses = [f"wit{i:02d}" for i in range(1, 22)]
+          genesis = {
+              "rootacct": active(1, account_auths=[["delegate", 1]]),
+              "delegate": active(1, key_auths=[[KEY, 1]]),
+          }
+          history = []
+          previous = "0" * 64
+          for n in range(1, 31):
+              block = P.make_block(
+                  block_num=n,
+                  previous=previous,
+                  witness=witnesses[(n - 1) % 21],
+                  scheduled_witnesses=witnesses,
+              )
+              history.append(block)
+              previous = block["block_id"]
+
+          target = history[5]
+          confirmation = history[29]
+          result = P.verify_synthetic_provenance(
+              history=history,
+              genesis_authorities=genesis,
+              authority_root_account="rootacct",
+              target_block_num=target["block_num"],
+              target_block_id=target["block_id"],
+              confirmation_block_num=confirmation["block_num"],
+              confirmation_block_id=confirmation["block_id"],
+              validation_profile=P.VALIDATION_PROFILE,
+              checkpoint_mode="NONE_FROM_GENESIS",
+              reindex_reported_lib=confirmation["block_num"],
+          )
+
+          print("STAGE9A_C_VF_VECTOR = PASS")
+          print("TARGET_BLOCK_ID =", target["block_id"])
+          print("CONFIRMATION_BLOCK_ID =", confirmation["block_id"])
+          print("AUTHORITY_SNAPSHOT_DIGEST =", result["authority_snapshot_digest"])
+          print("FINALITY_CERTIFICATE_DIGEST =", result["finality_certificate"]["certificate_digest"])
+          print("JOINT_PROVENANCE_DIGEST =", result["joint_provenance_digest"])
+          print("APPROVING_WITNESSES =", result["finality_certificate"]["approving_witness_count"])
+          print("REQUIRED_WITNESSES =", result["finality_certificate"]["required_witness_count"])
+          print("TARGET_IRREVERSIBILITY_ESTABLISHED =", result["target_irreversibility_established"])
+          print("CURRENT_AUTHORITY_ESTABLISHED =", result["current_authority_established"])
+          print("EXECUTION_AUTHORIZED_BY_CPI =", result["execution_authorized_by_cpi"])
+          PY
