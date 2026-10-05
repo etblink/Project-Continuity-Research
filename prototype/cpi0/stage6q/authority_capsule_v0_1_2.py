@@ -427,7 +427,7 @@ def parse_capsule_artifact(raw: bytes) -> Dict[str, Any]:
         raise CapsuleSchemaError("capsule artifact root must be a JSON object")
 
     capsule = _validate_capsule_shape(parsed)
-    canonical = canonical_envelope_bytes(capsule)
+    canonical = _canonical_envelope_bytes(capsule)
     if raw != canonical:
         raise CapsuleSchemaError(
             "capsule artifact bytes are not the exact canonical envelope"
