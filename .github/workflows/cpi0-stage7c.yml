@@ -1,0 +1,112 @@
+name: CPI-0 Stage 7C qualification
+
+on:
+  push:
+    branches:
+      - repair/cpi0-stage7c-policy-binding-discovery-hardening
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  stage7c:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact branch commit
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install pinned dependency
+        run: |
+          python -m pip install --disable-pip-version-check -r prototype/cpi0/stage7c/requirements.txt
+
+      - name: Print qualification identity
+        run: |
+          git rev-parse HEAD
+          python - <<'PY'
+          import cryptography
+          print("CRYPTOGRAPHY_VERSION =", cryptography.__version__)
+          PY
+
+      - name: Compile Stage 7C
+        run: |
+          python -m py_compile             prototype/cpi0/stage7c/native_bootstrap_manifest_v0_2.py             prototype/cpi0/stage7c/test_native_bootstrap_manifest_v0_2.py
+
+      - name: Run Stage 7C regressions
+        working-directory: prototype/cpi0/stage7c
+        run: |
+          python -m unittest -v test_native_bootstrap_manifest_v0_2.py
+
+      - name: Exercise Stage 7C trust semantics
+        working-directory: prototype/cpi0/stage7c
+        run: |
+          python - <<'PY'
+          from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
+          from cryptography.hazmat.primitives.serialization import Encoding, PublicFormat
+          import native_bootstrap_manifest_v0_2 as B
+
+          anchor = Ed25519PrivateKey.from_private_bytes(bytes(range(32)))
+          pub = anchor.public_key().public_bytes(Encoding.Raw, PublicFormat.Raw)
+
+          policy = B.NativeBootstrapPolicy(
+              policy_id="OFFLINE_ROOT_V2",
+              project="example/project",
+              authority_domain="owner.acceptance",
+              anchor_profile=B.OFFLINE_ED25519_V1,
+              anchor_subject=B.offline_anchor_subject(pub),
+              expected_generation="genesis-001",
+              minimum_anchor_count=1,
+              pinned_anchor_public_key=pub,
+              native_policy_provenance_claim="research-vector",
+          )
+
+          manifest = B.create_manifest_for_policy(
+              policy=policy,
+              candidate_authority_key_id=(
+                  "ed25519-sha256:"
+                  "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+              ),
+              challenge="11" * 32,
+          )
+          proof = B.create_offline_ed25519_proof(
+              manifest_raw=manifest,
+              private_key=anchor,
+          )
+
+          direct = B.verify_bootstrap(
+              manifest_raw=manifest,
+              proof_artifacts=[b"junk", proof],
+              policy=policy,
+          )
+
+          discovered = B.verify_genesis_set(
+              entries=[
+                  (b"malformed", [b"junk"]),
+                  (manifest, [b"bad-proof"]),
+                  (manifest, [proof]),
+              ],
+              policy=policy,
+          )
+
+          assert direct["bootstrap_policy_digest"] == B.policy_digest(policy)
+          assert direct["native_policy_provenance_authenticated"] is False
+          assert "native_policy_provenance" not in direct
+          assert direct["unique_valid_anchor_proof_count"] == 1
+          assert discovered["qualifying_manifest_count"] == 1
+          assert discovered["execution_authorized_by_cpi"] is False
+
+          print("STAGE7C_BOOTSTRAP_HARDENING = PASS")
+          print("POLICY_DIGEST =", B.policy_digest(policy))
+          print("PROVENANCE_AUTHENTICATED =", direct["native_policy_provenance_authenticated"])
+          print("VALID_ANCHOR_PROOFS =", direct["unique_valid_anchor_proof_count"])
+          print("REJECTED_PROOF_CANDIDATES =", direct["rejected_proof_candidate_count"])
+          print("DISCOVERY_REJECTED_CARRIERS =", discovered["rejected_carrier_entry_count"])
+          print("DISCOVERY_QUALIFYING_ROOTS =", discovered["qualifying_manifest_count"])
+          print("EXECUTION_AUTHORIZED_BY_CPI =", discovered["execution_authorized_by_cpi"])
+          print("HIVE_PROFILE_IMPLEMENTED = False")
+          PY
