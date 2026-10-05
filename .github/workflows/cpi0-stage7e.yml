@@ -113,7 +113,7 @@ jobs:
           import json
           record = {
               "policy_schema": "cpi.native-bootstrap-policy/0.2",
-              "policy_id": "P-é中😀/ ",
+              "policy_id": "P-é中😀/" + chr(0x2028),
               "project": "example/project",
               "authority_domain": "owner.acceptance",
               "anchor_profile": "OFFLINE_ED25519_V1",
@@ -128,7 +128,7 @@ jobs:
           node - <<'JS' > /tmp/policy-node.json
           const record = {
             policy_schema: "cpi.native-bootstrap-policy/0.2",
-            policy_id: "P-é中😀/ ",
+            policy_id: "P-é中😀/" + String.fromCodePoint(0x2028),
             project: "example/project",
             authority_domain: "owner.acceptance",
             anchor_profile: "OFFLINE_ED25519_V1",
