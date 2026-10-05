@@ -253,7 +253,7 @@ resolved = https://registry.npmjs.org/@hiveio/hive-js/-/hive-js-2.0.8.tgz
 integrity = sha512-SLOHVb0Xi7UDQu4ZfsJGsFfZhZZ5FSNdTg80uUp/CnGjqaeJwph8eAgJ2BhRIlpT4RR7W5tLyqfqaBefCwtw4A==
 ```
 
-Stage 8A derives and commits a minimal lockfile from this frozen Keychain dependency tree and qualifies with `npm ci`.
+Keychain's own package.json also overrides `ws` with `^8.18.3`; its frozen lock resolves that override to `ws@8.20.0`. Stage 8A reproduces this behavior explicitly with an exact `ws@8.20.0` override, derives and commits a minimal lockfile from the frozen Keychain dependency tree, and qualifies with `npm ci`.
 
 The exact executed 2.0.8 package source bytes are additionally hashed in the Stage-8A qualification logs.
 
