@@ -197,7 +197,9 @@ ACTIVE
 P1_ATTACK_FAMILY = COMPLETE
 AUTONOMOUS_SECONDARY_ATTACK_SET = COMPLETE
 BLIND_AGENT_TRIAL_1 = PROVISIONAL_PASS
-HUMAN_COLD_START_TRIAL_1 = PREPARED / NOT_YET_RUN
+HUMAN_COLD_START_TRIAL_1 = FAIL — ORIENTATION / USABILITY
+HUMAN_ORIENTATION_REPAIR = PROJECTION AUDIT PASS
+HUMAN_REPAIR_TRIAL_2 = AUTHORIZED / NOT YET RUN
 CPI0_PARALLEL_RESEARCH = PARKED AFTER INDEPENDENT STAGE9D CLOSURE
 ```
 
@@ -252,13 +254,16 @@ Completed autonomous secondary program:
 - orientation-contract quality;
 - project-agnostic portability.
 
-Remaining initial CCP-1 exit trials:
+Remaining initial CCP-1 exit work:
 
 - blind agent cold-start — **first trial provisionally passed**;
-- unfamiliar-human cold-start / usability — **still required; HTML-reader trial prepared, not yet run**;
-- post-trial design review — **still required after the human trial**.
+- unfamiliar-human Trial 1 — **failed at 3/12; orientation/usability failure**;
+- Trial-1 post-trial design review — **complete; current-orientation repair required**;
+- orientation projection 0.1.3 — **independent blind audit PASS**;
+- repaired unfamiliar-human Trial 2 — **authorized, not yet run; different unfamiliar human required**;
+- post-Trial-2 design review — **required regardless of score**.
 
-These remaining trials cannot be validly self-administered by the same
+These remaining human trials cannot be validly self-administered by the same
 conversation/context that designed the architecture.
 
 ### Program reorientation after CPI-0 bounded drift
@@ -284,13 +289,39 @@ The empirical reconstruction is preserved in
 Current routing is again explicit:
 
 ```text
-PARENT_PROGRAM_GATE = UNFAMILIAR_HUMAN_COLD_START_TRIAL_1
-POST_TRIAL_DESIGN_REVIEW = REQUIRED
+PARENT_PROGRAM_GATE = REPAIRED_UNFAMILIAR_HUMAN_TRIAL_2
+POST_TRIAL_2_DESIGN_REVIEW = REQUIRED
 CCP2 = NOT AUTHORIZED
 ```
 
 CPI may be reconsidered later only through an explicit parent-program decision;
 passing its local gates does not make it the active program phase.
+
+### Human Trial 1 failure and repair routing
+
+The first unfamiliar-human cold-start trial was completed on the preserved
+CCP-1 research lineage and failed at 3/12 without an automatic critical
+failure. The post-trial review diagnosed an orientation-surface sufficiency
+failure rather than participant blame.
+
+A bounded repair produced an explicitly non-canonical current-orientation
+projection. Projection version 0.1.3 passed independent blind audit. The
+repaired Trial 2 presentation is frozen and authorized, but Trial 2 has not yet
+run.
+
+Current routing is preserved in
+`CCP1_HUMAN_COLD_START_CURRENT_ROUTING_0_1_0.md`.
+
+```text
+HUMAN_COLD_START_TRIAL_1 = FAIL
+ORIENTATION_PROJECTION_0_1_3 = PASS
+HUMAN_REPAIR_TRIAL_2 = AUTHORIZED / NOT YET RUN
+DIFFERENT_UNFAMILIAR_HUMAN = REQUIRED
+NO_MORE_PRETRIAL_PROJECTION_EDITS = YES
+CCP1_COMPLETE = NO
+CCP2 = NOT AUTHORIZED
+```
+
 
 ### CCP-1 exit gate
 
