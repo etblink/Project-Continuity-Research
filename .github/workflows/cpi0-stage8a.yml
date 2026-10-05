@@ -1,0 +1,182 @@
+name: CPI-0 Stage 8A qualification
+
+on:
+  push:
+    branches:
+      - research/cpi0-stage8a-synthetic-hive-active-adapter
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  stage8a:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact branch commit
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install pinned Python dependency
+        run: |
+          python -m pip install --disable-pip-version-check -r prototype/cpi0/stage8a/requirements.txt
+
+      - name: Install pinned Hive-JS oracle
+        working-directory: prototype/cpi0/stage8a
+        run: |
+          npm install --ignore-scripts --no-audit --no-fund
+
+      - name: Print qualification identity
+        run: |
+          git rev-parse HEAD
+          python - <<'PY'
+          import cryptography
+          print("CRYPTOGRAPHY_VERSION =", cryptography.__version__)
+          PY
+          node --version
+          node -e "console.log('HIVE_JS_VERSION =', require('./prototype/cpi0/stage8a/node_modules/@hiveio/hive-js/package.json').version)"
+
+      - name: Compile Stage 8A
+        run: |
+          python -m py_compile             prototype/cpi0/stage8a/hive_active_bootstrap_adapter.py             prototype/cpi0/stage8a/test_hive_active_bootstrap_adapter.py
+
+      - name: Run Stage 8A adversarial suite
+        working-directory: prototype/cpi0/stage8a
+        run: |
+          python -m unittest -v test_hive_active_bootstrap_adapter.py
+
+      - name: Generate deterministic Hive-JS signer identity
+        working-directory: prototype/cpi0/stage8a
+        run: |
+          node hive_js_sign_buffer_oracle.js             cpi0-stage8a-anchor-1             eA==             > /tmp/stage8a-pre.json
+          cat /tmp/stage8a-pre.json
+
+      - name: Build deterministic manifest and anchor statement
+        working-directory: prototype/cpi0/stage8a
+        run: |
+          python - <<'PY'
+          import base64, json, pathlib
+          import hive_active_bootstrap_adapter as H
+
+          oracle = json.loads(pathlib.Path('/tmp/stage8a-pre.json').read_text())
+          pub = oracle['public_key']
+
+          snapshot = H.create_snapshot_artifact(
+              reference_id='stage8a-vector-001',
+              accounts=[{
+                  'name': 'rootacct',
+                  'active': {
+                      'weight_threshold': 1,
+                      'key_auths': [[pub, 1]],
+                      'account_auths': [],
+                  },
+              }],
+          )
+          policy = H.HiveActivePolicy(
+              policy_id='HIVE_ACTIVE_SIGNATURE_V1',
+              project='example/project',
+              authority_domain='owner.acceptance',
+              anchor_subject='hive-mainnet:@rootacct:active',
+              expected_generation='genesis-001',
+              minimum_anchor_count=1,
+              hive_account='rootacct',
+              hive_authority_snapshot_digest=H.snapshot_digest(snapshot),
+              native_policy_provenance_claim='stage8a deterministic vector',
+          )
+          manifest = H.create_manifest_for_policy(
+              policy=policy,
+              candidate_authority_key_id='ed25519-sha256:' + 'aa' * 32,
+              challenge='11' * 32,
+          )
+          message = H.common.anchor_statement(manifest)
+
+          pathlib.Path('/tmp/stage8a-snapshot.bin').write_bytes(snapshot)
+          pathlib.Path('/tmp/stage8a-manifest.bin').write_bytes(manifest)
+          pathlib.Path('/tmp/stage8a-message.b64').write_text(base64.b64encode(message).decode())
+          pathlib.Path('/tmp/stage8a-vector-meta.json').write_text(json.dumps({
+              'public_key': pub,
+              'snapshot_digest': H.snapshot_digest(snapshot),
+              'policy_digest': H.policy_digest(policy),
+              'manifest_digest': H.common.manifest_digest(manifest),
+              'message_hex': message.hex(),
+          }, sort_keys=True))
+          print(pathlib.Path('/tmp/stage8a-vector-meta.json').read_text())
+          PY
+
+      - name: Sign exact bootstrap statement with Hive-JS oracle
+        working-directory: prototype/cpi0/stage8a
+        run: |
+          node hive_js_sign_buffer_oracle.js             cpi0-stage8a-anchor-1             "$(cat /tmp/stage8a-message.b64)"             > /tmp/stage8a-oracle.json
+          cat /tmp/stage8a-oracle.json
+
+      - name: Independently verify Hive-JS vector
+        working-directory: prototype/cpi0/stage8a
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          import hive_active_bootstrap_adapter as H
+
+          oracle = json.loads(pathlib.Path('/tmp/stage8a-oracle.json').read_text())
+          meta = json.loads(pathlib.Path('/tmp/stage8a-vector-meta.json').read_text())
+          snapshot = pathlib.Path('/tmp/stage8a-snapshot.bin').read_bytes()
+          manifest = pathlib.Path('/tmp/stage8a-manifest.bin').read_bytes()
+          message = H.common.anchor_statement(manifest)
+
+          assert oracle['public_key'] == meta['public_key']
+          assert oracle['recovered_public_key'] == oracle['public_key']
+
+          independently_recovered = H.recover_hive_public_key(
+              message,
+              oracle['signature_hex'],
+          )
+          assert independently_recovered == oracle['public_key']
+
+          policy = H.HiveActivePolicy(
+              policy_id='HIVE_ACTIVE_SIGNATURE_V1',
+              project='example/project',
+              authority_domain='owner.acceptance',
+              anchor_subject='hive-mainnet:@rootacct:active',
+              expected_generation='genesis-001',
+              minimum_anchor_count=1,
+              hive_account='rootacct',
+              hive_authority_snapshot_digest=H.snapshot_digest(snapshot),
+              native_policy_provenance_claim='stage8a deterministic vector',
+          )
+
+          proof = H.create_hive_proof_artifact(
+              manifest_raw=manifest,
+              policy=policy,
+              signature_hex=oracle['signature_hex'],
+              claimed_public_key=oracle['public_key'],
+          )
+          result = H.verify_hive_bootstrap(
+              manifest_raw=manifest,
+              proof_artifacts=[proof],
+              policy=policy,
+              snapshot_raw=snapshot,
+          )
+
+          assert result['hive_active_authority_satisfied'] is True
+          assert result['hive_authority_snapshot_authenticated'] is False
+          assert result['native_policy_provenance_authenticated'] is False
+          assert result['execution_authorized_by_cpi'] is False
+
+          print('STAGE8A_HIVE_JS_CROSSCHECK = PASS')
+          print('ORACLE_PUBLIC_KEY =', oracle['public_key'])
+          print('ORACLE_SIGNATURE =', oracle['signature_hex'])
+          print('SNAPSHOT_DIGEST =', H.snapshot_digest(snapshot))
+          print('POLICY_DIGEST =', H.policy_digest(policy))
+          print('MANIFEST_DIGEST =', H.common.manifest_digest(manifest))
+          print('AUTHORITY_SATISFIED =', result['hive_active_authority_satisfied'])
+          print('SNAPSHOT_AUTHENTICATED =', result['hive_authority_snapshot_authenticated'])
+          print('EXECUTION_AUTHORIZED_BY_CPI =', result['execution_authorized_by_cpi'])
+          PY
