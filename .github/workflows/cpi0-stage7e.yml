@@ -1,0 +1,145 @@
+name: CPI-0 Stage 7E qualification
+
+on:
+  push:
+    branches:
+      - repair/cpi0-stage7e-content-addressed-proof-discovery
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  stage7e:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact branch commit
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install pinned dependency
+        run: |
+          python -m pip install --disable-pip-version-check -r prototype/cpi0/stage7e/requirements.txt
+
+      - name: Print qualification identity
+        run: |
+          git rev-parse HEAD
+          python - <<'PY'
+          import cryptography
+          print("CRYPTOGRAPHY_VERSION =", cryptography.__version__)
+          PY
+          node --version
+
+      - name: Compile Stage 7E
+        run: |
+          python -m py_compile             prototype/cpi0/stage7e/native_bootstrap_manifest_v0_2_1.py             prototype/cpi0/stage7e/test_native_bootstrap_manifest_v0_2_1.py
+
+      - name: Run Stage 7E regressions
+        working-directory: prototype/cpi0/stage7e
+        run: |
+          python -m unittest -v test_native_bootstrap_manifest_v0_2_1.py
+
+      - name: Exercise Stage 7D counterexample
+        working-directory: prototype/cpi0/stage7e
+        run: |
+          python - <<'PY'
+          from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
+          from cryptography.hazmat.primitives.serialization import Encoding, PublicFormat
+          import native_bootstrap_manifest_v0_2_1 as B
+
+          anchor = Ed25519PrivateKey.from_private_bytes(bytes(range(32)))
+          pub = anchor.public_key().public_bytes(Encoding.Raw, PublicFormat.Raw)
+          policy = B.NativeBootstrapPolicy(
+              policy_id="OFFLINE_ROOT_V2",
+              project="example/project",
+              authority_domain="owner.acceptance",
+              anchor_profile=B.OFFLINE_ED25519_V1,
+              anchor_subject=B.offline_anchor_subject(pub),
+              expected_generation="genesis-001",
+              minimum_anchor_count=1,
+              pinned_anchor_public_key=pub,
+              native_policy_provenance_claim="research-vector",
+          )
+
+          def manifest(candidate, challenge):
+              return B.create_manifest_for_policy(
+                  policy=policy,
+                  candidate_authority_key_id=candidate,
+                  challenge=challenge,
+              )
+
+          m1 = manifest("ed25519-sha256:" + "aa" * 32, "11" * 32)
+          m2 = manifest("ed25519-sha256:" + "bb" * 32, "22" * 32)
+          p1 = B.create_offline_ed25519_proof(manifest_raw=m1, private_key=anchor)
+          p2 = B.create_offline_ed25519_proof(manifest_raw=m2, private_key=anchor)
+
+          # The Stage-7D counterexample: P2 arrives beside M1, not M2.
+          try:
+              B.verify_genesis_set(
+                  entries=[(m1, [p1, p2]), (m2, [])],
+                  policy=policy,
+              )
+          except B.BootstrapConflictError:
+              pass
+          else:
+              raise AssertionError("mis-paired contradictory root was not detected")
+
+          # A proof beside malformed carrier data still routes to its canonical manifest.
+          single = B.verify_genesis_set(
+              entries=[(b"not-json", [p2]), (m2, [])],
+              policy=policy,
+          )
+          assert single["candidate_authority_key_id"].endswith("bb" * 32)
+          assert single["trust_statement_scope"] == "RELATIVE_TO_SUPPLIED_POLICY"
+          assert single["native_policy_provenance_authenticated"] is False
+          assert single["execution_authorized_by_cpi"] is False
+
+          print("STAGE7E_CONTENT_ADDRESSED_DISCOVERY = PASS")
+          print("MISPAIRED_CONTRADICTORY_ROOT = CONFLICT")
+          print("TRUST_SCOPE =", single["trust_statement_scope"])
+          print("PROVENANCE_AUTHENTICATED =", single["native_policy_provenance_authenticated"])
+          print("EXECUTION_AUTHORIZED_BY_CPI =", single["execution_authorized_by_cpi"])
+          print("HIVE_PROFILE_IMPLEMENTED = False")
+          PY
+
+      - name: Cross-runtime canonical policy JSON sanity check
+        working-directory: prototype/cpi0/stage7e
+        run: |
+          python - <<'PY' > /tmp/policy-python.json
+          import json
+          record = {
+              "policy_schema": "cpi.native-bootstrap-policy/0.2",
+              "policy_id": "P-é中😀/ ",
+              "project": "example/project",
+              "authority_domain": "owner.acceptance",
+              "anchor_profile": "OFFLINE_ED25519_V1",
+              "anchor_subject": "offline-ed25519:ed25519-sha256:" + "11" * 32,
+              "expected_generation": "genesis-001",
+              "minimum_anchor_count": 1,
+              "anchor_key_id": "ed25519-sha256:" + "11" * 32,
+          }
+          print(json.dumps(record, sort_keys=True, separators=(",", ":"), ensure_ascii=False))
+          PY
+
+          node - <<'JS' > /tmp/policy-node.json
+          const record = {
+            policy_schema: "cpi.native-bootstrap-policy/0.2",
+            policy_id: "P-é中😀/ ",
+            project: "example/project",
+            authority_domain: "owner.acceptance",
+            anchor_profile: "OFFLINE_ED25519_V1",
+            anchor_subject: "offline-ed25519:ed25519-sha256:" + "11".repeat(32),
+            expected_generation: "genesis-001",
+            minimum_anchor_count: 1,
+            anchor_key_id: "ed25519-sha256:" + "11".repeat(32),
+          };
+          const sorted = Object.fromEntries(Object.keys(record).sort().map(k => [k, record[k]]));
+          process.stdout.write(JSON.stringify(sorted) + "\n");
+          JS
+
+          cmp /tmp/policy-python.json /tmp/policy-node.json
+          echo "CROSS_RUNTIME_POLICY_JSON = PASS"
