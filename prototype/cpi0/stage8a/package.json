@@ -1,0 +1,8 @@
+{
+  "name": "cpi0-stage8a-hive-oracle",
+  "private": true,
+  "version": "0.0.0",
+  "dependencies": {
+    "@hiveio/hive-js": "2.0.8"
+  }
+}
