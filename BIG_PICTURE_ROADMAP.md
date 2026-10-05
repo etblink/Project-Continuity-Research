@@ -198,6 +198,7 @@ P1_ATTACK_FAMILY = COMPLETE
 AUTONOMOUS_SECONDARY_ATTACK_SET = COMPLETE
 BLIND_AGENT_TRIAL_1 = PROVISIONAL_PASS
 HUMAN_COLD_START_TRIAL_1 = PREPARED / NOT_YET_RUN
+CPI0_PARALLEL_RESEARCH = PARKED AFTER INDEPENDENT STAGE9D CLOSURE
 ```
 
 Governing issue:
@@ -239,7 +240,7 @@ Status:
 
 ```text
 AUTONOMOUS_SET = COMPLETE
-EXTERNAL_PARTICIPANT_GATE = NEXT
+EXTERNAL_PARTICIPANT_GATE = CURRENT
 ```
 
 Completed autonomous secondary program:
@@ -259,6 +260,37 @@ Remaining initial CCP-1 exit trials:
 
 These remaining trials cannot be validly self-administered by the same
 conversation/context that designed the architecture.
+
+### Program reorientation after CPI-0 bounded drift
+
+A legitimate parallel Cross-Project Interoperability research track (CPI-0)
+advanced far enough that it became the program's center of gravity while this
+Phase-4 human gate remained unresolved.
+
+The drift was adjudicated as bounded orientation drift rather than a North-Star,
+authority, or evidence-integrity failure. The already-frozen CPI audit/repair
+sequence was completed, ending with independent Stage-9D disposition:
+
+```text
+PASS_WITH_NONMATERIAL_FINDINGS
+CPI0 = PARKED
+REAL_HISTORY_EXECUTOR = NOT AUTHORIZED
+REAL_KEYCHAIN_CEREMONY = NOT AUTHORIZED
+```
+
+The empirical reconstruction is preserved in
+`INCIDENT_016_CPI0_BOUNDED_ORIENTATION_DRIFT_0_1_0.md`.
+
+Current routing is again explicit:
+
+```text
+PARENT_PROGRAM_GATE = UNFAMILIAR_HUMAN_COLD_START_TRIAL_1
+POST_TRIAL_DESIGN_REVIEW = REQUIRED
+CCP2 = NOT AUTHORIZED
+```
+
+CPI may be reconsidered later only through an explicit parent-program decision;
+passing its local gates does not make it the active program phase.
 
 ### CCP-1 exit gate
 
@@ -455,6 +487,7 @@ HOLD != FORGOTTEN_TASK
 NO_ACTION != FAILURE
 KERNEL != SOLE_SOURCE_OF_TRUTH
 REFLECTION != VERIFIED_CORRECTION
+PARALLEL_RESEARCH != PROGRAM_PHASE
 ```
 
 ---
@@ -472,6 +505,9 @@ Return to earlier research rather than forcing forward progress if:
   sufficiency discipline;
 - the control plane becomes more complex to understand than the project it is
   meant to orient;
+- a parallel research track can no longer state which unresolved parent-program
+  gate it advances, or becomes the program center of gravity without an explicit
+  phase/routing decision;
 - a competing architecture materially outperforms CCP on the frozen
   requirements;
 - external research reveals an existing mature solution that makes this work
