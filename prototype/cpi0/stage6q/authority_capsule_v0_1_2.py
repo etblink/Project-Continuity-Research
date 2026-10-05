@@ -20,6 +20,27 @@ SCHEMA = "cpi.authority-capsule/0.1"
 SIGNATURE_ALGORITHM = "Ed25519"
 DECISIONS = {"PASS", "HOLD", "REJECT", "WITHDRAW"}
 MAX_SEQUENCE = 2**63 - 1
+RESEARCH_VERIFIER_VERSION = "0.1.2"
+
+__all__ = [
+    "CapsuleError",
+    "CapsuleSchemaError",
+    "CapsuleSignatureError",
+    "CapsuleChainError",
+    "CapsuleBindingError",
+    "CapsuleCompletenessError",
+    "PinValidationError",
+    "PinnedAuthorityKey",
+    "public_key_id",
+    "validate_pin",
+    "pin_provenance_digest",
+    "capsule_artifact_digest",
+    "note_digest",
+    "parse_capsule_artifact",
+    "sign_capsule_artifact",
+    "verify_observed_chain",
+    "require_current_decision",
+]
 
 SIGNED_FIELDS = (
     "schema",
