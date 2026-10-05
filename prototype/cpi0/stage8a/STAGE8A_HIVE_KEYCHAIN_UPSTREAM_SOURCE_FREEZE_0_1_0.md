@@ -97,6 +97,20 @@ Observed Hive public-key string semantics:
 - Hive address prefix (normally `STM`) prepended;
 - parsing rechecks the prefix and RIPEMD-160 checksum.
 
+
+### Hive-JS mainnet configuration
+
+Path:
+`config.json`
+
+Blob:
+`dbb5d71ff7df3de6c941dcf5b41d8f5026b28fed`
+
+Frozen mainnet values used by Stage 8A:
+
+- `address_prefix = STM`;
+- `chain_id = beeab0de00000000000000000000000000000000000000000000000000000000`.
+
 ## 4. Hive account-authority API
 
 Repository:
