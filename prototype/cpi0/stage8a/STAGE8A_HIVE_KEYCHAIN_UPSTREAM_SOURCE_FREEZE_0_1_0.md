@@ -79,6 +79,24 @@ Observed semantics:
 - `recoverPublicKeyFromBuffer(buffer)` recovers the public key from SHA-256(buffer) and the compact signature;
 - `verifyBuffer(buf, public_key)` verifies the same SHA-256(buffer) ECDSA signature.
 
+
+### Hive public-key encoding
+
+Path:
+`src/auth/ecc/src/key_public.js`
+
+Blob:
+`81791b0899f7daf61b60d0b3f90664a15dc3a21a`
+
+Observed Hive public-key string semantics:
+
+- compressed secp256k1 public-key bytes;
+- RIPEMD-160 of the raw public-key bytes;
+- first four checksum bytes appended to the public key;
+- Base58 encoding of public-key bytes + checksum;
+- Hive address prefix (normally `STM`) prepended;
+- parsing rechecks the prefix and RIPEMD-160 checksum.
+
 ## 4. Hive account-authority API
 
 Repository:
