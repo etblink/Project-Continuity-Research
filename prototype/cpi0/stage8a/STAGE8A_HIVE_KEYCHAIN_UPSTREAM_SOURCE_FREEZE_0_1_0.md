@@ -234,6 +234,29 @@ A future live-adoption path must separately establish how the relevant Hive auth
 
 Live RPC alone is not silently upgraded into immutable historical proof.
 
+
+## Exact Hive-JS package provenance clarification
+
+The GitHub Hive-JS revision cited above is a readable implementation-family source reference and currently identifies its package as version 2.0.9.
+
+The exact Keychain dependency and Stage-8A executed oracle are version 2.0.8.
+
+Keychain's frozen `package-lock.json` at revision `2e9be8c998d685ad670ffcde6fa7f524a2108204` has Git blob:
+
+`f12cc0176d0d042ab876b894fba6c5cf4484f0a3`
+
+and pins:
+
+```text
+@hiveio/hive-js = 2.0.8
+resolved = https://registry.npmjs.org/@hiveio/hive-js/-/hive-js-2.0.8.tgz
+integrity = sha512-SLOHVb0Xi7UDQu4ZfsJGsFfZhZZ5FSNdTg80uUp/CnGjqaeJwph8eAgJ2BhRIlpT4RR7W5tLyqfqaBefCwtw4A==
+```
+
+Stage 8A derives and commits a minimal lockfile from this frozen Keychain dependency tree and qualifies with `npm ci`.
+
+The exact executed 2.0.8 package source bytes are additionally hashed in the Stage-8A qualification logs.
+
 ## 10. No external effects
 
 No real Keychain invocation.
