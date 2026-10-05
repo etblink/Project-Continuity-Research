@@ -33,7 +33,7 @@ jobs:
       - name: Install pinned Hive-JS oracle
         working-directory: prototype/cpi0/stage8a
         run: |
-          npm install --ignore-scripts --no-audit --no-fund
+          npm ci --ignore-scripts --no-audit --no-fund
 
       - name: Print qualification identity
         run: |
@@ -44,6 +44,8 @@ jobs:
           PY
           node --version
           node -e "console.log('HIVE_JS_VERSION =', require('./prototype/cpi0/stage8a/node_modules/@hiveio/hive-js/package.json').version)"
+          sha256sum prototype/cpi0/stage8a/node_modules/@hiveio/hive-js/lib/auth/ecc/src/signature.js
+          sha256sum prototype/cpi0/stage8a/node_modules/@hiveio/hive-js/lib/auth/ecc/src/key_public.js
 
       - name: Compile Stage 8A
         run: |
