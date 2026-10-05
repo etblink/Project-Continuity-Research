@@ -1,0 +1,118 @@
+name: CPI-0 Stage 6Q qualification
+
+on:
+  push:
+    branches:
+      - repair/cpi0-stage6q-portability-api-hygiene
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  stage6q:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact branch commit
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install pinned dependency
+        run: |
+          python -m pip install --disable-pip-version-check -r prototype/cpi0/stage6q/requirements.txt
+
+      - name: Print qualification identity
+        run: |
+          git rev-parse HEAD
+          python - <<'PY'
+          import cryptography
+          print("CRYPTOGRAPHY_VERSION =", cryptography.__version__)
+          PY
+
+      - name: Compile Stage 6Q
+        run: |
+          python -m py_compile             prototype/cpi0/stage6q/authority_capsule_v0_1_2.py             prototype/cpi0/stage6q/test_authority_capsule_v0_1_2.py
+
+      - name: Run Stage 6Q regressions
+        working-directory: prototype/cpi0/stage6q
+        run: |
+          python -m unittest -v test_authority_capsule_v0_1_2.py
+
+      - name: Exercise 0.1.2 public API
+        working-directory: prototype/cpi0/stage6q
+        run: |
+          python - <<'PY'
+          import json
+          from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
+          from cryptography.hazmat.primitives.serialization import Encoding, PublicFormat
+          import authority_capsule_v0_1_2 as A
+
+          key = Ed25519PrivateKey.from_private_bytes(bytes(range(32)))
+          pub = key.public_key().public_bytes(Encoding.Raw, PublicFormat.Raw)
+          pin = A.PinnedAuthorityKey(
+              public_key=pub,
+              project="example/project",
+              authority_domain="owner.acceptance",
+              provenance_id="research-vector",
+              provenance_revision="stage6q",
+          )
+
+          c1 = A.sign_capsule_artifact(
+              private_key=key,
+              project="example/project",
+              authority_domain="owner.acceptance",
+              subject="gate:1",
+              candidate="candidate:alpha",
+              candidate_revision="rev-001",
+              sequence=1,
+              predecessor=None,
+              decision="PASS",
+          )
+          c2 = A.sign_capsule_artifact(
+              private_key=key,
+              project="example/project",
+              authority_domain="owner.acceptance",
+              subject="gate:1",
+              candidate="candidate:alpha",
+              candidate_revision="rev-001",
+              sequence=2,
+              predecessor=A.capsule_artifact_digest(c1),
+              decision="WITHDRAW",
+          )
+
+          result = A.verify_observed_chain(
+              [c1, c2],
+              pin,
+              expected_subject="gate:1",
+              expected_candidate="candidate:alpha",
+              expected_candidate_revision="rev-001",
+          )
+
+          assert result["observed_chain_valid"] is True
+          assert "capsule_chain_valid" not in result
+          assert result["latest_observed_decision"] == "WITHDRAW"
+          assert result["current_decision"] is None
+          assert result["completeness_status"] == "NOT_ESTABLISHED"
+          assert result["execution_authorized_by_cpi"] is False
+          assert A.capsule_artifact_digest(c1) == (
+              "f8e9c77a95b206a58d553200a58405075357c80a21f5ea72bb3c8e7808f0105b"
+          )
+
+          public = set(A.__all__)
+          assert "serialize_capsule" not in public
+          assert "canonical_envelope_bytes" not in public
+          assert "capsule_digest" not in public
+          assert "sign_capsule" not in public
+
+          print("STAGE6Q_PUBLIC_API = PASS")
+          print("OBSERVED_CHAIN_VALID =", result["observed_chain_valid"])
+          print("LATEST_OBSERVED =", result["latest_observed_decision"])
+          print("CURRENT_DECISION =", result["current_decision"])
+          print("COMPLETENESS_STATUS =", result["completeness_status"])
+          print("EXECUTION_AUTHORIZED_BY_CPI =", result["execution_authorized_by_cpi"])
+          print("VECTOR_DIGEST =", A.capsule_artifact_digest(c1))
+          PY
