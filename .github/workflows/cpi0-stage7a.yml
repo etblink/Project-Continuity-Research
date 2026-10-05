@@ -1,0 +1,138 @@
+name: CPI-0 Stage 7A qualification
+
+on:
+  push:
+    branches:
+      - research/cpi0-stage7a-native-trust-root-bootstrap
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  stage7a:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact branch commit
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install pinned dependency
+        run: |
+          python -m pip install --disable-pip-version-check -r prototype/cpi0/stage7a/requirements.txt
+
+      - name: Print qualification identity
+        run: |
+          git rev-parse HEAD
+          python - <<'PY'
+          import cryptography
+          print("CRYPTOGRAPHY_VERSION =", cryptography.__version__)
+          PY
+
+      - name: Compile Stage 7A
+        run: |
+          python -m py_compile             prototype/cpi0/stage7a/native_bootstrap_manifest.py             prototype/cpi0/stage7a/test_native_bootstrap_manifest.py
+
+      - name: Run Stage 7A adversarial suite
+        working-directory: prototype/cpi0/stage7a
+        run: |
+          python -m unittest -v test_native_bootstrap_manifest.py
+
+      - name: Exercise trust-boundary semantics
+        working-directory: prototype/cpi0/stage7a
+        run: |
+          python - <<'PY'
+          from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
+          from cryptography.hazmat.primitives.serialization import Encoding, PublicFormat
+          import native_bootstrap_manifest as B
+
+          anchor = Ed25519PrivateKey.from_private_bytes(bytes(range(32)))
+          anchor_pub = anchor.public_key().public_bytes(Encoding.Raw, PublicFormat.Raw)
+          subject = B.offline_anchor_subject(anchor_pub)
+
+          policy = B.NativeBootstrapPolicy(
+              policy_id="OFFLINE_ROOT_V1",
+              project="example/project",
+              authority_domain="owner.acceptance",
+              anchor_profile=B.OFFLINE_ED25519_V1,
+              anchor_subject=subject,
+              expected_generation="genesis-001",
+              minimum_anchor_count=1,
+              pinned_anchor_public_key=anchor_pub,
+              native_policy_provenance="research-vector",
+          )
+
+          manifest = B.create_manifest_artifact(
+              project="example/project",
+              authority_domain="owner.acceptance",
+              candidate_authority_key_id=(
+                  "ed25519-sha256:"
+                  "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+              ),
+              bootstrap_policy="OFFLINE_ROOT_V1",
+              generation="genesis-001",
+              challenge="11" * 32,
+              anchor_profile=B.OFFLINE_ED25519_V1,
+              anchor_subject=subject,
+          )
+          proof = B.create_offline_ed25519_proof(
+              manifest_raw=manifest,
+              private_key=anchor,
+          )
+          result = B.verify_bootstrap(
+              manifest_raw=manifest,
+              proof_artifacts=[proof],
+              policy=policy,
+          )
+
+          assert result["bootstrap_manifest_valid"] is True
+          assert result["independent_anchor_proof_valid"] is True
+          assert result["bootstrap_trust_root_established_for_observed_policy"] is True
+          assert result["execution_authorized_by_cpi"] is False
+
+          hive_policy = B.NativeBootstrapPolicy(
+              policy_id="HIVE_ACTIVE_SIGNATURE_V1",
+              project="example/project",
+              authority_domain="owner.acceptance",
+              anchor_profile=B.HIVE_ACTIVE_AUTHORITY_V1,
+              anchor_subject="hive-mainnet:@etblink:active",
+              expected_generation="genesis-001",
+              minimum_anchor_count=1,
+              pinned_anchor_public_key=None,
+              native_policy_provenance="research:hive-profile",
+          )
+          hive_manifest = B.create_manifest_artifact(
+              project="example/project",
+              authority_domain="owner.acceptance",
+              candidate_authority_key_id=(
+                  "ed25519-sha256:"
+                  "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+              ),
+              bootstrap_policy=hive_policy.policy_id,
+              generation="genesis-001",
+              challenge="22" * 32,
+              anchor_profile=hive_policy.anchor_profile,
+              anchor_subject=hive_policy.anchor_subject,
+          )
+
+          try:
+              B.verify_bootstrap(
+                  manifest_raw=hive_manifest,
+                  proof_artifacts=[],
+                  policy=hive_policy,
+              )
+          except B.UnsupportedAnchorProfileError:
+              pass
+          else:
+              raise AssertionError("unimplemented Hive profile did not fail closed")
+
+          print("STAGE7A_BOOTSTRAP_FRAMEWORK = PASS")
+          print("TRUST_ROOT_ESTABLISHED_FOR_OBSERVED_POLICY =", result["bootstrap_trust_root_established_for_observed_policy"])
+          print("EXECUTION_AUTHORIZED_BY_CPI =", result["execution_authorized_by_cpi"])
+          print("HIVE_PROFILE_IMPLEMENTED = False")
+          print("MANIFEST_DIGEST =", result["manifest_digest"])
+          PY
