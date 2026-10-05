@@ -1,0 +1,132 @@
+name: CPI-0 Stage 6O qualification
+
+on:
+  push:
+    branches:
+      - repair/cpi0-stage6o-observed-head-canonical-carrier
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  stage6o:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact branch commit
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install pinned dependency
+        run: |
+          python -m pip install --disable-pip-version-check -r prototype/cpi0/stage6o/requirements.txt
+
+      - name: Print qualification identity
+        run: |
+          git rev-parse HEAD
+          python - <<'PY'
+          import cryptography
+          print("CRYPTOGRAPHY_VERSION =", cryptography.__version__)
+          PY
+
+      - name: Compile Stage 6O
+        run: |
+          python -m py_compile             prototype/cpi0/stage6o/authority_capsule_v0_1_1.py             prototype/cpi0/stage6o/test_authority_capsule_v0_1_1.py
+
+      - name: Run Stage 6O regressions
+        working-directory: prototype/cpi0/stage6o
+        run: |
+          python -m unittest -v test_authority_capsule_v0_1_1.py
+
+      - name: Exercise suppression and canonical carrier semantics
+        working-directory: prototype/cpi0/stage6o
+        run: |
+          python - <<'PY'
+          from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
+          from cryptography.hazmat.primitives.serialization import Encoding, PublicFormat
+          import authority_capsule_v0_1_1 as A
+
+          key = Ed25519PrivateKey.from_private_bytes(bytes(range(32)))
+          pub = key.public_key().public_bytes(Encoding.Raw, PublicFormat.Raw)
+          pin = A.PinnedAuthorityKey(
+              public_key=pub,
+              project="example/project",
+              authority_domain="owner.acceptance",
+              provenance_id="research-vector",
+              provenance_revision="stage6o-launch",
+          )
+
+          c1 = A.sign_capsule(
+              private_key=key,
+              project="example/project",
+              authority_domain="owner.acceptance",
+              subject="gate:1",
+              candidate="candidate:alpha",
+              candidate_revision="rev-001",
+              sequence=1,
+              predecessor=None,
+              decision="PASS",
+          )
+          c2 = A.sign_capsule(
+              private_key=key,
+              project="example/project",
+              authority_domain="owner.acceptance",
+              subject="gate:1",
+              candidate="candidate:alpha",
+              candidate_revision="rev-001",
+              sequence=2,
+              predecessor=A.capsule_digest(c1),
+              decision="WITHDRAW",
+          )
+
+          r_full = A.verify_observed_chain(
+              [A.serialize_capsule(c1), A.serialize_capsule(c2)],
+              pin,
+              expected_subject="gate:1",
+              expected_candidate="candidate:alpha",
+              expected_candidate_revision="rev-001",
+          )
+          r_truncated = A.verify_observed_chain(
+              [A.serialize_capsule(c1)],
+              pin,
+              expected_subject="gate:1",
+              expected_candidate="candidate:alpha",
+              expected_candidate_revision="rev-001",
+          )
+
+          assert r_full["latest_observed_decision"] == "WITHDRAW"
+          assert r_full["current_decision"] is None
+          assert r_truncated["latest_observed_decision"] == "PASS"
+          assert r_truncated["current_decision"] is None
+          assert r_full["completeness_status"] == "NOT_ESTABLISHED"
+          assert r_truncated["completeness_status"] == "NOT_ESTABLISHED"
+          assert r_full["execution_authorized_by_cpi"] is False
+          assert r_truncated["execution_authorized_by_cpi"] is False
+
+          try:
+              A.require_current_decision(r_full)
+              raise AssertionError("currentness unexpectedly established")
+          except A.CapsuleCompletenessError:
+              pass
+
+          assert A.public_key_id(pub) == (
+              "ed25519-sha256:"
+              "56475aa75463474c0285df5dbf2bcab73da651358839e9b77481b2eab107708c"
+          )
+          assert A.capsule_digest(c1) == (
+              "f8e9c77a95b206a58d553200a58405075357c80a21f5ea72bb3c8e7808f0105b"
+          )
+
+          print("STAGE6O_OBSERVED_HEAD = PASS")
+          print("FULL_LATEST_OBSERVED =", r_full["latest_observed_decision"])
+          print("TRUNCATED_LATEST_OBSERVED =", r_truncated["latest_observed_decision"])
+          print("FULL_CURRENT_DECISION =", r_full["current_decision"])
+          print("TRUNCATED_CURRENT_DECISION =", r_truncated["current_decision"])
+          print("COMPLETENESS_STATUS =", r_full["completeness_status"])
+          print("EXECUTION_AUTHORIZED_BY_CPI =", r_full["execution_authorized_by_cpi"])
+          print("DETERMINISTIC_VECTOR_DIGEST =", A.capsule_digest(c1))
+          PY
