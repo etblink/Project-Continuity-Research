@@ -1,0 +1,118 @@
+name: CPI-0 Stage 6S qualification
+
+on:
+  push:
+    branches:
+      - repair/cpi0-stage6s-jcs-integer-domain
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  stage6s:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact branch commit
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install pinned dependency
+        run: |
+          python -m pip install --disable-pip-version-check -r prototype/cpi0/stage6s/requirements.txt
+
+      - name: Print qualification identity
+        run: |
+          git rev-parse HEAD
+          python - <<'PY'
+          import cryptography
+          print("CRYPTOGRAPHY_VERSION =", cryptography.__version__)
+          PY
+          node --version
+
+      - name: Compile Stage 6S
+        run: |
+          python -m py_compile             prototype/cpi0/stage6s/authority_capsule_v0_1_3.py             prototype/cpi0/stage6s/test_authority_capsule_v0_1_3.py
+
+      - name: Run Stage 6S regressions
+        working-directory: prototype/cpi0/stage6s
+        run: |
+          python -m unittest -v test_authority_capsule_v0_1_3.py
+
+      - name: Cross-runtime JCS safe-integer boundary
+        working-directory: prototype/cpi0/stage6s
+        run: |
+          python - <<'PY' > /tmp/python-boundary.txt
+          import json
+          print(json.dumps(2**53 - 1, separators=(",", ":")))
+          PY
+
+          node - <<'JS' > /tmp/node-boundary.txt
+          process.stdout.write(JSON.stringify(Number.MAX_SAFE_INTEGER) + "\n");
+          JS
+
+          echo "PYTHON_MAX_SAFE=$(cat /tmp/python-boundary.txt)"
+          echo "NODE_MAX_SAFE=$(cat /tmp/node-boundary.txt)"
+          test "$(cat /tmp/python-boundary.txt)" = "$(cat /tmp/node-boundary.txt)"
+          test "$(cat /tmp/node-boundary.txt)" = "9007199254740991"
+
+          python - <<'PY'
+          from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
+          import authority_capsule_v0_1_3 as A
+
+          key = Ed25519PrivateKey.from_private_bytes(bytes(range(32)))
+
+          valid = A.sign_capsule_artifact(
+              private_key=key,
+              project="example/project",
+              authority_domain="owner.acceptance",
+              subject="gate:1",
+              candidate="candidate:alpha",
+              candidate_revision="rev-001",
+              sequence=2**53 - 1,
+              predecessor="0" * 64,
+              decision="PASS",
+          )
+          assert b'"sequence":9007199254740991' in valid
+
+          for bad in (2**53, 2**53 + 1, 2**63 - 1):
+              try:
+                  A.sign_capsule_artifact(
+                      private_key=key,
+                      project="example/project",
+                      authority_domain="owner.acceptance",
+                      subject="gate:1",
+                      candidate="candidate:alpha",
+                      candidate_revision="rev-001",
+                      sequence=bad,
+                      predecessor="0" * 64,
+                      decision="PASS",
+                  )
+              except A.CapsuleSchemaError:
+                  pass
+              else:
+                  raise AssertionError(f"out-of-domain sequence accepted: {bad}")
+
+          vector = A.sign_capsule_artifact(
+              private_key=key,
+              project="example/project",
+              authority_domain="owner.acceptance",
+              subject="gate:1",
+              candidate="candidate:alpha",
+              candidate_revision="rev-001",
+              sequence=1,
+              predecessor=None,
+              decision="PASS",
+          )
+          assert A.capsule_artifact_digest(vector) == (
+              "f8e9c77a95b206a58d553200a58405075357c80a21f5ea72bb3c8e7808f0105b"
+          )
+
+          print("STAGE6S_JCS_INTEGER_DOMAIN = PASS")
+          print("MAX_SEQUENCE =", A.MAX_SEQUENCE)
+          print("VECTOR_DIGEST =", A.capsule_artifact_digest(vector))
+          PY
