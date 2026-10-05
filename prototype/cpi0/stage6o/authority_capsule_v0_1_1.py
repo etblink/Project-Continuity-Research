@@ -596,17 +596,8 @@ def verify_observed_chain(
     }
 
 
-def require_current_decision(result: Mapping[str, Any]) -> str:
-    if not isinstance(result, Mapping):
-        raise CapsuleCompletenessError("verification result is malformed")
-    if (
-        result.get("completeness_status") != "ESTABLISHED"
-        or result.get("current_decision") is None
-    ):
-        raise CapsuleCompletenessError(
-            "current authority is not established by an observed capsule chain"
-        )
-    decision = result.get("current_decision")
-    if type(decision) is not str or decision not in DECISIONS:
-        raise CapsuleCompletenessError("current decision is malformed")
-    return decision
+def require_current_decision(_: Mapping[str, Any]) -> str:
+    raise CapsuleCompletenessError(
+        "Authority Capsule v0.1.1 defines no authenticated completeness "
+        "mechanism; current authority cannot be derived from an observed chain"
+    )
