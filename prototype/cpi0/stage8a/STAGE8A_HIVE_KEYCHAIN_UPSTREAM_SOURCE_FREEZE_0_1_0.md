@@ -145,6 +145,31 @@ At the frozen Hive revision, authority verification uses the protocol sign-state
 
 Stage 8A will model the current strict Active semantics rather than legacy pre-HF28 upgrade behavior.
 
+
+### authority traversal
+
+Path:
+`libraries/protocol/include/hive/protocol/sign_state.hpp`
+
+Blob:
+`637f324ed96799f7428a8878ab15ec4954c9b5a4`
+
+Observed semantics include weighted `key_auths`, recursive weighted `account_auths`, recursion/membership/account-processing limits, and supplied-signature tracking.
+
+### role verification / HF28 behavior
+
+Path:
+`libraries/protocol/transaction_util.cpp`
+
+Blob:
+`f5604eb9b2cf9a95ab8f78858284137a97c3487d`
+
+Observed current semantics:
+
+- Active requirements use the Active authority graph under the post-HF28 strict/mixed-authority path;
+- the legacy pre-HF28 Owner fallback for Active appears only when strict/mixed authorities are disabled;
+- Stage 8A therefore treats Owner and Posting signatures as non-substitutes for the selected Active profile.
+
 ## 6. Native Keychain API documentation sanity check
 
 Current official Keychain documentation describes `requestSignBuffer` as:
