@@ -1,0 +1,129 @@
+name: CPI-0 Stage 9C bounded S2 corrective qualification
+
+on:
+  push:
+    branches:
+      - repair/cpi0-stage9c-stage9b-s2-findings
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  stage9c:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact branch commit
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install pinned Stage 8 dependency
+        run: |
+          python -m pip install --disable-pip-version-check -r prototype/cpi0/stage8a/requirements.txt
+
+      - name: Print qualification identity
+        run: |
+          git rev-parse HEAD
+          python - <<'PY'
+          import cryptography
+          print("CRYPTOGRAPHY_VERSION =", cryptography.__version__)
+          PY
+
+      - name: Compile Stage 9C
+        run: |
+          python -m py_compile \
+            prototype/cpi0/stage9c/synthetic_hive_authority_binding.py \
+            prototype/cpi0/stage9c/test_synthetic_hive_authority_binding.py
+
+      - name: Run Stage 9C corrective suite
+        working-directory: prototype/cpi0/stage9c
+        run: |
+          python -m unittest -v test_synthetic_hive_authority_binding.py
+
+      - name: Run frozen Stage 9A regression suite
+        working-directory: prototype/cpi0/stage9a
+        run: |
+          python -m unittest -v test_hive_authority_state_provenance.py
+
+      - name: Run Stage 8A regression suite
+        working-directory: prototype/cpi0/stage8a
+        run: |
+          python -m unittest -v test_hive_active_bootstrap_adapter.py
+
+      - name: Emit bounded Stage 9C vector
+        working-directory: prototype/cpi0/stage9c
+        run: |
+          python - <<'PY'
+          import synthetic_hive_authority_binding as P
+
+          KEY = "STM8gAFEMLo7L2EoHRizg2AAUiRvTi24UYxQXNbCWjuwAJe8ViDJL"
+
+          def active(threshold=1, key_auths=None, account_auths=None):
+              return {
+                  "weight_threshold": threshold,
+                  "key_auths": sorted(key_auths or [], key=lambda x: x[0]),
+                  "account_auths": sorted(account_auths or [], key=lambda x: x[0]),
+              }
+
+          witnesses = [f"wit{i:02d}" for i in range(1, 22)]
+          genesis = {
+              "rootacct": active(1, account_auths=[["delegate", 1]]),
+              "delegate": active(1, key_auths=[[KEY, 1]]),
+          }
+          history = []
+          previous = "0" * 64
+          for n in range(1, 31):
+              block = P.make_block(
+                  block_num=n,
+                  previous=previous,
+                  witness=witnesses[(n - 1) % 21],
+                  scheduled_witnesses=witnesses,
+              )
+              history.append(block)
+              previous = block["block_id"]
+
+          target = history[5]
+          confirmation = history[-1]
+          result = P.verify_synthetic_binding(
+              history=history,
+              genesis_authorities=genesis,
+              authority_root_account="rootacct",
+              target_block_num=target["block_num"],
+              target_block_id=target["block_id"],
+              confirmation_block_num=confirmation["block_num"],
+              confirmation_block_id=confirmation["block_id"],
+              validation_profile=P.VALIDATION_PROFILE,
+              checkpoint_mode="NONE_FROM_GENESIS",
+              reindex_reported_lib=confirmation["block_num"],
+          )
+
+          forbidden = {
+              "history_consensus_validated",
+              "chain_identity_bound",
+              "target_irreversibility_established",
+              "finality_certificate_valid",
+          }
+          assert not (forbidden & set(result))
+          assert result["synthetic_history_self_consistent"] is True
+          assert result["synthetic_produced_threshold_met"] is True
+          assert result["native_hive_consensus_validated"] is False
+          assert result["native_hive_target_irreversibility_established"] is False
+          assert result["authority_state_provenance_authenticated"] is False
+          assert result["current_authority_established"] is False
+          assert result["execution_authorized_by_cpi"] is False
+
+          print("STAGE9C_BOUNDED_CORRECTIVE_VECTOR = PASS")
+          print("PROVENANCE_SCOPE =", result["provenance_scope"])
+          print("SYNTHETIC_PRODUCED_THRESHOLD_MET =", result["synthetic_produced_threshold_met"])
+          print("NATIVE_HIVE_CONSENSUS_VALIDATED =", result["native_hive_consensus_validated"])
+          print("NATIVE_HIVE_TARGET_IRREVERSIBILITY_ESTABLISHED =", result["native_hive_target_irreversibility_established"])
+          print("AUTHORITY_STATE_PROVENANCE_AUTHENTICATED =", result["authority_state_provenance_authenticated"])
+          print("COMPLETE_GENESIS_AUTHORITIES_DIGEST =", result["complete_genesis_authorities_digest"])
+          print("JOINT_SYNTHETIC_BINDING_DIGEST =", result["joint_synthetic_binding_digest"])
+          print("CURRENT_AUTHORITY_ESTABLISHED =", result["current_authority_established"])
+          print("EXECUTION_AUTHORIZED_BY_CPI =", result["execution_authorized_by_cpi"])
+          PY
